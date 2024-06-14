@@ -5,11 +5,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Engineers from "./Pages/Engineers.jsx"
 import SupervisingEngineers from "./Pages/SupervisingEngineers.jsx"
-import Home from "./Pages/Home.jsx"
 import LoginSignin from "./Pages/LoginSignin.jsx"
 import Trainings from "./Pages/Trainings.jsx"
 import Summary from "./Pages/Summary.jsx"
 import Evaluations from "./Pages/Evaluations.jsx"
+import Home from "./Pages/Home.jsx"
+import Footer from "./Components/Footer/Footer.jsx"
 
 
 
@@ -33,7 +34,7 @@ function App() {
 
         </Routes>
       
-      
+      <Footer/>
       </BrowserRouter>
 
       
