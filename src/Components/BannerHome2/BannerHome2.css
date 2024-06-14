@@ -1,0 +1,52 @@
+.banner2 {
+    text-align: center;
+    background: #FFD02F; 
+    padding-top: 15px;
+
+  }
+.banner-top h2{
+    font-size: 35px;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.banner-top p{
+    font-size:18px;
+    margin-top: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.banner-top hr{
+    width: 700px;
+    height: 1px;
+    background: black;
+    border: none;
+}
+.banner2-points-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    height: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+.banner2-points-container p{
+    width: 500px;
+}
+.pointbanner2 img{
+    width: 100px;
+
+}
+.banner-bottom {
+    width: 100%;
+    height: 500px; 
+     
+}
+.banner-bottom img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
