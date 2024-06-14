@@ -85,6 +85,8 @@
 
 .nav-login-cart-bell {
     width: 40px;
+    margin-left: 5px;
+    padding-left: 0px;
 }
 
 .nav-menu li {
@@ -117,6 +119,7 @@
 
 .navbar-searchbox img {
     width: 40px;
+    margin-right: 100px;
 }
 
 .navbar-searchbox input {
