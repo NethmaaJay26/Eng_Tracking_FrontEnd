@@ -54,9 +54,6 @@ const Banner = () => {
       <div className="banner-bottom">
         <img src={homebanner2} alt="" />
 
-
-
-
       </div>
     </div>
   )
