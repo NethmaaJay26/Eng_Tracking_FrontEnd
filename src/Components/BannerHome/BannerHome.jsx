@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './BannerHome.css'
-import pointImage1 from '../Assets/bell_icon.png'
-import pointImage2 from '../Assets/bell_icon.png'
-import pointImage3 from '../Assets/bell_icon.png'
-import pointImage4 from '../Assets/bell_icon.png'
-import pointImage5 from '../Assets/bell_icon.png'
+import pointImage1 from '../Assets/point1.png'
+import pointImage2 from '../Assets/point2.png'
+import pointImage3 from '../Assets/point3.png'
+import pointImage4 from '../Assets/point4.png'
+import pointImage5 from '../Assets/point5.png'
 
 const Banner = () => {
   const navigate = useNavigate();

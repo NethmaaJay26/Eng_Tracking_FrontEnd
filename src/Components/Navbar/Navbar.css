@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 16px;
+    padding: 10px;
     box-shadow: 0 1px 3px -2px black;
     font-family: 'Poppins';
 }
@@ -24,7 +24,7 @@
 
 .nav-logo p {
     color: #171717;
-    font-size: 38px;
+    font-size: 35px;
     font-weight: 600;
 }
 
@@ -32,9 +32,9 @@
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 50px;
+    gap: 100px;
     color: #626262;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 }
 
@@ -49,17 +49,17 @@
 .nav-login-cart {
     display: flex;
     align-items: center;
-    gap: 45px;
+    gap: 35px;
 }
 
 .nav-login-cart button {
     width: 157px;
-    height: 40px;
+    height: 30px;
     outline: none;
     border: 1px solid #7a7a7a;
     border-radius: 20px;
     color: #515151;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     background-color: white;
     cursor: pointer;
@@ -70,8 +70,8 @@
 }
 
 .nav-cart-count {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +84,7 @@
 }
 
 .nav-login-cart-bell {
-    width: 40px;
+    width: 35px;
 }
 
 .nav-menu li {
@@ -116,12 +116,12 @@
 }
 
 .navbar-searchbox img {
-    width: 40px;
+    width: 30px;
 }
 
 .navbar-searchbox input {
     background: transparent;
-    height: 40px;
+    height: 30px;
     width: 200px;
     border-radius: 15px;
     border: 1px solid #03588C;
@@ -135,5 +135,6 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px -1px black;
+    height: 65px;
     
 }
