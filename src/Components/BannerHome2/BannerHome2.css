@@ -50,3 +50,43 @@
     height: 100%;
     object-fit: cover;
 }
+@media (max-width: 800px) {
+    .banner-top h2 {
+      font-size: 28px;
+      margin-top: 40px;
+    }
+  
+    .banner-top p {
+      font-size: 16px;
+      margin-top: 15px;
+    }
+  
+    .banner-top hr {
+      width: 90%;
+    }
+  
+    .banner2-points-container {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 30px auto;
+      padding: 10px;
+      height: auto;
+    }
+  
+    .banner2-points-container p {
+      width: 100%;
+    }
+  
+    .pointbanner2 img {
+      width: 80px;
+    }
+  
+    .banner-bottom {
+      height: auto;
+    }
+  
+    .banner-bottom img {
+      height: auto;
+      object-fit: contain;
+    }
+  }
