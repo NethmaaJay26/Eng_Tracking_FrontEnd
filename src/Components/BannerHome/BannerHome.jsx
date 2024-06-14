@@ -1,11 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './BannerHome.css'
-import pointImage1 from '../../Assets/bell_icon.png' // Add your point images here
-import pointImage2 from '../../Assets/bell_icon.png'
-import pointImage3 from '../../Assets/bell_icon.png'
-import pointImage4 from '../../Assets/bell_icon.png'
-
+import pointImage1 from '../Assets/bell_icon.png'
+import pointImage2 from '../Assets/bell_icon.png'
+import pointImage3 from '../Assets/bell_icon.png'
+import pointImage4 from '../Assets/bell_icon.png'
 
 const Banner = () => {
   const navigate = useNavigate();
@@ -16,27 +15,27 @@ const Banner = () => {
 
   return (
     <div className='banner'>
-      <h2>Fresh Arrivals Just for You</h2>
       <div className="points-container">
         <div className="point">
           <img src={pointImage1} alt="Point 1" />
-          <h3>Title 1</h3>
-          <p>Description for point 1</p>
+          <h3>Practical and Technical
+          engineering knowledge</h3>
+          <p>Our advanced spyware detection engine can identify if a device contains spyware or bugging software.</p>
         </div>
         <div className="point">
           <img src={pointImage2} alt="Point 2" />
-          <h3>Title 2</h3>
-          <p>Description for point 2</p>
+          <h3>Managerial Involvement </h3>
+          <p>Our advanced spyware detection engine can identify if a device contains spyware or bugging software.</p>
         </div>
         <div className="point">
           <img src={pointImage3} alt="Point 3" />
-          <h3>Title 3</h3>
-          <p>Description for point 3</p>
+          <h3>Interpersonal skills</h3>
+          <p>Our advanced spyware detection engine can identify if a device contains spyware or bugging software.</p>
         </div>
         <div className="point">
           <img src={pointImage4} alt="Point 4" />
-          <h3>Title 4</h3>
-          <p>Description for point 4</p>
+          <h3>Professional conduct</h3>
+          <p>Our advanced spyware detection engine can identify if a device contains spyware or bugging software.</p>
         </div>
       </div>
       <div className="buttons-container">
