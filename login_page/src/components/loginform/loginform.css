@@ -1,0 +1,99 @@
+.wrapper {
+ width: 550px;
+ background: rgba(255, 255, 255, 0.8); /* White with 50% transparency */
+ border-radius: 20px;
+ padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper h2 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+
+    border-bottom: 2px solid rgba(10, 4, 4, 0.2);
+    border-radius: none;
+    font-size: 16px;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input ::placeholder{
+    color: #fff;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+}
+
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.wrapper .remember-forgot label {
+    display: flex; /* Make the label a flex container */
+    align-items: center; /* Vertically center the checkbox with its label text */
+    
+}
+
+
+.wrapper button {
+    width: 90px;
+    height: 35px;
+    background: blue;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    margin-top: 20px; /* Adjust the value as needed */
+    margin-left: 190px;
+    
+}
+
+.wrapper button:hover {
+    background-color: darkblue; /* Change to a darker shade of blue on hover */
+}
+
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a{
+    text-decoration: none;
+
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
