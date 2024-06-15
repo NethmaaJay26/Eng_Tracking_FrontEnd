@@ -1,60 +1,93 @@
-.footer {
+.footer-container {
+    background-color: #0477bf; /* Dark background color */
+    color: white; /* Text color */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    background: #0477BF;
-    color: white; 
-    text-align: center;
-    box-sizing: border-box;
-    height: 40vh;
 }
 
-.footer-links {
+.footer-header {
+    width: 100%;
     display: flex;
-    list-style: none;
-    gap: 100px;
-    color: #ffffff;
-    font-size: 20px;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.footer-links li {
+/* Header section containing the title and feedback form */
+.footer-header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.footer-header h1 span {
+    color: #ffc247; /* Highlight color for 'Engineering' */
+}
+
+.feedback {
+    display: flex;
+    align-items: center;
+}
+
+.feedback input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 250px;
+}
+
+.feedback button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc247;
+    color: white;
     cursor: pointer;
 }
 
-.logoname {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    padding-left: 20px; 
-    margin-top: 10px; 
-}
-.logoname h1 {
-    margin: 0; 
-    font-size: 40px; 
-    color: white; 
+/* Define the background color on hover */
+.feedback button:hover {
+    background-color: black; /* Change this color to your desired hover color */
 }
 
-.footer-copyright {
+.footer-content {
     display: flex;
-    align-items: flex-start; 
-    justify-content: flex-start; 
+    justify-content: space-around;
     width: 100%;
-    color: #ffffff;
-    font-size: 18px;
-    margin-top: auto; 
-    padding-bottom: 2px; 
+    max-width: 1000px;
+    margin-top: 20px; /* Ensure there's space between header and content */
+    gap: 100px; /* Add space between the sections */
+    margin-top: 20px; /* Ensure there's space between header and content */
 }
 
-.footer hr {
-    width: 100%;
-    border: 0;
-    height: 1px;
-    background-color: #ffffff;
-    margin-top: 55px;
+.footer-section {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer-section h1 {
+    font-size: 1em;
+    border-bottom: 2px solid #61dafb;
+    padding-bottom: 5px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 10px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #ffc247;
 }
