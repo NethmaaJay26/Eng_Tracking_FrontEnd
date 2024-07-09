@@ -22,7 +22,6 @@ export default function Engineers() {
         <button>Add Supervisors</button>
       </div>
       <div className='section'>
-        <h2>Supervising Engineers</h2>
         <div className='engineer-grid'>
           {engineers.map((engineer, index) => (
             <div className='engineer-card' key={index}>

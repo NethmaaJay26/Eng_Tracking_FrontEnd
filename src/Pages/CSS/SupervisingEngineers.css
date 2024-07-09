@@ -51,12 +51,6 @@
     margin-top: 50px;
   }
   
-  .section h2 {
-    margin-bottom: 50px;
-    justify-content: left;
-    display: flex;
-  }
-  
   .engineer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
