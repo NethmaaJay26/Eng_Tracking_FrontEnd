@@ -1,6 +1,6 @@
 import React from 'react';
 import './CSS/SupervisingEngineers.css';
-import engineerIcon from '../Components/Assets/engineerIcon.png'; // Replace with actual path
+import engineerIcon from '../Components/Assets/engineerIcon2.png'; // Replace with actual path
 
 export default function Engineers() {
   const engineers = [
