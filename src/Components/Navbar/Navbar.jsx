@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../Assets/icon.png';
-import bell_icon from '../Assets/bell_icon.png';
-
 
 export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState(null);
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();*/
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -19,17 +17,16 @@ export default function Sidebar() {
     { name: 'Supervising Engineers', path: '/supervisingengineers' },
     { name: 'Trainings', path: '/trainings' },
     { name: 'Evaluations', path: '/evaluations' },
-    { name: 'Reports', path: '/summary' },
+    { name: 'Reports', path: '/reports' },
   ];
 
   return (
     <div className='sidebar'>
-      <div className="sidebar-icon">
+      <div className="sidebar-profile">
         <img src={logo} alt="icon" />
         <p>Admin</p>
         <hr />
       </div>
-      
       <ul className="sidebar-menu">
         {navItems.map((item, index) => (
           <li
@@ -43,11 +40,6 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-      <div className="sidebar-login-cart">
-        <img className='nav-login-cart-bell' src={bell_icon} alt="bell icon" />
-        <div className="sidebar-cart-count">0</div>
-        <button onClick={() => navigate('/loginsignin')}>Login</button>
-      </div>
     </div>
   );
 }
