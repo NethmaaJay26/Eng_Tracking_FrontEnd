@@ -1,6 +1,6 @@
 .footer-container {
-    background-color: #0477bf; /* Dark background color */
-    color: white; /* Text color */
+    background-color: #0477bf; 
+    color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -15,14 +15,14 @@
     margin-bottom: 20px;
 }
 
-/* Header section containing the title and feedback form */
+
 .footer-header h1 {
     font-size: 2em;
     margin: 0;
 }
 
 .footer-header h1 span {
-    color: #ffc247; /* Highlight color for 'Engineering' */
+    color: #ffc247; 
 }
 
 .feedback {
@@ -47,9 +47,9 @@
     cursor: pointer;
 }
 
-/* Define the background color on hover */
+
 .feedback button:hover {
-    background-color: black; /* Change this color to your desired hover color */
+    background-color: black; 
 }
 
 .footer-content {
@@ -57,9 +57,9 @@
     justify-content: space-around;
     width: 100%;
     max-width: 1000px;
-    margin-top: 20px; /* Ensure there's space between header and content */
-    gap: 100px; /* Add space between the sections */
-    margin-top: 20px; /* Ensure there's space between header and content */
+    margin-top: 20px; 
+    gap: 100px; 
+    margin-top: 20px; 
 }
 
 .footer-section {
