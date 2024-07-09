@@ -5,11 +5,11 @@ import engineerIcon from '../Components/Assets/engineerIcon.png'; // Replace wit
 export default function Engineers() {
   const engineers = [
     //  engineersdata
-    { name: 'Mr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Mr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Mr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Mr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Mr. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
   ];
 
   return (
@@ -17,7 +17,7 @@ export default function Engineers() {
       <h1>Trainee Engineers</h1>
       <hr />
       <div className='top-bar'>
-        <input type="text" placeholder="Search for a engineer by name or email" />
+        <input type="text" placeholder="Search for an engineer by name or email" />
         <button>Export CSV</button>
         <button>Add Trainees</button>
       </div>
