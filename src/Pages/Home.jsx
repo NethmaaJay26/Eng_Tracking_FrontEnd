@@ -1,14 +1,16 @@
 import React from 'react'
-import Navbar from '../Components/Navbar/Navbar'
+import BannerHome from '../Components/BannerHome/BannerHome'
+import BannerHome2 from '../Components/BannerHome2/BannerHome2'
 
-export default function Home() {
+
+
+export const Home = () => {
   return (
-    <div className='home'>
+    <div>
+      <BannerHome/>
+      <BannerHome2/>
 
-      <h1>Home</h1>
-
-        
-      
     </div>
   )
 }
+export default Home
