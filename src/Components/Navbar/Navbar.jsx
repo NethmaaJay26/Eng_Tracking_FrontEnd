@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../Assets/icon.png';
-import bell_icon from '../Assets/bell_icon.png';
+
 
 
 export default function Sidebar() {
@@ -44,8 +44,6 @@ export default function Sidebar() {
         ))}
       </ul>
       <div className="sidebar-login-cart">
-        <img className='nav-login-cart-bell' src={bell_icon} alt="bell icon" />
-        <div className="sidebar-cart-count">0</div>
         <button onClick={() => navigate('/loginsignin')}>Login</button>
       </div>
     </div>

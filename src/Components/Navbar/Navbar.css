@@ -12,6 +12,7 @@
   box-shadow: 2px 0 5px -1px black;
   font-family: 'Poppins';
   color: white;
+  background: #03588C;
 }
 
 .sidebar-icon {
@@ -58,6 +59,10 @@
   text-decoration: none;
   color: inherit;
   width: 10px;
+}
+
+.nav-login-cart-bell{
+  width: 20px;
 }
 
 
