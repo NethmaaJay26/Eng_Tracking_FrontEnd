@@ -7,10 +7,11 @@ import Engineers from "./Pages/Engineers.jsx"
 import SupervisingEngineers from "./Pages/SupervisingEngineers.jsx"
 import LoginSignin from "./Pages/LoginSignin.jsx"
 import Trainings from "./Pages/Trainings.jsx"
-import Summary from "./Pages/Summary.jsx"
+import Reports from "./Pages/Reports.jsx"
 import Evaluations from "./Pages/Evaluations.jsx"
 import Home from "./Pages/Home.jsx"
 import Footer from "./Components/Footer/Footer.jsx"
+import Topbar from './Components/TopBar/Topbar.jsx';
 
 
 
@@ -19,6 +20,8 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
+
+        <Topbar/>
         <Navbar />
 
         <Routes>
@@ -28,7 +31,7 @@ function App() {
           <Route path='/supervisingengineers' element = {<SupervisingEngineers/>}/>
           <Route path='/trainings' element = {<Trainings/>}/>
           <Route path='/evaluations' element = {<Evaluations/>}/>
-          <Route path='/summary' element = {<Summary/>}/>
+          <Route path='/reports' element = {<Reports/>}/>
           <Route path='/loginsignin' element = {<LoginSignin/>}/>
 
 
