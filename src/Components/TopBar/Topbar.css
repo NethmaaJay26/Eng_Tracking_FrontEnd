@@ -2,16 +2,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 20px;
     box-shadow: 0 1px 3px -2px black;
     font-family: 'Poppins';
     background-color: #FFD02F;
     color: #03588C;
     position: fixed;
     top: 0;
-    left: 290px; 
+    left:270px; 
     width: calc(100% - 300px); 
     z-index: 1000; 
+    height: 100px;
   }
   
   .topbar-logo {
