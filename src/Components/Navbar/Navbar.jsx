@@ -12,7 +12,7 @@ export default function Sidebar() {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/' },
+    { name: 'Dashboard', path: '/home' },
     { name: 'Training Engineers', path: '/engineers' },
     { name: 'Supervising Engineers', path: '/supervisingengineers' },
     { name: 'Trainings', path: '/trainings' },

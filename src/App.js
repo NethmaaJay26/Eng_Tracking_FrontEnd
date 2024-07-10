@@ -1,48 +1,66 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+
 import Navbar from './Components/Navbar/Navbar';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Topbar from './Components/TopBar/Topbar';
+import Footer from './Components/Footer/Footer';
 
-import Engineers from "./Pages/Engineers.jsx"
-import SupervisingEngineers from "./Pages/SupervisingEngineers.jsx"
-import LoginSignin from "./Pages/LoginSignin.jsx"
-import Trainings from "./Pages/Trainings.jsx"
-import Reports from "./Pages/Reports.jsx"
-import Evaluations from "./Pages/Evaluations.jsx"
-import Home from "./Pages/Home.jsx"
-import Footer from "./Components/Footer/Footer.jsx"
-import Topbar from './Components/TopBar/Topbar.jsx';
+import Engineers from "./Pages/Engineers";
+import SupervisingEngineers from "./Pages/SupervisingEngineers";
+import Trainings from "./Pages/Trainings";
+import Reports from "./Pages/Reports";
+import Evaluations from "./Pages/Evaluations";
+import Home from "./Pages/Home";
+import Summary from './Pages/Summary';
 
+import MainLoginPage from './LoginSignin/MainLoginPage';
+import RoleSelectionPage from './LoginSignin/RoleSelectionPage';
+import HRLoginPage from './LoginSignin/HRLoginPage';
+import EngineersLoginPage from './LoginSignin/EngineersLoginPage';
+import SupervisingEngineersLoginPage from './LoginSignin/SupervisingEngineersLoginPage';
 
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const hideNavbarAndTopbar = [
+    "/", 
+    "/login", 
+    "/login/hr", 
+    "/login/engineers", 
+    "/login/supervising-engineers"
+  ].includes(location.pathname);
+
+  return (
+    <>
+      {!hideNavbarAndTopbar && <Topbar />}
+      {!hideNavbarAndTopbar && <Navbar />}
+      {children}
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-
       <BrowserRouter>
+        <Layout>
+          <Routes>
 
-        <Topbar/>
-        <Navbar />
-
-        <Routes>
-
-          <Route path='/' element = {<Home/>}/>
-          <Route path='/engineers' element = {<Engineers/>}/>
-          <Route path='/supervisingengineers' element = {<SupervisingEngineers/>}/>
-          <Route path='/trainings' element = {<Trainings/>}/>
-          <Route path='/evaluations' element = {<Evaluations/>}/>
-          <Route path='/reports' element = {<Reports/>}/>
-          <Route path='/loginsignin' element = {<LoginSignin/>}/>
-
-
-        </Routes>
-      
-      <Footer/>
+            <Route path='/home' element={<Home />} />
+            <Route path='/engineers' element={<Engineers />} />
+            <Route path='/supervisingengineers' element={<SupervisingEngineers />} />
+            <Route path='/trainings' element={<Trainings />} />
+            <Route path='/evaluations' element={<Evaluations />} />
+            <Route path='/summary' element={<Summary />} />
+            <Route path="/" element={<MainLoginPage />} />
+            <Route path="/login" element={<RoleSelectionPage />} />
+            <Route path="/login/hr" element={<HRLoginPage />} />
+            <Route path="/login/engineers" element={<EngineersLoginPage />} />
+            <Route path="/login/supervising-engineers" element={<SupervisingEngineersLoginPage />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
-
-      
-
-      
     </div>
   );
 }
