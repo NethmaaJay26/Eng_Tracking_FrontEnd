@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CSS/SupervisingEngineers.css';
 import engineerIcon from '../Components/Assets/engineerIcon2.png'; // Replace with actual path
 
-export default function Engineers() {
+export default function SupervisingEngineers() {
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = () => {
@@ -12,10 +12,10 @@ export default function Engineers() {
   const engineers = [
     //  engineersdata
     { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
-    { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
-    { name: 'Dr. ABC Perera',  SENGID: 'SEN0001' },
-    { name: 'Dr. ABC Perera',  SENGID: 'SEN0001' },
-    { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
+    { name: 'Eng. DEF Silva', SENGID: 'SEN0002' },
+    { name: 'Dr. HGCM Fernando',  SENGID: 'SEN0003' },
+    { name: 'Dr. JKL Gunawardena',  SENGID: 'SEN0004' },
+    { name: 'Eng. DNH Jayasinghe', SENGID: 'SEN0005' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function Engineers() {
       <div className='top-bar'>
         <input type="text" placeholder="Search for an engineer by name or email" />
         <button>Export CSV</button>
-        <button>Add Supervisors</button>
+        <button onClick={togglePopup}>Add Supervisors</button>
       </div>
       <div className='section'>
         <div className='engineer-grid'>
@@ -38,7 +38,6 @@ export default function Engineers() {
             </div>
           ))}
         </div>
-        
       </div>
       {showPopup && (
         <div className='popup'>
