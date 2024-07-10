@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CSS/SupervisingEngineers.css';
 import engineerIcon from '../Components/Assets/engineerIcon2.png'; // Replace with actual path
 
 export default function Engineers() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const engineers = [
     //  engineersdata
-    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Dr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Dr. ABC Perera', email: 'abc@gmail.com' },
-    { name: 'Eng. ABC Perera', email: 'abc@gmail.com' },
+    { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
+    { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
+    { name: 'Dr. ABC Perera',  SENGID: 'SEN0001' },
+    { name: 'Dr. ABC Perera',  SENGID: 'SEN0001' },
+    { name: 'Eng. ABC Perera', SENGID: 'SEN0001' },
   ];
 
   return (
@@ -27,13 +33,40 @@ export default function Engineers() {
             <div className='engineer-card' key={index}>
               <img src={engineerIcon} alt="Engineer" />
               <h3>{engineer.name}</h3>
-              <p>{engineer.email}</p>
+              <p>{engineer.SENGID}</p>
               <button>More</button>
             </div>
           ))}
         </div>
         
       </div>
+      {showPopup && (
+        <div className='popup'>
+          <div className='popup-inner'>
+            <h2>Add a Supervisor</h2>
+            <button className='close-btn' onClick={togglePopup}>Close</button>
+            <form>
+              <label>
+                Name:
+                <input type="text" name="name" />
+              </label>
+              <label>
+                SupervisorID:
+                <input type="text" name="id" />
+              </label>
+              <label>
+                Email:
+                <input type="email" name="email" />
+              </label>
+              <label>
+                Contacts:
+                <input type="number" name="contact" />
+              </label>
+              <button type="submit">Add the Supervisor</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
