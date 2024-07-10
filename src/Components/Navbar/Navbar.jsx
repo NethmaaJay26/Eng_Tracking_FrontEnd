@@ -44,7 +44,7 @@ export default function Sidebar() {
         ))}
       </ul>
       <div className="sidebar-login-cart">
-        <button onClick={() => navigate('/loginsignin')}>Login</button>
+        <button onClick={() => navigate('/login')}>Login</button>
       </div>
     </div>
   );

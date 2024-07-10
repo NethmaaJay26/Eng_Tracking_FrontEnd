@@ -12,6 +12,12 @@ import Evaluations from "./Pages/Evaluations.jsx"
 import Home from "./Pages/Home.jsx"
 import Footer from "./Components/Footer/Footer.jsx"
 
+import MainLoginPage from './LoginSignin/MainLoginPage';
+import RoleSelectionPage from './LoginSignin/RoleSelectionPage';
+import HRLoginPage from './LoginSignin/HRLoginPage';
+import EngineersLoginPage from './LoginSignin/EngineersLoginPage';
+import SupervisingEngineersLoginPage from './LoginSignin/SupervisingEngineersLoginPage';
+
 
 
 function App() {
@@ -29,7 +35,13 @@ function App() {
           <Route path='/trainings' element = {<Trainings/>}/>
           <Route path='/evaluations' element = {<Evaluations/>}/>
           <Route path='/summary' element = {<Summary/>}/>
-          <Route path='/loginsignin' element = {<LoginSignin/>}/>
+         
+          <Route path="/" element={<MainLoginPage />} />
+
+        <Route path="/login" element={<RoleSelectionPage />} />
+        <Route path="/login/hr" element={<HRLoginPage />} />
+        <Route path="/login/engineers" element={<EngineersLoginPage />} />
+        <Route path="/login/supervising-engineers" element={<SupervisingEngineersLoginPage />} />
 
 
         </Routes>
