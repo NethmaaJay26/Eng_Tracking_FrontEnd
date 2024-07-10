@@ -87,7 +87,7 @@ export default function Engineers() {
                 Contacts:
                 <input type="number" name="contact" />
               </label>
-              <button type="submit">Add Trainee</button>
+              <button type="submit">Add the Trainee</button>
             </form>
           </div>
         </div>
