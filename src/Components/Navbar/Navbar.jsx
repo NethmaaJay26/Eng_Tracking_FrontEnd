@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../Assets/icon.png';
 
 export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState(null);
-  /*const navigate = useNavigate();*/
+  const navigate = useNavigate();
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -40,6 +40,9 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
+      <div className="sidebar-login-cart">
+        <button onClick={() => navigate('/login')}>Login</button>
+      </div>
     </div>
   );
 }
