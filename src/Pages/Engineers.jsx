@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CSS/Engineers.css';
-import engineerIcon from '../Components/Assets/engineerIcon.png'; // Replace with actual path
+import engineerIcon from '../Components/Assets/engineerIcon.png'; 
 
 export default function Engineers() {
   const [showPopup, setShowPopup] = useState(false);

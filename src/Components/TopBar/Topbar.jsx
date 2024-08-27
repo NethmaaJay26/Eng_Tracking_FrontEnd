@@ -14,7 +14,7 @@ export default function Topbar() {
       <div className="topbar-login">
         <img className='topbar-login-bell' src={bell_icon} alt="bell icon" />
         <div className="topbar-bell-count">0</div>
-        <button onClick={() => navigate('/loginsignin')}>Log out</button>
+        <button onClick={() => navigate('/')}>Log out</button>
       </div>
     </div>
   );
