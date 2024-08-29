@@ -1,0 +1,97 @@
+/* SE_AssignedEngineer.css */
+
+.assigned-engineer {
+    padding: 20px;
+  }
+  
+  .trainings h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .trainings hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    overflow-x: auto;
+  }
+  
+  .trainings-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .trainings-table th,
+  .trainings-table td {
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .trainings-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .trainings-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .trainings-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .trainings-table tbody td {
+    position: relative;
+  }
+  
+  .trainings-table tbody td .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .status.new {
+    background-color: #e0f7fa;
+    color: #00796b;
+  }
+  
+  .status.experienced {
+    background-color: #ffebee;
+    color: #d32f2f;
+  }
+  
+  .status.contacted {
+    background-color: #e3f2fd;
+    color: #1976d2;
+  }
+  
+  .trainings-table tbody td .checkbox {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .trainings-table tbody td .edit-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+  }
+  
+  .trainings-table tbody td .edit-icon:hover {
+    color: #333;
+  }
+  

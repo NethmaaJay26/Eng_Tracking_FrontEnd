@@ -1,0 +1,57 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    box-shadow: 0 1px 3px -2px black;
+    font-family: 'Poppins';
+    background-image: linear-gradient(to right, #ededea, #FFD02F);
+    color: #03588C;
+    position: fixed;
+    top: 0;
+    left:270px; 
+    width: calc(100% - 300px); 
+    z-index: 1000; 
+    height: 100px;
+  }  
+  
+  .topbar-login {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 80px;
+  }
+  
+  .topbar-login-bell {
+    width: 30px;
+  }
+  
+  .topbar-bell-count {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    font-size: 14px;
+    position: relative;
+    top: -10px;
+    left: -10px;
+  }
+  
+  .topbar-login button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #03588C;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .topbar-login button:active {
+    background-color: #f3f3f3;
+  }
