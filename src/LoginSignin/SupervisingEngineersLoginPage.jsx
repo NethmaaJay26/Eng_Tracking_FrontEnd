@@ -13,8 +13,11 @@ export default function SupervisingEngineersLoginPage() {
           <input type="email" placeholder='Your Email Address' />
           <input type="password" placeholder='Enter Your Password' />
         </div>
+        <div className="hr-buttons">
         <button>Login</button>
         <button onClick={() => navigate(-1)}>Back</button>
+        </div  >
+        
       </div>
     </div>
   );

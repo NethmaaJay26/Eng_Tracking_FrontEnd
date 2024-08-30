@@ -16,7 +16,7 @@ export default function HRLoginPage() {
         // Store the token in localStorage or any state management
         localStorage.setItem('token', response.data.token);
         // Navigate to a different page after successful login
-        navigate('/dashboard');
+        navigate('/home');
       } else {
         setError(response.data.message);
       }
@@ -44,8 +44,12 @@ export default function HRLoginPage() {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
+
+        <div className="hr-buttons">
         <button onClick={handleLogin}>Login</button>
         <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+        
       </div>
     </div>
   );

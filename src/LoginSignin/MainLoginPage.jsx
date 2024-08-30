@@ -23,7 +23,7 @@ export default function MainLoginPage() {
           <h1><span>Engineering</span> Pro Track</h1>
           <p>Please login to your account or continue as a guest.</p>
           <div className="main-login-buttons">
-            <button onClick={() => navigate('/role-selection')}>Login</button>
+            <button onClick={() => navigate('/login')}>Login</button>
             <button onClick={() => navigate('/guest')}>View as Guest</button>
           </div>
         </div>

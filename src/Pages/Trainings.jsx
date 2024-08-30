@@ -59,7 +59,7 @@ export default function Trainings() {
                 Assigned:
                 <input type="text" name="assigned" />
               </label>
-              <button type="submit">Add Training</button>
+              <button type="submit">Add the Training</button>
             </form>
           </div>
         </div>
