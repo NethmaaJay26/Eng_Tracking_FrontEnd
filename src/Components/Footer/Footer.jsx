@@ -18,10 +18,10 @@ const Item = ({ Links, title }) => (
 
 const Footer = () => {
     return (
-        <div>
+        <div className='footer'>
             <div className="footer-container">
                 <div className="footer-header">
-                    <h1><span>Engineering</span> Pro Track</h1>
+                    <h1><span>Engineering</span> ProTrack</h1>
                     <div className="feedback">
                         <input type="text" placeholder="Enter your feedback" />
                         <button>Send</button>
@@ -32,8 +32,14 @@ const Footer = () => {
                     <Item Links={TEARMS} title="Terms and Privacy" />
                     <Item Links={USERS} title="About User" />
                     <Item Links={US} title="Contact Us" />
+                </div> 
+                <hr/>
+                <div className="footer-copyright">
+                    <p>&copy; 2024 Lakdhanavi Limited | Design and Developed by <a href="/">knoc Solutions</a></p>
                 </div>
+            
             </div>
+            
         </div>
     );
 };

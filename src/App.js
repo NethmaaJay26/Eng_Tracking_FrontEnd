@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+
 import Engineers from "./Pages/Engineers.jsx";
 import SupervisingEngineers from "./Pages/SupervisingEngineers.jsx";
 import Trainings from "./Pages/Trainings.jsx";
@@ -8,8 +9,11 @@ import Reports from "./Pages/Reports.jsx";
 import Summary from './Pages/Summary';
 import Evaluations from "./Pages/Evaluations.jsx";
 import Home from "./Pages/Home.jsx";
+
+// import Navbar from './Components/Navbar/Navbar';
 import Footer from "./Components/Footer/Footer.jsx";
 import Topbar from './Components/TopBar/Topbar.jsx';
+
 import MainLoginPage from './LoginSignin/MainLoginPage';
 import RoleSelectionPage from './LoginSignin/RoleSelectionPage';
 import HRLoginPage from './LoginSignin/HRLoginPage';
@@ -22,6 +26,11 @@ import EngnavBar from './Components/Engnavbar/Engnavbar.jsx';
 import Engprofile from './Engineers/Engprofile.jsx';
 import Engtrainings from './Engineers/Engtrainings.jsx';
 
+import SE_Home from './Supervising_engineer/SE_Home';
+import Navbar_SE from './Components/Navbar_SE/Navbar';
+import How_Eve from './Supervising_engineer/SE_HowEvaluate';
+import Assigned_Eng from './Supervising_engineer/assigned_engineer';
+
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -31,6 +40,16 @@ const Layout = ({ children }) => {
     "/login/hr", 
     "/login/engineers", 
     "/login/supervising-engineers"
+  ].includes(location.pathname);
+
+  const isSupervisingEngineerPage = [
+    "/login/supervising-engineers/home",
+    "/login/supervising-engineers/assigned_engineers",
+    "/login/supervising-engineers/trainings",
+    '/login/supervising-engineers/evaluations',
+    "/login/supervising-engineers/mark-allocations",
+    '/login/supervising-engineers/requests'
+    // Add more SE-specific routes here
   ].includes(location.pathname);
 
   const { user } = useUser();
@@ -52,6 +71,10 @@ const Layout = ({ children }) => {
     <>
       {renderNavBar()}
       {!hideNavbarAndTopbar && <Topbar />}
+      {!hideNavbarAndTopbar && !isSupervisingEngineerPage && <Topbar />}
+     
+      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Topbar />}
+      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Navbar_SE />}
       {children}
       <Footer />
     </>
@@ -81,6 +104,9 @@ function App() {
               <Route path='/Enghome' element={<Enghome />} />
               <Route path='/Engprofile' element={<Engprofile />} />
               <Route path='/Engtrainings' element={<Engtrainings />} />
+              <Route path="/login/supervising-engineers/home" element={<SE_Home />} />
+            <Route path="/login/supervising-engineers/mark-allocations" element={<How_Eve />} />
+            <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
             </Routes>
           </Layout>
         </BrowserRouter>
