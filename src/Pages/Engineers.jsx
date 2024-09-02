@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function Engineers() {
   const [engineers, setEngineers] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [supervisingEngineers, setSupervisingEngineers] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     traineeID: '',
@@ -13,19 +14,32 @@ export default function Engineers() {
     address: '',
     contact: '',
     password: '',
+    supervisingEngineer: '',
     photo: null // Added photo to formData
   });
 
   useEffect(() => {
     fetchEngineers();
+    fetchSupervisingEngineers();
   }, []);
 
+  //fetch engineer
   const fetchEngineers = async () => {
     try {
       const response = await axios.get('http://localhost:4000/api/engineers');
       setEngineers(response.data);
     } catch (error) {
       console.error('Error fetching engineers:', error);
+    }
+  };
+
+  //fetch supervising engineer
+  const fetchSupervisingEngineers = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/sengineers');
+      setSupervisingEngineers(response.data);
+    } catch (error) {
+      console.error('Error fetching supervising engineers:', error);
     }
   };
 
@@ -40,6 +54,8 @@ export default function Engineers() {
       [name]: value
     });
   };
+
+
 
   const handleFileChange = (e) => {
     setFormData({
@@ -69,7 +85,6 @@ export default function Engineers() {
     }
   };
 
-  
 
   return (
     <div className='engineers'>
@@ -140,7 +155,25 @@ export default function Engineers() {
                 Contacts:
                 <input type="number" name="contact" value={formData.contact} onChange={handleChange} required />
               </label>
+              {/*dropdown menu for supervising engineer selecting */}
+              <label>
+  Supervising Engineer:
+  <select
+    name="supervisingEngineer"
+    value={formData.supervisingEngineer}
+    onChange={handleChange}
+    required
+  >
+    <option value="">Select a Supervising Engineer</option>
+    {supervisingEngineers.map((supervisor) => (
+      <option key={supervisor._id} value={supervisor.name}>
+        {supervisor.name}
+      </option>
+    ))}
+  </select>
+</label>
 
+         
               <label>
                 Password:
                 <input type="password" name="password" value={formData.password} onChange={handleChange} required />

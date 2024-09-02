@@ -3,11 +3,11 @@ import './CSS/SupervisingEngineers.css'; // Make sure the CSS file exists and is
 import axios from 'axios';
 
 export default function SupervisingEngineers() {
-  const [engineers, setEngineers] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
-  const [formData, setFormData] = useState({
+  const [engineers, setSEngineers] = useState([]);
+  const [showPopup, setSShowPopup] = useState(false);
+  const [formData, setSFormData] = useState({
     name: '',
-    supervisorID: '',
+    traineeID: '',
     email: '',
     address: '',
     contact: '',
@@ -16,32 +16,32 @@ export default function SupervisingEngineers() {
   });
 
   useEffect(() => {
-    fetchEngineers();
+    fetchSEngineers();
   }, []);
 
-  const fetchEngineers = async () => {
+  const fetchSEngineers = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/sengineers'); // Corrected endpoint for fetching supervising engineers
-      setEngineers(response.data);
+      const response = await axios.get('http://localhost:4000/api/sengineers');
+      setSEngineers(response.data);
     } catch (error) {
       console.error('Error fetching supervising engineers:', error);
     }
   };
 
   const togglePopup = () => {
-    setShowPopup(!showPopup);
+    setSShowPopup(!showPopup);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
+    setSFormData({
       ...formData,
       [name]: value
     });
   };
 
   const handleFileChange = (e) => {
-    setFormData({
+    setSFormData({
       ...formData,
       photo: e.target.files[0] // Handle file input
     });
@@ -61,7 +61,7 @@ export default function SupervisingEngineers() {
         }
       });
       if (response.status === 201) {
-        fetchEngineers(); // Refresh the list of engineers
+        fetchSEngineers(); // Refresh the list of engineers
         togglePopup(); // Close the popup
       }
     } catch (error) {
@@ -85,7 +85,7 @@ export default function SupervisingEngineers() {
             <div className='engineer-card' key={index}>
               <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
               <h3>{engineer.name}</h3>
-              <p>{engineer.supervisorID}</p>
+              <p>{engineer.traineeID}</p>
               <button>More</button>
             </div>
           ))}
@@ -104,7 +104,7 @@ export default function SupervisingEngineers() {
               </label>
               <label>
               supervisorID:
-                <input type="text" name="supervisorID" value={formData.supervisorID} onChange={handleChange} required />
+                <input type="text" name="traineeID" value={formData.traineeID} onChange={handleChange} required />
               </label>
               <label>
                 Email:
