@@ -12,6 +12,7 @@ export default function Engineers() {
     email: '',
     address: '',
     contact: '',
+    password: '',
     photo: null // Added photo to formData
   });
 
@@ -67,6 +68,8 @@ export default function Engineers() {
       console.error('Error adding engineer:', error);
     }
   };
+
+  
 
   return (
     <div className='engineers'>
@@ -136,6 +139,11 @@ export default function Engineers() {
               <label>
                 Contacts:
                 <input type="number" name="contact" value={formData.contact} onChange={handleChange} required />
+              </label>
+
+              <label>
+                Password:
+                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
               </label>
               <label>
                 Photo:

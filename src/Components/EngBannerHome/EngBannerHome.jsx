@@ -12,6 +12,7 @@ const Banner = () => {
     navigate(path);
   };
 
+
   return (
     <div className="banner">
       <div className="welcome-container">
