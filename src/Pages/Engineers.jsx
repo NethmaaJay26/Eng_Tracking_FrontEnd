@@ -16,7 +16,7 @@ export default function Engineers() {
     address: '',
     contact: '',
     password: '',
-    supervisingEngineer: '',
+    supervisingEngineer: '', // Store ID instead of name
     photo: null
   });
 
@@ -87,11 +87,23 @@ export default function Engineers() {
     }
   };
 
-  const handleMoreClick = (engineer) => {
-    setSelectedEngineer(engineer);
-    setShowMorePopup(true);
+  const handleMoreClick = async (engineer) => {
+    try {
+      if (engineer.supervisingEngineer) {
+        const response = await axios.get(`http://localhost:4000/api/engineers/${engineer._id}`);
+        const { supervisingEngineer } = response.data;
+        const supervisingEngineerName = supervisingEngineer ? supervisingEngineer.name : 'N/A'; // Handle missing names
+        setSelectedEngineer({ ...engineer, supervisingEngineerName });
+      } else {
+        setSelectedEngineer(engineer);
+      }
+      setShowMorePopup(true);
+    } catch (error) {
+      console.error('Error fetching supervising engineer:', error);
+    }
   };
-
+  
+  
   return (
     <div className='engineers'>
       <h1>Trainee Engineers</h1>
@@ -127,7 +139,7 @@ export default function Engineers() {
           ))}
         </div>
       </div>
-      
+
       {showAddTraineePopup && (
         <div className='popup'>
           <div className='popup-inner'>
@@ -158,32 +170,25 @@ export default function Engineers() {
                 <input type="text" name="address" value={formData.address} onChange={handleChange} required />
               </label>
               <label>
-                Contacts:
-                <input type="number" name="contact" value={formData.contact} onChange={handleChange} required />
-              </label>
-              <label>
-                Supervising Engineer:
-                <select
-                  name="supervisingEngineer"
-                  value={formData.supervisingEngineer}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select a Supervising Engineer</option>
-                  {supervisingEngineers.map((supervisor) => (
-                    <option key={supervisor._id} value={supervisor.name}>
-                      {supervisor.name}
-                    </option>
-                  ))}
-                </select>
+                Contact:
+                <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
               </label>
               <label>
                 Password:
                 <input type="password" name="password" value={formData.password} onChange={handleChange} required />
               </label>
               <label>
+                Supervising Engineer:
+                <select name="supervisingEngineer" value={formData.supervisingEngineer} onChange={handleChange} required>
+                  <option value="">Select Supervising Engineer</option>
+                  {supervisingEngineers.map(se => (
+                    <option key={se._id} value={se._id}>{se.name}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
                 Photo:
-                <input type="file" name="photo" onChange={handleFileChange} required />
+                <input type="file" onChange={handleFileChange} />
               </label>
               <button type="submit">Add Trainee</button>
             </form>
@@ -191,48 +196,49 @@ export default function Engineers() {
         </div>
       )}
 
-      {showMorePopup && selectedEngineer && (
-        <div className='popup'>
-          <div className='popup-inner'>
-            <h2>{selectedEngineer.name}'s Details</h2>
-            <button className='close-btn' onClick={toggleMorePopup}>Close</button>
-            <form>
-              <label>
-                Name:
-                <input type="text" name="name" value={selectedEngineer.name} readOnly />
-              </label>
-              <label>
-                TraineeID:
-                <input type="text" name="traineeID" value={selectedEngineer.traineeID} readOnly />
-              </label>
-              <label>
-                Role:
-                <input type="text" name="role" value={selectedEngineer.role} readOnly />
-              </label>
-              <label>
-                Email:
-                <input type="email" name="email" value={selectedEngineer.email} readOnly />
-              </label>
-              <label>
-                Address:
-                <input type="text" name="address" value={selectedEngineer.address} readOnly />
-              </label>
-              <label>
-                Contacts:
-                <input type="number" name="contact" value={selectedEngineer.contact} readOnly />
-              </label>
-              <label>
-                Supervising Engineer:
-                <input type="text" name="supervisingEngineer" value={selectedEngineer.supervisingEngineer} readOnly />
-              </label>
-              <label>
-                Photo:
-                <img src={`http://localhost:4000/uploads/${selectedEngineer.photo}`} alt="Engineer" />
-              </label>
-            </form>
-          </div>
-        </div>
-      )}
+{showMorePopup && selectedEngineer && (
+  <div className='popup'>
+    <div className='popup-inner'>
+      <h2>{selectedEngineer.name}'s Details</h2>
+      <button className='close-btn' onClick={toggleMorePopup}>Close</button>
+      <form>
+        <label>
+          Name:
+          <input type="text" name="name" value={selectedEngineer.name} readOnly />
+        </label>
+        <label>
+          TraineeID:
+          <input type="text" name="traineeID" value={selectedEngineer.traineeID} readOnly />
+        </label>
+        <label>
+          Role:
+          <input type="text" name="role" value={selectedEngineer.role} readOnly />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" value={selectedEngineer.email} readOnly />
+        </label>
+        <label>
+          Address:
+          <input type="text" name="address" value={selectedEngineer.address} readOnly />
+        </label>
+        <label>
+          Contacts:
+          <input type="number" name="contact" value={selectedEngineer.contact} readOnly />
+        </label>
+        <label>
+          Supervising Engineer:
+          <input type="text" name="supervisingEngineerName" value={selectedEngineer.supervisingEngineerName || 'N/A'} readOnly />
+        </label>
+        <label>
+          Photo:
+          <img src={`http://localhost:4000/uploads/${selectedEngineer.photo}`} alt="Engineer" />
+        </label>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
