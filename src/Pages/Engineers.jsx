@@ -8,6 +8,7 @@ export default function Engineers() {
   const [showMorePopup, setShowMorePopup] = useState(false);
   const [supervisingEngineers, setSupervisingEngineers] = useState([]);
   const [selectedEngineer, setSelectedEngineer] = useState(null);
+  const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     traineeID: '',
@@ -100,6 +101,35 @@ export default function Engineers() {
       setShowMorePopup(true);
     } catch (error) {
       console.error('Error fetching supervising engineer:', error);
+    }
+  };
+
+
+  const handleEditClick = () => {
+    setEditMode(true);
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    for (const key in selectedEngineer) {
+      if (key !== '_id') { // Exclude _id field from FormData
+        data.append(key, selectedEngineer[key]);
+      }
+    }
+    try {
+      const response = await axios.put(`http://localhost:4000/api/engineers/${selectedEngineer._id}`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      if (response.status === 200) {
+        fetchEngineers();
+        setShowMorePopup(false);
+        setEditMode(false);
+      }
+    } catch (error) {
+      console.error('Error updating engineer:', error);
     }
   };
   
@@ -197,47 +227,84 @@ export default function Engineers() {
       )}
 
 {showMorePopup && selectedEngineer && (
-  <div className='popup'>
-    <div className='popup-inner'>
-      <h2>{selectedEngineer.name}'s Details</h2>
-      <button className='close-btn' onClick={toggleMorePopup}>Close</button>
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" value={selectedEngineer.name} readOnly />
-        </label>
-        <label>
-          TraineeID:
-          <input type="text" name="traineeID" value={selectedEngineer.traineeID} readOnly />
-        </label>
-        <label>
-          Role:
-          <input type="text" name="role" value={selectedEngineer.role} readOnly />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" value={selectedEngineer.email} readOnly />
-        </label>
-        <label>
-          Address:
-          <input type="text" name="address" value={selectedEngineer.address} readOnly />
-        </label>
-        <label>
-          Contacts:
-          <input type="number" name="contact" value={selectedEngineer.contact} readOnly />
-        </label>
-        <label>
-          Supervising Engineer:
-          <input type="text" name="supervisingEngineerName" value={selectedEngineer.supervisingEngineerName || 'N/A'} readOnly />
-        </label>
-        <label>
-          Photo:
-          <img src={`http://localhost:4000/uploads/${selectedEngineer.photo}`} alt="Engineer" />
-        </label>
-      </form>
-    </div>
-  </div>
-)}
+        <div className='popup'>
+          <div className='popup-inner'>
+            <h2>{selectedEngineer.name}'s Details</h2>
+            <button className='close-btn' onClick={toggleMorePopup}>Close</button>
+            {editMode ? (
+              <form onSubmit={handleUpdate}>
+                <label>
+                  Name:
+                  <input type="text" name="name" value={selectedEngineer.name} onChange={(e) => setSelectedEngineer({...selectedEngineer, name: e.target.value})} />
+                </label>
+                <label>
+                  TraineeID:
+                  <input type="text" name="traineeID" value={selectedEngineer.traineeID} onChange={(e) => setSelectedEngineer({...selectedEngineer, traineeID: e.target.value})} />
+                </label>
+                <label>
+                  Role:
+                  <input type="text" name="role" value={selectedEngineer.role} onChange={(e) => setSelectedEngineer({...selectedEngineer, role: e.target.value})} />
+                </label>
+                <label>
+                  Email:
+                  <input type="email" name="email" value={selectedEngineer.email} onChange={(e) => setSelectedEngineer({...selectedEngineer, email: e.target.value})} />
+                </label>
+                <label>
+                  Address:
+                  <input type="text" name="address" value={selectedEngineer.address} onChange={(e) => setSelectedEngineer({...selectedEngineer, address: e.target.value})} />
+                </label>
+                <label>
+                  Contact:
+                  <input type="text" name="contact" value={selectedEngineer.contact} onChange={(e) => setSelectedEngineer({...selectedEngineer, contact: e.target.value})} />
+                </label>
+                <label>
+                  Photo:
+                  <input type="file" onChange={(e) => setSelectedEngineer({...selectedEngineer, photo: e.target.files[0]})} />
+                </label>
+                <button type="submit">Update</button>
+              </form>
+            ) : (
+              <div>
+                <form>
+                  <label>
+                    Name:
+                    <input type="text" name="name" value={selectedEngineer.name} readOnly />
+                  </label>
+                  <label>
+                    TraineeID:
+                    <input type="text" name="traineeID" value={selectedEngineer.traineeID} readOnly />
+                  </label>
+                  <label>
+                    Role:
+                    <input type="text" name="role" value={selectedEngineer.role} readOnly />
+                  </label>
+                  <label>
+                    Email:
+                    <input type="email" name="email" value={selectedEngineer.email} readOnly />
+                  </label>
+                  <label>
+                    Address:
+                    <input type="text" name="address" value={selectedEngineer.address} readOnly />
+                  </label>
+                  <label>
+                    Contacts:
+                    <input type="number" name="contact" value={selectedEngineer.contact} readOnly />
+                  </label>
+                  <label>
+                    Supervising Engineer:
+                    <input type="text" name="supervisingEngineerName" value={selectedEngineer.supervisingEngineerName || 'N/A'} readOnly />
+                  </label>
+                  <label>
+                    Photo:
+                    <img src={`http://localhost:4000/uploads/${selectedEngineer.photo}`} alt="Engineer" />
+                  </label>
+                </form>
+                <button onClick={handleEditClick}>Edit</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );
