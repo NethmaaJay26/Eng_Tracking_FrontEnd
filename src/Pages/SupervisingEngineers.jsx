@@ -7,11 +7,11 @@ export default function SupervisingEngineers() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
-    traineeID: '',
-    role: 'Supervising Engineer',
+    supervisorID: '',
     email: '',
     address: '',
     contact: '',
+    password: '',
     photo: null // Added photo to formData
   });
 
@@ -85,7 +85,7 @@ export default function SupervisingEngineers() {
             <div className='engineer-card' key={index}>
               <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
               <h3>{engineer.name}</h3>
-              <p>{engineer.traineeID}</p>
+              <p>{engineer.supervisorID}</p>
               <button>More</button>
             </div>
           ))}
@@ -103,14 +103,8 @@ export default function SupervisingEngineers() {
                 <input type="text" name="name" value={formData.name} onChange={handleChange} required />
               </label>
               <label>
-                TraineeID:
-                <input type="text" name="traineeID" value={formData.traineeID} onChange={handleChange} required />
-              </label>
-              <label>
-                Role:
-                <select name="role" value={formData.role} onChange={handleChange} required>
-                  <option value="Supervising Engineer">Supervising Engineer</option>
-                </select>
+              supervisorID:
+                <input type="text" name="supervisorID" value={formData.supervisorID} onChange={handleChange} required />
               </label>
               <label>
                 Email:
@@ -123,6 +117,10 @@ export default function SupervisingEngineers() {
               <label>
                 Contacts:
                 <input type="number" name="contact" value={formData.contact} onChange={handleChange} required />
+              </label>
+              <label>
+                Password:
+                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
               </label>
               <label>
                 Photo:
