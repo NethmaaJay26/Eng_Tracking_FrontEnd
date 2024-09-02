@@ -107,18 +107,17 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  overflow: auto;
 }
 
 .popup-inner {
-  position: relative;
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
-  width: 500px;
-  max-width: 90%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh; /* Restrict height to allow scrolling */
+  overflow-y: auto;
 }
 
 .popup-inner h2 {
@@ -170,4 +169,21 @@ hr {
   border: none;
   font-size: 16px;
   cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input, select, button {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
