@@ -28,14 +28,16 @@ export default function RoleSelectionPage() {
 
   return (
     <div className='loginsignup'>
-      <div className="loginsignup-container">
+      <div className="role-loginsignup-container">
         <h1>Select Your Role</h1>
-        <div className="loginsignup-fields">
+        <div className="role-loginsignup-fields">
           <button onClick={() => handleRoleSelection('hr')}>HR</button>
-          <button onClick={() => handleRoleSelection('engineer')}>Engineers</button>
-          <button onClick={() => handleRoleSelection('supervising-engineer')}>Supervising Engineers</button>
-          <button onClick={() => navigate('/')}>Back</button>
+          <button onClick={() => handleRoleSelection('engineer')}>Engineer</button>
+          <button onClick={() => handleRoleSelection('supervising-engineer')}>Supervising Engineer</button>
+          
         </div>
+        <button className='back-button' onClick={() => navigate('/')}>Back</button>
+
       </div>
     </div>
   );
