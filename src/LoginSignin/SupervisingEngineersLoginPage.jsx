@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './LoginSignin.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 
 export default function SupervisingEngineersLoginPage() {
   const [email, setEmail] = useState('');
@@ -12,15 +11,19 @@ export default function SupervisingEngineersLoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/sengineers/login', { email, password});
+      const response = await axios.post('http://localhost:4000/api/sengineers/login', { email, password });
+      console.log('Login Response:', response.data);
+
       if (response.data.success) {
-        const { token, name, address } = response.data;
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
+        const { token, name, _id } = response.data;
+        localStorage.setItem('supervisorId', _id);
+        //localStorage.setItem('email', email);
+      //  localStorage.setItem('password', password);
         localStorage.setItem('token', token);
-        localStorage.setItem('name', name || ''); // Ensure default values
-        localStorage.setItem('address', address || ''); // Ensure default values
-        navigate('/login/supervising-engineers/home');
+        localStorage.setItem('name', name || '');
+        //localStorage.setItem('address', address || '');
+        navigate('/login/supervising-engineers/home'); 
+        //navigate('/login/supervising-engineers/assigned_engineers');
       } else {
         setError(response.data.message);
       }
@@ -28,7 +31,6 @@ export default function SupervisingEngineersLoginPage() {
       setError('An error occurred during login.');
     }
   };
-
 
   return (
     <div className='loginsignup'>
@@ -49,7 +51,6 @@ export default function SupervisingEngineersLoginPage() {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
-
         <div className="hr-buttons">
           <button onClick={handleLogin}>Login</button>
           <button onClick={() => navigate(-1)}>Back</button>

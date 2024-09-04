@@ -69,6 +69,8 @@ export default function SupervisingEngineers() {
     }
   };
 
+
+
   return (
     <div className='supervising-engineers'>
       <h1>Supervising Engineers</h1>
@@ -103,7 +105,7 @@ export default function SupervisingEngineers() {
                 <input type="text" name="name" value={formData.name} onChange={handleChange} required />
               </label>
               <label>
-              supervisorID:
+              SupervisorID:
                 <input type="text" name="traineeID" value={formData.traineeID} onChange={handleChange} required />
               </label>
               <label>

@@ -110,10 +110,10 @@ export default function Engineers() {
   };
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const data = new FormData();
     for (const key in selectedEngineer) {
-      if (key !== '_id') { // Exclude _id field from FormData
+      if (key !== '_id') { // Exclude _id field from FormData (unique identifier and do not need to update)
         data.append(key, selectedEngineer[key]);
       }
     }
@@ -130,6 +130,21 @@ export default function Engineers() {
       }
     } catch (error) {
       console.error('Error updating engineer:', error);
+    }
+  };
+
+
+  //delete option delete engineer by id
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:4000/api/engineers/${selectedEngineer._id}`);
+      if (response.status === 200) {
+        fetchEngineers();
+        setShowMorePopup(false);
+      }
+    } catch (error) {
+      console.error('Error deleting engineer:', error);
     }
   };
   
@@ -257,6 +272,22 @@ export default function Engineers() {
                   Contact:
                   <input type="text" name="contact" value={selectedEngineer.contact} onChange={(e) => setSelectedEngineer({...selectedEngineer, contact: e.target.value})} />
                 </label>
+
+                <label>c
+            Supervising Engineer:
+            <select 
+              name="supervisingEngineer" 
+              value={selectedEngineer.supervisingEngineer} 
+              onChange={(e) => setSelectedEngineer({...selectedEngineer, supervisingEngineer: e.target.value})} 
+              required
+            >
+              <option value="">Select Supervising Engineer</option>
+              {supervisingEngineers.map(se => (
+                <option key={se._id} value={se._id}>{se.name}</option>
+              ))}
+            </select>
+          </label>
+          
                 <label>
                   Photo:
                   <input type="file" onChange={(e) => setSelectedEngineer({...selectedEngineer, photo: e.target.files[0]})} />
@@ -300,6 +331,7 @@ export default function Engineers() {
                   </label>
                 </form>
                 <button onClick={handleEditClick}>Edit</button>
+                <button onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>  {/*should be update css properties* */}
               </div>
             )}
           </div>

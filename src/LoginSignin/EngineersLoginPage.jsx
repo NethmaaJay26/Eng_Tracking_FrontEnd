@@ -32,7 +32,7 @@ export default function EngineerLoginPage() {
   return (
     <div className='loginsignup'>
       <div className="loginsignup-container">
-        <h1>Enginner Login</h1>
+        <h1>Engineer Login</h1>
         <div className="loginsignup-fields">
           <input
             type="email"

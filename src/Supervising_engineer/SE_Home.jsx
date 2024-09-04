@@ -1,4 +1,4 @@
-import React from 'react';
+import {React} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CSS/SE_Home.css';
 import evaluateIcon from '../Components/Assets/evaluate.jpg';
@@ -7,8 +7,12 @@ import trainingsIcon from '../Components/Assets/trainings.jpg';
 import requestsIcon from '../Components/Assets/requests.jpg';
 import engineerIcon from '../Components/Assets/engineer.jpg';
 
+
+
 const SE_Home = () => {
     const navigate = useNavigate();
+    const supervisorName = localStorage.getItem('name') || 'Guest';
+    
 
     const handleClick = (path) => {
         navigate(path);
@@ -17,7 +21,7 @@ const SE_Home = () => {
     return (
         <div className="se-home">
             <div className="welcome-container">
-                <h1>Welcome to your dashboard, A.B.C Perera</h1>
+                <h1>Welcome to your dashboard, {supervisorName}  </h1>
             </div>
             <div className="features-container">
                 <div className="feature" onClick={() => handleClick('/login/supervising-engineers/assigned_engineers')}>

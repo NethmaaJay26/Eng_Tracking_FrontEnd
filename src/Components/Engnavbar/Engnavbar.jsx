@@ -5,6 +5,7 @@ import logo from '../Assets/icon.png';
 
 export default function EngnavBar() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const supervisorName = localStorage.getItem('name') || 'Guest';
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -21,7 +22,7 @@ export default function EngnavBar() {
     <div className='sidebar'>
       <div className="sidebar-profile">
         <img src={logo} alt="icon" />
-        <p>Engineer</p>
+        <p>{supervisorName}</p>
         <hr />
       </div>
       <ul className="sidebar-menu">

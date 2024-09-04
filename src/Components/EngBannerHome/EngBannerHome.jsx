@@ -7,6 +7,7 @@ import pointImage3 from '../Assets/point3.png';
 
 const Banner = () => {
   const navigate = useNavigate();
+  const supervisorName = localStorage.getItem('name') || 'Guest';
 
   const handleClick = (path) => {
     navigate(path);
@@ -16,7 +17,7 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="welcome-container">
-        <h1>Welcome to your dashboard, Mr.A.B.C.Perera!</h1>
+        <h1>Welcome to your dashboard, {supervisorName}!</h1>
       </div>
       <div className="points-container">
         <div className="point" onClick={() => handleClick('/Engprofile')}>

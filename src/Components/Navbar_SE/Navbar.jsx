@@ -7,6 +7,8 @@ export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState(null);
   /*const navigate = useNavigate();*/
 
+  const supervisorName = localStorage.getItem('name') || 'Guest';
+
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
@@ -22,7 +24,7 @@ export default function Sidebar() {
     <div className='sidebar'>
       <div className="sidebar-profile">
         <img src={logo} alt="icon" />
-        <p>A.B.C Perera</p>
+        <p>{supervisorName}</p>
         <hr />
       </div>
       <ul className="sidebar-menu">
