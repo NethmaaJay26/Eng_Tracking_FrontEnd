@@ -1,0 +1,116 @@
+.se-how-evaluate {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    margin-top: 100px;
+    margin-left: 280px;
+    margin-right: 10px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.algorithm-title {
+    font-size: 2em;
+    line-height: 1.2;
+}
+
+.algorithm-title span {
+    color: #000;
+    font-weight: bold;
+}
+
+.algorithm-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.algorithm-question {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.algorithm-description {
+    margin-bottom: 20px;
+}
+
+.expertise-circle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: transparent;
+    padding: 30px;
+    position: relative;
+}
+
+.expertise-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0033cc;
+    text-align: center;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-box img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.allocation-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.allocation-box {
+    width: 30%;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.allocation-box:hover {
+    border: 2px solid #0062ff;
+    background-image: linear-gradient(to right, #FFD54F, #FFB74D);
+    transform: scale(1.05);
+    transition: 0.4s;
+}
+
+
+.allocation-box h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.allocation-box p {
+    margin-bottom: 20px;
+}
+
+.allocation-box button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.allocation-box button:hover {
+    background-color: #333;
+}

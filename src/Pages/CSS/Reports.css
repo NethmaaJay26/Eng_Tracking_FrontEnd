@@ -1,0 +1,19 @@
+.reports {
+    margin-left: 270px; 
+    padding: 100px;
+    margin-top: 50px;
+  }
+  
+  .reports h1 {
+    font-size: 30px;
+    margin-bottom: 50px;
+    justify-content: left;
+    color: rgb(140, 140, 140);
+  }
+  
+  hr {
+    width: 100%;
+    border: 1px solid rgb(230, 230, 230);
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
