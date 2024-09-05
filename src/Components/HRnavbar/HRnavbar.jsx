@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Navbar.css';
+import { Link } from 'react-router-dom';
+import './HRnavbar.css';
 import logo from '../Assets/icon.png';
 
-export default function Sidebar() {
+export default function HRnavBar() {
   const [selectedItem, setSelectedItem] = useState(null);
-  const navigate = useNavigate();
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/' },
+    { name: 'Dashboard', path: '/home' },
     { name: 'Training Engineers', path: '/engineers' },
     { name: 'Supervising Engineers', path: '/supervisingengineers' },
     { name: 'Trainings', path: '/trainings' },
@@ -24,7 +23,7 @@ export default function Sidebar() {
     <div className='sidebar'>
       <div className="sidebar-profile">
         <img src={logo} alt="icon" />
-        <p>Admin</p>
+        <p>HR Admin</p>
         <hr />
       </div>
       <ul className="sidebar-menu">
@@ -40,9 +39,6 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-      <div className="sidebar-login-cart">
-        <button onClick={() => navigate('/login')}>Login</button>
-      </div>
     </div>
   );
 }

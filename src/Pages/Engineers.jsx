@@ -4,7 +4,11 @@ import axios from 'axios';
 
 export default function Engineers() {
   const [engineers, setEngineers] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showAddTraineePopup, setShowAddTraineePopup] = useState(false);
+  const [showMorePopup, setShowMorePopup] = useState(false);
+  const [supervisingEngineers, setSupervisingEngineers] = useState([]);
+  const [selectedEngineer, setSelectedEngineer] = useState(null);
+  const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     traineeID: '',
@@ -12,11 +16,14 @@ export default function Engineers() {
     email: '',
     address: '',
     contact: '',
-    photo: null // Added photo to formData
+    password: '',
+    supervisingEngineer: '', // Store ID instead of name
+    photo: null
   });
 
   useEffect(() => {
     fetchEngineers();
+    fetchSupervisingEngineers();
   }, []);
 
   const fetchEngineers = async () => {
@@ -28,8 +35,21 @@ export default function Engineers() {
     }
   };
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const fetchSupervisingEngineers = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/sengineers');
+      setSupervisingEngineers(response.data);
+    } catch (error) {
+      console.error('Error fetching supervising engineers:', error);
+    }
+  };
+
+  const toggleAddTraineePopup = () => {
+    setShowAddTraineePopup(!showAddTraineePopup);
+  };
+
+  const toggleMorePopup = () => {
+    setShowMorePopup(!showMorePopup);
   };
 
   const handleChange = (e) => {
@@ -43,7 +63,7 @@ export default function Engineers() {
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      photo: e.target.files[0] // Handle file input
+      photo: e.target.files[0]
     });
   };
 
@@ -60,14 +80,75 @@ export default function Engineers() {
         }
       });
       if (response.status === 201) {
-        fetchEngineers(); // Refresh the list of engineers
-        togglePopup(); // Close the popup
+        fetchEngineers();
+        toggleAddTraineePopup();
       }
     } catch (error) {
       console.error('Error adding engineer:', error);
     }
   };
 
+  const handleMoreClick = async (engineer) => {
+    try {
+      if (engineer.supervisingEngineer) {
+        const response = await axios.get(`http://localhost:4000/api/engineers/${engineer._id}`);
+        const { supervisingEngineer } = response.data;
+        const supervisingEngineerName = supervisingEngineer ? supervisingEngineer.name : 'N/A'; // Handle missing names
+        setSelectedEngineer({ ...engineer, supervisingEngineerName });
+      } else {
+        setSelectedEngineer(engineer);
+      }
+      setShowMorePopup(true);
+    } catch (error) {
+      console.error('Error fetching supervising engineer:', error);
+    }
+  };
+
+
+  const handleEditClick = () => {
+    setEditMode(true);
+  };
+
+  const handleUpdate = async (e) => {
+    // e.preventDefault();
+    const data = new FormData();
+    for (const key in selectedEngineer) {
+      if (key !== '_id') { // Exclude _id field from FormData (unique identifier and do not need to update)
+        data.append(key, selectedEngineer[key]);
+      }
+    }
+    try {
+      const response = await axios.put(`http://localhost:4000/api/engineers/${selectedEngineer._id}`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      if (response.status === 200) {
+        fetchEngineers();
+        setShowMorePopup(false);
+        setEditMode(false);
+      }
+    } catch (error) {
+      console.error('Error updating engineer:', error);
+    }
+  };
+
+
+  //delete option delete engineer by id
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:4000/api/engineers/${selectedEngineer._id}`);
+      if (response.status === 200) {
+        fetchEngineers();
+        setShowMorePopup(false);
+      }
+    } catch (error) {
+      console.error('Error deleting engineer:', error);
+    }
+  };
+  
+  
   return (
     <div className='engineers'>
       <h1>Trainee Engineers</h1>
@@ -75,17 +156,17 @@ export default function Engineers() {
       <div className='top-bar'>
         <input type="text" placeholder="Search for an engineer by name or email" />
         <button>Export CSV</button>
-        <button onClick={togglePopup}>Add Trainees</button>
+        <button onClick={toggleAddTraineePopup}>Add Trainees</button>
       </div>
       <div className='section'>
         <h2>Recruited Graduate Engineers</h2>
         <div className='engineer-grid'>
           {engineers.filter(engineer => engineer.role === 'Recruited Graduate Engineer').map((engineer, index) => (
             <div className='engineer-card' key={index}>
-              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" /> {/* Display photo */}
+              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
               <h3>{engineer.name}</h3>
               <p>{engineer.traineeID}</p>
-              <button>More</button>
+              <button onClick={() => handleMoreClick(engineer)}>More</button>
             </div>
           ))}
         </div>
@@ -95,20 +176,20 @@ export default function Engineers() {
         <div className='engineer-grid'>
           {engineers.filter(engineer => engineer.role === 'Experienced Trainee Engineer').map((engineer, index) => (
             <div className='engineer-card' key={index}>
-              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" /> {/* Display photo */}
+              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
               <h3>{engineer.name}</h3>
               <p>{engineer.traineeID}</p>
-              <button>More</button>
+              <button onClick={() => handleMoreClick(engineer)}>More</button>
             </div>
           ))}
         </div>
       </div>
-      
-      {showPopup && (
+
+      {showAddTraineePopup && (
         <div className='popup'>
           <div className='popup-inner'>
             <h2>Add a Trainee</h2>
-            <button className='close-btn' onClick={togglePopup}>Close</button>
+            <button className='close-btn' onClick={toggleAddTraineePopup}>Close</button>
             <form onSubmit={handleSubmit}>
               <label>
                 Name:
@@ -134,18 +215,129 @@ export default function Engineers() {
                 <input type="text" name="address" value={formData.address} onChange={handleChange} required />
               </label>
               <label>
-                Contacts:
-                <input type="number" name="contact" value={formData.contact} onChange={handleChange} required />
+                Contact:
+                <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
+              </label>
+              <label>
+                Password:
+                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+              </label>
+              <label>
+                Supervising Engineer:
+                <select name="supervisingEngineer" value={formData.supervisingEngineer} onChange={handleChange} required>
+                  <option value="">Select Supervising Engineer</option>
+                  {supervisingEngineers.map(se => (
+                    <option key={se._id} value={se._id}>{se.name}</option>
+                  ))}
+                </select>
               </label>
               <label>
                 Photo:
-                <input type="file" name="photo" onChange={handleFileChange} required />
+                <input type="file" onChange={handleFileChange} />
               </label>
               <button type="submit">Add Trainee</button>
             </form>
           </div>
         </div>
       )}
+
+{showMorePopup && selectedEngineer && (
+        <div className='popup'>
+          <div className='popup-inner'>
+            <h2>{selectedEngineer.name}'s Details</h2>
+            <button className='close-btn' onClick={toggleMorePopup}>Close</button>
+            {editMode ? (
+              <form onSubmit={handleUpdate}>
+                <label>
+                  Name:
+                  <input type="text" name="name" value={selectedEngineer.name} onChange={(e) => setSelectedEngineer({...selectedEngineer, name: e.target.value})} />
+                </label>
+                <label>
+                  TraineeID:
+                  <input type="text" name="traineeID" value={selectedEngineer.traineeID} onChange={(e) => setSelectedEngineer({...selectedEngineer, traineeID: e.target.value})} />
+                </label>
+                <label>
+                  Role:
+                  <input type="text" name="role" value={selectedEngineer.role} onChange={(e) => setSelectedEngineer({...selectedEngineer, role: e.target.value})} />
+                </label>
+                <label>
+                  Email:
+                  <input type="email" name="email" value={selectedEngineer.email} onChange={(e) => setSelectedEngineer({...selectedEngineer, email: e.target.value})} />
+                </label>
+                <label>
+                  Address:
+                  <input type="text" name="address" value={selectedEngineer.address} onChange={(e) => setSelectedEngineer({...selectedEngineer, address: e.target.value})} />
+                </label>
+                <label>
+                  Contact:
+                  <input type="text" name="contact" value={selectedEngineer.contact} onChange={(e) => setSelectedEngineer({...selectedEngineer, contact: e.target.value})} />
+                </label>
+
+                <label>c
+            Supervising Engineer:
+            <select 
+              name="supervisingEngineer" 
+              value={selectedEngineer.supervisingEngineer} 
+              onChange={(e) => setSelectedEngineer({...selectedEngineer, supervisingEngineer: e.target.value})} 
+              required
+            >
+              <option value="">Select Supervising Engineer</option>
+              {supervisingEngineers.map(se => (
+                <option key={se._id} value={se._id}>{se.name}</option>
+              ))}
+            </select>
+          </label>
+          
+                <label>
+                  Photo:
+                  <input type="file" onChange={(e) => setSelectedEngineer({...selectedEngineer, photo: e.target.files[0]})} />
+                </label>
+                <button type="submit">Update</button>
+              </form>
+            ) : (
+              <div>
+                <form>
+                  <label>
+                    Name:
+                    <input type="text" name="name" value={selectedEngineer.name} readOnly />
+                  </label>
+                  <label>
+                    TraineeID:
+                    <input type="text" name="traineeID" value={selectedEngineer.traineeID} readOnly />
+                  </label>
+                  <label>
+                    Role:
+                    <input type="text" name="role" value={selectedEngineer.role} readOnly />
+                  </label>
+                  <label>
+                    Email:
+                    <input type="email" name="email" value={selectedEngineer.email} readOnly />
+                  </label>
+                  <label>
+                    Address:
+                    <input type="text" name="address" value={selectedEngineer.address} readOnly />
+                  </label>
+                  <label>
+                    Contacts:
+                    <input type="number" name="contact" value={selectedEngineer.contact} readOnly />
+                  </label>
+                  <label>
+                    Supervising Engineer:
+                    <input type="text" name="supervisingEngineerName" value={selectedEngineer.supervisingEngineerName || 'N/A'} readOnly />
+                  </label>
+                  <label>
+                    Photo:
+                    <img src={`http://localhost:4000/uploads/${selectedEngineer.photo}`} alt="Engineer" />
+                  </label>
+                </form>
+                <button onClick={handleEditClick}>Edit</button>
+                <button onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>  {/*should be update css properties* */}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
