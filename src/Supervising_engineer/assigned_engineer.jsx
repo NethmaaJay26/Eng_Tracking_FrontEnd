@@ -4,9 +4,11 @@ import './CSS/SE_AssignedEngineer.css';
 
 function AssignedEngineer() {
   const [assignedEngineers, setAssignedEngineers] = useState([]);
+  const [trainings, setTrainings] = useState([]); // State to store the trainings
   const [error, setError] = useState(''); // Error state to handle UI errors
 
   useEffect(() => {
+    // Fetch assigned engineers for the supervising engineer
     const fetchAssignedEngineers = async () => {
       try {
         const supervisorId = localStorage.getItem('supervisorId'); // Retrieve supervisor ID from localStorage
@@ -21,9 +23,20 @@ function AssignedEngineer() {
         console.error('Error fetching assigned engineers:', error);
       }
     };
+
+    // Fetch trainings to populate the dropdown
+    const fetchTrainings = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/trainings/');
+        setTrainings(response.data);
+      } catch (error) {
+        console.error('Error fetching trainings:', error);
+      }
+    };
+
     fetchAssignedEngineers();
+    fetchTrainings();
   }, []);
-  
 
   return (
     <div className="assigned-engineer">
@@ -40,7 +53,7 @@ function AssignedEngineer() {
                 <th>Company</th>
                 <th>Phone Number</th>
                 <th>Email address</th>
-               
+                <th>Trainings</th>
               </tr>
             </thead>
             <tbody>
@@ -52,7 +65,17 @@ function AssignedEngineer() {
                     <td>{engineer.address}</td>
                     <td>{engineer.contact}</td>
                     <td>{engineer.email}</td>
-                    {/*  <td>{engineer.status || 'Active'}</td> */}
+                    {/* Dropdown to select training */}
+                    <td>
+                      <select>
+                        <option value="">Select Training</option>
+                        {trainings.map(training => (
+                          <option key={training._id} value={training.name}>
+                            {training.name}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
                   </tr>
                 ))
               ) : (
@@ -67,6 +90,5 @@ function AssignedEngineer() {
     </div>
   );
 }
-
 
 export default AssignedEngineer;
