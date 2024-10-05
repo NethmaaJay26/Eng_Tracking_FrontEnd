@@ -11,7 +11,7 @@
   background-color: #03588C;
   font-family: 'Poppins';
   color: white;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden; 
 }
 
 .sidebar-profile {

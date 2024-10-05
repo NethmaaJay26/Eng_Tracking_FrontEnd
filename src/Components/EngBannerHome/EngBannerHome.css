@@ -1,59 +1,59 @@
 .banner {
-    padding: 50px;
-    background-color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    margin-left: 270px;
-    margin-top: 150px; 
-    margin-bottom:100px;
-  }
-  
-  .welcome-container {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .welcome-container h1 {
-    font-size: 25px;
-    font-weight: bold;
-    color: #333;
-    padding-bottom: 50px;
-  }
-  
-  .points-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .point {
-    width: 25%;
-    margin-bottom: 30px;
-    text-align: center;
-    background: white;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .point img {
-    width: 50px;
-    margin-bottom: 10px;
-  }
-  
-  .point h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .point:hover {
-    background-color: #e9cf9f;
-    transform: translateY(-5px);
-  }
-  
-  .point:active {
-    background-color: #03588c;
-  }
-  
-  
+  padding: 50px;
+  background-image: url('../Assets/lakdanavi.jpg');
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  margin-left: 270px;
+  margin-top: 80px; 
+  margin-bottom:0px;
+  padding-bottom:200px;
+}
+
+.welcome-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome-container h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+  padding-bottom: 50px;
+}
+
+.points-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.point {
+  width: 25%;
+  margin-bottom: 30px;
+  text-align: center;
+  background: white;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.point img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.point h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.point:hover {
+  background-color: #e9cf9f;
+  transform: translateY(-5px);
+}
+
+.point:active {
+  background-color: #03588c;
+}

@@ -5,15 +5,29 @@
   padding: 5px 20px;
   box-shadow: 0 1px 3px -2px black;
   font-family: 'Poppins';
-  background-image: linear-gradient(to right, #ededea, #FFD02F);
+  background-image: linear-gradient(to right, #ffffff,#ffffff 95%);
   color: #03588C;
   position: fixed;
   top: 0;
   left:270px; 
   width: calc(100% - 300px); 
   z-index: 1000; 
-  height: 100px;
-}  
+  height: 80px;
+}
+
+.topbar-logo {
+  font-size: 30px;
+  font-weight: 600;
+  flex-direction: row;
+  display: inline-flex;
+  padding: 10px;
+}
+.topbar-logo img{
+  width: 240px;
+  height: 40px;
+  padding-left: 10px;
+  padding-top: 35px;
+}
 
 .topbar-login {
   display: flex;

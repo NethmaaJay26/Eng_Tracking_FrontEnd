@@ -157,7 +157,7 @@ function Engprofile() {
                     </div>
 
                     <div className="form-footer">
-                        <button type="submit" className="next-step-btn">Next Step ►</button>
+                        <button type="submit" className="next-step-btn">Save</button>
                     </div>
                 </form>
             </div>

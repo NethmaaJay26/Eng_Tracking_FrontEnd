@@ -10,6 +10,7 @@ export default function Topbar() {
   return (
     <div className='topbar'>
       <div className="topbar-logo">
+      <p>ENGINEERINGProTrack</p>
         <img src={logoLTL} alt="Kavindu" /> 
       </div>
       <div className="topbar-login">
