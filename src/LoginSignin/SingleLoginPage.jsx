@@ -58,7 +58,7 @@ export default function UnifiedLoginPage() {
         {error && <div className="error-message">{error}</div>}
         <div className="hr-buttons">
           <button onClick={handleLogin}>Login</button>
-          <button onClick={() => navigate(-1)}>Back</button>
+          <button onClick={() => navigate('/')}>Back</button>
         </div>
       </div>
     </div>
