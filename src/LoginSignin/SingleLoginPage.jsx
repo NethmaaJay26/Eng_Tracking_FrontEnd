@@ -15,12 +15,13 @@ export default function UnifiedLoginPage() {
       
       if (response.data.success) {
         const { token, role, user } = response.data;
-
+  
         // Store common data in local storage
         localStorage.setItem('token', token);
         localStorage.setItem('email', user.email);
         localStorage.setItem('name', user.name || '');
-
+        localStorage.setItem('role', role);  // Ensure role is also stored
+  
         // Redirect based on the role
         if (role === 'hr') {
           navigate('/home');
@@ -36,6 +37,7 @@ export default function UnifiedLoginPage() {
       setError('An error occurred during login.');
     }
   };
+  
 
   return (
     <div className='loginsignup'>

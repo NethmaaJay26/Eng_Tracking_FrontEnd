@@ -57,16 +57,20 @@ const Layout = ({ children }) => {
 
   const renderNavBar = () => {
     if (hideNavbarAndTopbar) return null;
-    
-    switch(user?.role) {  
-      case 'hr':
-        return <HRnavBar />;
-      case 'engineer':
-        return <EngnavBar />;
-      default:
-        return <HRnavBar />;
+  
+    const role = localStorage.getItem('role');  // Fetch role from localStorage for persistent state
+  
+    if (role === 'hr') {
+      return <HRnavBar />;
+    } else if (role === 'engineer') {
+      return <EngnavBar />;
+    } else if (isSupervisingEngineerPage) {
+      return <Navbar_SE />;
+    } else {
+      return null;  // Handle default case if role is not set
     }
   };
+  
 
   return (
     <>
