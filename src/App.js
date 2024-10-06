@@ -15,7 +15,7 @@ import Footer from "./Components/Footer/Footer.jsx";
 import Topbar from './Components/TopBar/Topbar.jsx';
 
 import MainLoginPage from './LoginSignin/MainLoginPage';
-import RoleSelectionPage from './LoginSignin/RoleSelectionPage';
+import RoleSelectionPage from './LoginSignin/SingleLoginPage';
 import HRLoginPage from './LoginSignin/HRLoginPage';
 import EngineersLoginPage from './LoginSignin/EngineersLoginPage';
 import SupervisingEngineersLoginPage from './LoginSignin/SupervisingEngineersLoginPage';
@@ -46,6 +46,7 @@ const Layout = ({ children }) => {
     "/login/supervising-engineers/home",
     "/login/supervising-engineers/assigned_engineers",
     "/login/supervising-engineers/trainings",
+    '/login/supervising-engineers/reports',
     '/login/supervising-engineers/evaluations',
     "/login/supervising-engineers/mark-allocations",
     '/login/supervising-engineers/requests'
@@ -56,16 +57,20 @@ const Layout = ({ children }) => {
 
   const renderNavBar = () => {
     if (hideNavbarAndTopbar) return null;
-    
-    switch(user?.role) {  
-      case 'hr':
-        return <HRnavBar />;
-      case 'engineer':
-        return <EngnavBar />;
-      default:
-        return <HRnavBar />;
+  
+    const role = localStorage.getItem('role');  // Fetch role from localStorage for persistent state
+  
+    if (role === 'hr') {
+      return <HRnavBar />;
+    } else if (role === 'engineer') {
+      return <EngnavBar />;
+    } else if (isSupervisingEngineerPage) {
+      return <Navbar_SE />;
+    } else {
+      return null;  // Handle default case if role is not set
     }
   };
+  
 
   return (
     <>
@@ -92,6 +97,7 @@ function App() {
               <Route path='/engineers' element={<Engineers />} />
               <Route path='/supervisingengineers' element={<SupervisingEngineers />} />
               <Route path='/trainings' element={<Trainings />} />
+              <Route path='/reports' element={<Reports />} />
               <Route path='/evaluations' element={<Evaluations />} />
               <Route path='/summary' element={<Summary />} />
               <Route path="/" element={<MainLoginPage />} />
