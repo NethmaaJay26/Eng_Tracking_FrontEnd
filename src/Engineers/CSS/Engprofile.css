@@ -2,61 +2,61 @@
     font-family: Arial, sans-serif;
     max-width: 800px;
     padding: 150px;
-    margin: 0 auto; 
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 .profile-update-form {
-    background-color: #ffffff; 
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid #3b9aff; 
-    width: 100%; 
-    max-width: 600px; 
+    border: 2px solid #3b9aff;
+    width: 100%;
+    max-width: 600px;
 }
 
 .profile-update-container h1 {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
-    color: #3b9aff; 
+    color: #3b9aff;
 }
 
 .profile-update-form h2 {
     font-size: 18px;
     margin-bottom: 20px;
-    color: #333; 
-    text-align: center; 
+    color: #333;
+    text-align: center;
 }
 
 .form-group {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
     font-size: 18px;
     text-align: left;
-    margin-bottom: 8px; 
-    color: #000000; 
+    margin-bottom: 8px;
+    color: #000000;
 }
 
 .form-group input {
     width: calc(100% - 20px);
-    padding: 12px; 
+    padding: 12px;
     border: 1px solid #818181;
-    border-radius: 8px; 
-    font-size: 16px; 
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 .checkbox-group {
     margin-bottom: 30px;
-    text-align: left; 
+    text-align: left;
 }
 
 .checkbox-group label {
@@ -73,24 +73,64 @@
 
 .profile-pic img {
     width: 100px;
-    height: 100px; 
+    height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border: 3px solid #3b9aff; 
+    border: 3px solid #3b9aff;
 }
 
-.edit-password-btn{
+.edit-password-btn {
     display: inline-block;
     margin-top: 20px;
-    padding: 12px 16px; 
-    font-size: 12px; 
-    color: rgb(0, 0, 0);
+    padding: 12px 16px;
+    font-size: 12px;
+    color: white;
+    border: none;
+    background-color: #3b9aff;
+    border-radius: 8px;
+    cursor: pointer;
 }
+
+.edit-password-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
 .edit-pic-btn,
 .next-step-btn {
     display: inline-block;
     margin-top: 10px;
-    padding: 12px 16px; 
-    font-size: 16px; 
-    color: whi
+    padding: 12px 16px;
+    font-size: 16px;
+    color: white;
+    background-color: #3b9aff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.edit-pic-btn:hover,
+.next-step-btn:hover {
+    background-color: #0056b3;
+}
+
+.form-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.save-password-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.save-password-btn:hover {
+    background-color: #218838;
 }
