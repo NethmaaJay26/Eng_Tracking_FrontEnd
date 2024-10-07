@@ -20,13 +20,21 @@ export default function UnifiedLoginPage() {
         localStorage.setItem('token', token);
         localStorage.setItem('email', user.email);
         localStorage.setItem('name', user.name || '');
-        localStorage.setItem('role', role);  // Ensure role is also stored
+        localStorage.setItem('role', role);  // Store the role
   
-        // Redirect based on the role
-        if (role === 'hr') {
-          navigate('/home');
-        } else if (role === 'engineer') {
+        // If user is an engineer, store the training ID in local storage
+        if (role === 'engineer') {
+          if (user.training) {
+            localStorage.setItem('trainingId', user.training); // Store training ID
+            console.log('Training ID saved in local storage:', user.training);  // Print to console
+          } else {
+            console.log('No training assigned to this engineer.');
+          }
+  
+          // Redirect to the engineer home page
           navigate('/Enghome');
+        } else if (role === 'hr') {
+          navigate('/home');
         } else if (role === 'supervising-engineer') {
           navigate('/login/supervising-engineers/home');
         }
@@ -37,6 +45,7 @@ export default function UnifiedLoginPage() {
       setError('An error occurred during login.');
     }
   };
+  
   
 
   return (
