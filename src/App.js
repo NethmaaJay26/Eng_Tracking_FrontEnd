@@ -31,7 +31,7 @@ import SE_Home from './Supervising_engineer/SE_Home';
 import Navbar_SE from './Components/Navbar_SE/Navbar';
 import How_Eve from './Supervising_engineer/SE_HowEvaluate';
 import Assigned_Eng from './Supervising_engineer/assigned_engineer';
-
+import EngineerDetails from './Supervising_engineer/engineer_details.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -50,8 +50,8 @@ const Layout = ({ children }) => {
     '/login/supervising-engineers/reports',
     '/login/supervising-engineers/evaluations',
     "/login/supervising-engineers/mark-allocations",
-    '/login/supervising-engineers/requests'
-    // Add more SE-specific routes here
+    '/login/supervising-engineers/requests',
+    "/engineer/:engineerId", // Include this to handle dynamic routing for engineer details
   ].includes(location.pathname);
 
   const { user } = useUser();
@@ -72,13 +72,11 @@ const Layout = ({ children }) => {
     }
   };
   
-
   return (
     <>
       {renderNavBar()}
       {!hideNavbarAndTopbar && <Topbar />}
       {!hideNavbarAndTopbar && !isSupervisingEngineerPage && <Topbar />}
-     
       {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Topbar />}
       {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Navbar_SE />}
       {children}
@@ -112,9 +110,11 @@ function App() {
               <Route path='/Engprofile' element={<Engprofile />} />
               <Route path='/Engtrainings' element={<Engtrainings />} />
               <Route path="/login/supervising-engineers/home" element={<SE_Home />} />
-            <Route path="/login/supervising-engineers/mark-allocations" element={<How_Eve />} />
-            <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
-
+              <Route path="/login/supervising-engineers/mark-allocations" element={<How_Eve />} />
+              <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
+              {/* Update this route to accept engineer ID dynamically */}
+              <Route path="/engineer/:engineerId" element={<EngineerDetails />} />
+ 
             </Routes>
           </Layout>
         </BrowserRouter>

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CSS/SE_AssignedEngineer.css';
 
 function AssignedEngineer() {
   const [assignedEngineers, setAssignedEngineers] = useState([]);
   const [trainings, setTrainings] = useState([]);
-  const [selectedTrainingId, setSelectedTrainingId] = useState(null); // Store the selected training ID
-  const [popupVisible, setPopupVisible] = useState(false); // For showing the popup
-  const [engineerToEdit, setEngineerToEdit] = useState(null); // Track the engineer being edited
-  const [isEditing, setIsEditing] = useState(false); // Track if we are editing
+  const [selectedTrainingId, setSelectedTrainingId] = useState(null);
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [engineerToEdit, setEngineerToEdit] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch assigned engineers
@@ -42,22 +44,18 @@ function AssignedEngineer() {
     fetchTrainings();
   }, []);
 
-  // Handle training selection and show confirmation popup
   const handleTrainingSelect = (engineer, trainingId) => {
     setEngineerToEdit(engineer);
-    setSelectedTrainingId(trainingId); // Store the selected training ID
-    setPopupVisible(true); // Show the confirmation popup
+    setSelectedTrainingId(trainingId);
+    setPopupVisible(true);
   };
 
-  // Handle confirmation of adding or editing training
   const confirmAddTraining = async () => {
     try {
-      // Update the engineer with the new training ID
       await axios.put(`http://localhost:4000/api/engineers/${engineerToEdit._id}`, {
-        training: selectedTrainingId // Send the new training ID to the backend
+        training: selectedTrainingId
       });
 
-      // Update the frontend with the new training assignment
       setAssignedEngineers((prev) =>
         prev.map((engineer) =>
           engineer._id === engineerToEdit._id ? { ...engineer, training: selectedTrainingId } : engineer
@@ -65,24 +63,26 @@ function AssignedEngineer() {
       );
 
       setPopupVisible(false);
-      setIsEditing(false); // Stop editing mode after confirmation
+      setIsEditing(false);
     } catch (error) {
       console.error('Error adding training:', error);
     }
   };
 
-  // Handle canceling the popup
   const cancelAddTraining = () => {
     setPopupVisible(false);
     setSelectedTrainingId(null);
   };
 
-  // Handle showing the dropdown when clicking the "Edit" button
-  const handleEditTraining = (engineer) => {
-    setEngineerToEdit(engineer);
-    setIsEditing(true); // Enable editing mode to show dropdown again
+  const handleRowClick = (engineerId) => {
+    // Save the engineer ID to local storage if needed
+    localStorage.setItem('engineerId', engineerId); 
+    console.log('Saved Engineer ID:', engineerId);
+    
+    // Navigate to the engineer details page with the engineer ID
+    navigate(`/engineer/${engineerId}`); // Update this path according to your routing setup
   };
-
+  
   return (
     <div className="assigned-engineer">
       <div className="trainings">
@@ -93,63 +93,23 @@ function AssignedEngineer() {
           <table className="trainings-table">
             <thead>
               <tr>
+                <th>Trainee Engineer</th>
                 <th>Name</th>
-                <th>Role</th>
-                <th>Company</th>
-                <th>Phone Number</th>
-                <th>Email address</th>
-                <th>Trainings</th>
+                <th>Email Address</th>
               </tr>
             </thead>
             <tbody>
               {assignedEngineers.length > 0 ? (
                 assignedEngineers.map((engineer) => (
-                  <tr key={engineer._id}>
+                  <tr key={engineer._id} onClick={() => handleRowClick(engineer._id)}>
+                    <td>{engineer.traineeID}</td>
                     <td>{engineer.name}</td>
-                    <td>{engineer.role}</td>
-                    <td>{engineer.address}</td>
-                    <td>{engineer.contact}</td>
                     <td>{engineer.email}</td>
-                    <td>
-                      {isEditing && engineerToEdit && engineerToEdit._id === engineer._id ? (
-                        // Show dropdown if we're editing this engineer's training
-                        <select
-                          onChange={(e) => handleTrainingSelect(engineer, e.target.value)}
-                          defaultValue={engineer.training || ''}
-                        >
-                          <option value="">Select Training</option>
-                          {trainings.map((training) => (
-                            <option key={training._id} value={training._id}>
-                              {training.name}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <>
-                          {engineer.training ? (
-                            <>
-                              {/* Show the current training name */}
-                              {trainings.find((t) => t._id === engineer.training)?.name}
-                              <button onClick={() => handleEditTraining(engineer)}>Edit</button>
-                            </>
-                          ) : (
-                            <select onChange={(e) => handleTrainingSelect(engineer, e.target.value)}>
-                              <option value="">Select Training</option>
-                              {trainings.map((training) => (
-                                <option key={training._id} value={training._id}>
-                                  {training.name}
-                                </option>
-                              ))}
-                            </select>
-                          )}
-                        </>
-                      )}
-                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6">No assigned engineers found</td>
+                  <td colSpan="3">No assigned engineers found</td>
                 </tr>
               )}
             </tbody>
@@ -157,7 +117,6 @@ function AssignedEngineer() {
         </div>
       </div>
 
-      {/* Popup for confirmation */}
       {popupVisible && (
         <div className="popup">
           <div className="popup-content">

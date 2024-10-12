@@ -5,6 +5,7 @@ import './CSS/Engtrainings.css';
 export default function Trainings() {
   const [trainingDetails, setTrainingDetails] = useState(null);
   const [error, setError] = useState('');
+  const [status, setStatus] = useState(''); // State to manage the training status
 
   useEffect(() => {
     const fetchTrainingDetails = async () => {
@@ -18,6 +19,7 @@ export default function Trainings() {
         // Fetch training details using the training ID
         const response = await axios.get(`http://localhost:4000/api/trainings/${trainingId}`);
         setTrainingDetails(response.data);
+        setStatus(response.data.isCompleted ? 'Completed' : 'Not Completed'); // Initialize status
       } catch (error) {
         console.error('Error fetching training details:', error);
         setError('Error fetching training details');
@@ -26,6 +28,22 @@ export default function Trainings() {
 
     fetchTrainingDetails();
   }, []);
+
+  const handleStatusChange = async (e) => {
+    const newStatus = e.target.value;
+    setStatus(newStatus);
+
+    // Update the training status in the database
+    try {
+      const trainingId = localStorage.getItem('trainingId');
+      console.log ('training id saved', trainingId);// training id is saving properly
+      await axios.put(`http://localhost:4000/api/trainings/${trainingId}`, { isCompleted: newStatus === 'Completed' });
+      alert('Training status updated successfully!');
+    } catch (error) {
+      console.error('Error updating training status:', error);
+      setError('Error updating training status');
+    }
+  };
 
   return (
     <div className="trainings">
@@ -50,7 +68,12 @@ export default function Trainings() {
                 <td>{trainingDetails.category}</td>
                 <td>{trainingDetails.company}</td>
                 <td>{trainingDetails.timePeriod}</td>
-                <td>{trainingDetails.isCompleted ? 'Completed' : 'Not Completed'}</td>
+                <td>
+                  <select value={status} onChange={handleStatusChange}>
+                    <option value="Completed">Completed</option>
+                    <option value="Not Completed">Not Completed</option>
+                  </select>
+                </td>
               </tr>
             </tbody>
           </table>
