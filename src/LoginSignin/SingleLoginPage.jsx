@@ -21,6 +21,7 @@ export default function UnifiedLoginPage() {
         localStorage.setItem('email', user.email);
         localStorage.setItem('name', user.name || '');
         localStorage.setItem('role', role);  // Store the role
+
        
   
         // If user is an engineer, store the training ID in local storage
@@ -28,6 +29,8 @@ export default function UnifiedLoginPage() {
           if (user.training) {
             localStorage.setItem('trainingId', user.training); // Store training ID
             console.log('Training ID saved in local storage:', user.training);  // Print to console
+            localStorage.setItem('address', user.address);
+            localStorage.setItem('password', user.password);
           } else {
             console.log('No training assigned to this engineer.');
           }
