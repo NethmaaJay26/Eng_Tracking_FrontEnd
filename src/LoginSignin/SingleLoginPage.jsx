@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginSignin.css';
@@ -10,6 +10,23 @@ export default function UnifiedLoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to http://localhost:3000/ when back button is pressed
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      window.location.replace('http://localhost:3000/');
+    };
+
+    // Push the current state into history and add event listener for popstate (back button)
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      // Clean up event listener when the component unmounts
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, []);
 
   const handleLogin = async () => {
     try {
@@ -52,8 +69,6 @@ export default function UnifiedLoginPage() {
     }
   };
 
-
-
   return (
     <div className='loginsignup'>
       <div className="loginsignup-container">
@@ -82,7 +97,6 @@ export default function UnifiedLoginPage() {
         {error && <div className="error-message">{error}</div>}
         <div className="login-button">
           <button onClick={handleLogin}>Log In</button>
-
         </div>
       </div>
     </div>

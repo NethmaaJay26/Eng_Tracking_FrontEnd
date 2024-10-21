@@ -1,12 +1,25 @@
 import './LoginSignin.css';
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Player } from '@lottiefiles/react-lottie-player';
 
-
 export default function MainLoginPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handlePopState = (event) => {
+      // When the user presses the back button, redirect to http://localhost:3000/
+      window.location.replace('http://localhost:3000/');
+    };
+
+    // Add an event listener for the popstate event (browser back/forward navigation)
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      // Cleanup the event listener on component unmount
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   return (
     <div className='main-login'>
