@@ -32,6 +32,8 @@ export default function UnifiedLoginPage() {
           } else {
             console.log('No training assigned to this engineer.');
           }
+          localStorage.setItem('address', user.address);
+          localStorage.setItem('password', user.password);
 
           // Redirect to the engineer home page
           navigate('/Enghome');

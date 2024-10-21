@@ -1,9 +1,7 @@
 import {React} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CSS/SE_Home.css';
-import evaluateIcon from '../Components/Assets/evaluate.jpg';
 import markAllocationIcon from '../Components/Assets/mark_allocation.jpg';
-import trainingsIcon from '../Components/Assets/trainings.jpg';
 import requestsIcon from '../Components/Assets/requests.jpg';
 import engineerIcon from '../Components/Assets/engineer.jpg';
 
