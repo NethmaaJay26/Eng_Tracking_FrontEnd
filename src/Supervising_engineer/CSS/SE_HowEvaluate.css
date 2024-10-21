@@ -77,12 +77,17 @@
 }
 
 .allocation-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* This makes sure content is spaced properly */
     width: 30%;
     background: #fff;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     text-align: center;
+    /*min-height: 80px;  Set a minimum height to avoid shrinking too much */
+    position: relative; /* Position relative helps with button placement */
 }
 
 .allocation-box:hover {
@@ -92,13 +97,13 @@
     transition: 0.4s;
 }
 
-
 .allocation-box h4 {
     font-size: 1.2em;
     margin-bottom: 10px;
 }
 
 .allocation-box p {
+    flex-grow: 1;  /* This allows the paragraph to take up available space */
     margin-bottom: 20px;
 }
 
@@ -109,6 +114,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    align-self: center;  /* Centers the button horizontally */
+    margin-top: auto;  /* Pushes the button to the bottom of the box */
 }
 
 .allocation-box button:hover {
