@@ -21,6 +21,7 @@ export default function UnifiedLoginPage() {
         localStorage.setItem('email', user.email);
         localStorage.setItem('name', user.name || '');
         localStorage.setItem('role', role);  // Store the role
+       
   
         // If user is an engineer, store the training ID in local storage
         if (role === 'engineer') {
@@ -33,9 +34,18 @@ export default function UnifiedLoginPage() {
   
           // Redirect to the engineer home page
           navigate('/Enghome');
+
         } else if (role === 'hr') {
+
+        
+
           navigate('/home');
         } else if (role === 'supervising-engineer') {
+
+          localStorage.setItem('supervisorId', user._id);  // Assuming user._id is the supervisor's ID
+          console.log('Supervisor ID saved in local storage:', user._id);
+
+         
           navigate('/login/supervising-engineers/home');
         }
       } else {
