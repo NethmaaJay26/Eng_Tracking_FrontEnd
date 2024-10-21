@@ -28,18 +28,12 @@ const SE_Home = () => {
                     <img src={engineerIcon} alt="engineers" />
                     <h3>Assigned Engineers</h3>
                 </div>
-                <div className="feature" onClick={() => handleClick('/login/supervising-engineers/evaluations')}>
-                    <img src={evaluateIcon} alt="Evaluate Engineers" />
-                    <h3>Evaluations</h3>
-                </div>
+                
                 <div className="feature" onClick={() => handleClick('/login/supervising-engineers/mark-allocations')}>
                     <img src={markAllocationIcon} alt="Mark Allocations" />
                     <h3>Mark Allocations</h3>
                 </div>
-                <div className="feature" onClick={() => handleClick('/login/supervising-engineers/trainings')}>
-                    <img src={trainingsIcon} alt="Available Trainings" />
-                    <h3>Available Trainings</h3>
-                </div>
+              
                 <div className="feature" onClick={() => handleClick('/login/supervising-engineers/requests')}>
                     <img src={requestsIcon} alt="Requests" />
                     <h3>Requests & Feedbacks</h3>

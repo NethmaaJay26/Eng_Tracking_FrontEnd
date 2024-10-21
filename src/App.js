@@ -32,6 +32,7 @@ import Navbar_SE from './Components/Navbar_SE/Navbar';
 import How_Eve from './Supervising_engineer/SE_HowEvaluate';
 import Assigned_Eng from './Supervising_engineer/assigned_engineer';
 import EngineerDetails from './Supervising_engineer/engineer_details.jsx';
+import MarkAllocation from './Supervising_engineer/mark_allocation.jsx'
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -43,6 +44,11 @@ const Layout = ({ children }) => {
     "/login/supervising-engineers"
   ].includes(location.pathname);
 
+  const hideFooter = [
+    "/",  // MainLoginPage
+    "/login"  // SingleLoginPage
+  ].includes(location.pathname);
+  
   const isSupervisingEngineerPage = [
     "/login/supervising-engineers/home",
     "/login/supervising-engineers/assigned_engineers",
@@ -51,7 +57,8 @@ const Layout = ({ children }) => {
     '/login/supervising-engineers/evaluations',
     "/login/supervising-engineers/mark-allocations",
     '/login/supervising-engineers/requests',
-    "/engineer/:engineerId", // Include this to handle dynamic routing for engineer details
+    "/engineer/:engineerId",
+    "/login/supervising-engineers/mark-allocations/weight", // Include this to handle dynamic routing for engineer details
   ].includes(location.pathname);
 
   const { user } = useUser();
@@ -80,7 +87,7 @@ const Layout = ({ children }) => {
       {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Topbar />}
       {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Navbar_SE />}
       {children}
-      <Footer />
+      {!hideFooter && <Footer />}
     </>
   );
 };
@@ -114,7 +121,7 @@ function App() {
               <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
               {/* Update this route to accept engineer ID dynamically */}
               <Route path="/engineer/:engineerId" element={<EngineerDetails />} />
- 
+              <Route path="/login/supervising-engineers/mark-allocations/weight" element={<MarkAllocation />} />
             </Routes>
           </Layout>
         </BrowserRouter>
