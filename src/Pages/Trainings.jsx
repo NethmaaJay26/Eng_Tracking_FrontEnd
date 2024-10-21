@@ -9,7 +9,7 @@ export default function Trainings() {
     category: '',
     company: '',
     timePeriod: '',
-    Goals: '' // Ensure 'Goals' matches your schema field
+    goals: [''] // Set goals as an array to handle multiple goals
   });
 
   useEffect(() => {
@@ -20,11 +20,27 @@ export default function Trainings() {
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
+  // Handle goal changes
+  const handleGoalChange = (index, value) => {
+    setFormData(prevData => {
+      const newGoals = [...prevData.goals];
+      newGoals[index] = value;
+      return { ...prevData, goals: newGoals };
+    });
+  };
+
+  // Add a new goal field
+  const addGoalField = () => {
+    setFormData(prevData => ({ ...prevData, goals: [...prevData.goals, ''] }));
+  };
+
+  // Submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('http://localhost:4000/api/trainings/add', {
@@ -34,20 +50,29 @@ export default function Trainings() {
       },
       body: JSON.stringify(formData),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Success:', data);
-      setTrainings([...trainings, data]); // Add new training to the list
-      setShowPopup(false);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        setTrainings([...trainings, data]); // Add new training to the list
+        setShowPopup(false); // Close the popup
+
+        // Reset the form data after submission
+        setFormData({
+          name: '',
+          category: '',
+          company: '',
+          timePeriod: '',
+          goals: [''], // Reset goals to a single empty field
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   const togglePopup = () => {
@@ -81,7 +106,7 @@ export default function Trainings() {
                 <td>{training.category}</td>
                 <td>{training.company}</td>
                 <td>{training.timePeriod}</td>
-                <td>{training.Goals}</td>
+                <td>{Array.isArray(training.goals) ? training.goals.join(', ') : ''}</td> {/* Ensure goals are displayed as comma-separated */}
               </tr>
             ))}
           </tbody>
@@ -105,7 +130,6 @@ export default function Trainings() {
                   <option value="managerial">Managerial</option>
                   <option value="interdisciplinary">Interdisciplinary</option>
                   <option value="communication">Communication</option>
-                  <option value="category1">Category 1</option>
                 </select>
               </label>
               <label>
@@ -116,10 +140,18 @@ export default function Trainings() {
                 Time Period:
                 <input type="text" name="timePeriod" value={formData.timePeriod} onChange={handleChange} />
               </label>
-              <label>
-                Goals:
-                <input type="text" name="Goals" value={formData.Goals} onChange={handleChange} />
-              </label>
+              <label>Goals:</label>
+              {formData.goals.map((goal, index) => (
+                <div key={index}>
+                  <input 
+                    type="text" 
+                    value={goal} 
+                    onChange={(e) => handleGoalChange(index, e.target.value)} 
+                    placeholder={`Goal ${index + 1}`} 
+                  />
+                </div>
+              ))}
+              <button type="button" onClick={addGoalField}>Add Goal</button>
               <button type="submit">Add the Training</button>
             </form>
           </div>
