@@ -34,6 +34,8 @@ import Assigned_Eng from './Supervising_engineer/assigned_engineer';
 import EngineerDetails from './Supervising_engineer/engineer_details.jsx';
 import MarkAllocation from './Supervising_engineer/mark_allocation.jsx'
 
+import AddTraining from './Pages/AddTraining.jsx';
+
 const Layout = ({ children }) => {
   const location = useLocation();
   const hideNavbarAndTopbar = [
@@ -119,6 +121,7 @@ function App() {
               <Route path="/login/supervising-engineers/home" element={<SE_Home />} />
               <Route path="/login/supervising-engineers/mark-allocations" element={<How_Eve />} />
               <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
+              <Route path='/trainings/add' element={<AddTraining />} />
               {/* Update this route to accept engineer ID dynamically */}
               <Route path="/engineer/:engineerId" element={<EngineerDetails />} />
               <Route path="/login/supervising-engineers/mark-allocations/weight" element={<MarkAllocation />} />
