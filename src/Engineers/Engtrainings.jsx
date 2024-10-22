@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate  } from 'react-router-dom'; // Import useHistory for navigation
 import './CSS/Engtrainings.css';
 
 export default function Trainings() {
@@ -8,6 +9,7 @@ export default function Trainings() {
   const [error, setError] = useState('');
   const [status, setStatus] = useState({});  // Status of each training (Completed/Not Completed)
   const [expandedTrainingId, setExpandedTrainingId] = useState(null); // Track the training whose goals are expanded
+  const navigate = useNavigate(); // Updated: Use useNavigate
 
   // Fetch all trainings and engineer's selected trainings on component mount
   useEffect(() => {
@@ -106,6 +108,19 @@ export default function Trainings() {
     setExpandedTrainingId(expandedTrainingId === trainingId ? null : trainingId);
   };
 
+  const handleGoalSubmission = async (trainingId, goalIndex, submission) => {
+    try {
+      const response = await axios.put(`http://localhost:4000/api/trainings/${trainingId}/goals`, {
+        index: goalIndex,
+        submission,
+      });
+      alert('Goal submission saved successfully!');
+    } catch (error) {
+      console.error('Error submitting goal:', error);
+      setError('Error submitting goal');
+    }
+  };
+
   return (
     <div className="trainings">
       <h1>All Trainings</h1>
@@ -159,35 +174,36 @@ export default function Trainings() {
 
       {/* Display Selected Trainings with Goals */}
       <h2>Selected Trainings</h2>
-      {selectedTrainings.length > 0 ? (
-        <ul>
-          {selectedTrainings.map(training => (
-            <li key={training._id}>
-              <strong onClick={() => toggleGoals(training._id)} style={{ cursor: 'pointer' }}>
-                {training.name}
-              </strong>
-              <div className={`goals-list ${expandedTrainingId === training._id ? 'expanded' : ''}`}>
-                {training.goals && training.goals.length > 0 ? (
-                  training.goals.map((goal, index) => (
-                    <div key={index} className="goal-item">
-                      <span>{goal}</span>
-                      <select>
-                        <option value="">Select Status</option>
-                        <option value="completed">Completed</option>
-                        <option value="not completed">Not Completed</option>
-                      </select>
-                    </div>
-                  ))
-                ) : (
-                  <div>No goals assigned for this training.</div>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div>No trainings selected.</div>
-      )}
+      <div className="selected-trainings">
+        {selectedTrainings.length > 0 ? (
+          <table className="selected-trainings-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Company</th>
+                <th>Time Period</th>
+                <th>Goals</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedTrainings.map(training => (
+                <tr key={training._id}>
+                  <td>{training.name}</td>
+                  <td>{training.category}</td>
+                  <td>{training.company}</td>
+                  <td>{training.timePeriod}</td>
+                  <td>
+                  <button onClick={() => navigate(`/goals/${training._id}`)}>Goals</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>No trainings selected.</div>
+        )}
+      </div>
     </div>
   );
 }
