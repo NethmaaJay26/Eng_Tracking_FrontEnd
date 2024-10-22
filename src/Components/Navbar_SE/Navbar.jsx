@@ -17,7 +17,7 @@ export default function Sidebar() {
     { name: 'Dashboard', path: '/login/supervising-engineers/home' },
     { name: 'Assigned Engineers', path: '/login/supervising-engineers/assigned_engineers' },
     { name: 'Evaluations', path: '/login/supervising-engineers/mark-allocations' },
-    { name: 'Requests & Feedbacks', path: '/login/supervising-engineers/requests' },
+    { name: 'Requests', path: '/login/supervising-engineers/requests' },
   ];
 
   return (

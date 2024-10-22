@@ -33,6 +33,7 @@ import How_Eve from './Supervising_engineer/SE_HowEvaluate';
 import Assigned_Eng from './Supervising_engineer/assigned_engineer';
 import EngineerDetails from './Supervising_engineer/engineer_details.jsx';
 import MarkAllocation from './Supervising_engineer/mark_allocation.jsx'
+import MyForm from './Supervising_engineer/SE_requests.jsx'
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -122,6 +123,7 @@ function App() {
               {/* Update this route to accept engineer ID dynamically */}
               <Route path="/engineer/:engineerId" element={<EngineerDetails />} />
               <Route path="/login/supervising-engineers/mark-allocations/weight" element={<MarkAllocation />} />
+              <Route path="/login/supervising-engineers/requests" element={<MyForm />} />
             </Routes>
           </Layout>
         </BrowserRouter>
