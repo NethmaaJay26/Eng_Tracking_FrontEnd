@@ -4,9 +4,10 @@ import './CSS/Engtrainings.css';
 
 export default function Trainings() {
   const [trainings, setTrainings] = useState([]);  // All available trainings
-  const [selectedTrainings, setSelectedTrainings] = useState([]);  // Engineer's selected trainings
+  const [selectedTrainings, setSelectedTrainings] = useState([]);  // Engineer's selected trainings with goals
   const [error, setError] = useState('');
   const [status, setStatus] = useState({});  // Status of each training (Completed/Not Completed)
+  const [expandedTrainingId, setExpandedTrainingId] = useState(null); // Track the training whose goals are expanded
 
   // Fetch all trainings and engineer's selected trainings on component mount
   useEffect(() => {
@@ -30,7 +31,19 @@ export default function Trainings() {
       try {
         const engineerId = localStorage.getItem('engineerId'); // Get engineer ID from local storage
         const response = await axios.get(`http://localhost:4000/api/engineers/${engineerId}`);
-        setSelectedTrainings(response.data.training); // Store engineer's selected trainings (populated)
+        
+        // Fetch the goals for the selected trainings
+        const engineerTrainings = response.data.training || [];
+        
+        // Fetch goals for each selected training
+        const trainingsWithGoals = await Promise.all(
+          engineerTrainings.map(async (training) => {
+            const trainingResponse = await axios.get(`http://localhost:4000/api/trainings/${training._id}`);
+            return trainingResponse.data; // Return training details with goals
+          })
+        );
+        
+        setSelectedTrainings(trainingsWithGoals); // Store engineer's selected trainings with goals
       } catch (error) {
         console.error('Error fetching engineer trainings:', error);
         setError('Error fetching engineer trainings');
@@ -51,6 +64,12 @@ export default function Trainings() {
     // Update the training status in the database
     try {
       await axios.put(`http://localhost:4000/api/trainings/${trainingId}`, { isCompleted: newStatus === 'Completed' });
+
+      // If the status is completed, remove from selected trainings
+      if (newStatus === 'Completed') {
+        setSelectedTrainings(prevSelected => prevSelected.filter(training => training._id !== trainingId));
+      }
+
       alert('Training status updated successfully!');
     } catch (error) {
       console.error('Error updating training status:', error);
@@ -81,6 +100,10 @@ export default function Trainings() {
       console.error('Error saving selected trainings:', error);
       setError('Error saving selected trainings');
     }
+  };
+
+  const toggleGoals = (trainingId) => {
+    setExpandedTrainingId(expandedTrainingId === trainingId ? null : trainingId);
   };
 
   return (
@@ -134,13 +157,31 @@ export default function Trainings() {
         <div>No trainings available yet.</div>
       )}
 
-      {/* Display Selected Trainings */}
+      {/* Display Selected Trainings with Goals */}
       <h2>Selected Trainings</h2>
       {selectedTrainings.length > 0 ? (
         <ul>
           {selectedTrainings.map(training => (
             <li key={training._id}>
-              <strong>{training.name}</strong> - {training.category}, {training.company} ({training.timePeriod})
+              <strong onClick={() => toggleGoals(training._id)} style={{ cursor: 'pointer' }}>
+                {training.name}
+              </strong>
+              <div className={`goals-list ${expandedTrainingId === training._id ? 'expanded' : ''}`}>
+                {training.goals && training.goals.length > 0 ? (
+                  training.goals.map((goal, index) => (
+                    <div key={index} className="goal-item">
+                      <span>{goal}</span>
+                      <select>
+                        <option value="">Select Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="not completed">Not Completed</option>
+                      </select>
+                    </div>
+                  ))
+                ) : (
+                  <div>No goals assigned for this training.</div>
+                )}
+              </div>
             </li>
           ))}
         </ul>
