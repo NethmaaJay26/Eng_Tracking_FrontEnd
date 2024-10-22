@@ -1,79 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './CSS/GoalsPage.css'; // Import the CSS file
 
 function GoalsPage() {
-  const { trainingId } = useParams();  // Extract the trainingId from the URL parameters
-  const [training, setTraining] = useState(null);  // State to hold training data
-  const [goalSubmissions, setGoalSubmissions] = useState({});  // State for goal submissions
+  const { trainingId } = useParams();
+  const [training, setTraining] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  // Fetch the training data including its goals when the component mounts
   useEffect(() => {
     const fetchTrainingGoals = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/api/trainings/${trainingId}`);
-        setTraining(response.data);  // Store the fetched training data
+        setTraining(response.data);
       } catch (error) {
         console.error('Error fetching training goals:', error);
       }
     };
 
     if (trainingId) {
-      fetchTrainingGoals();  // Only fetch the goals if trainingId is available
+      fetchTrainingGoals();
     }
   }, [trainingId]);
 
-  // Update the submission text for a specific goal
-  const handleGoalSubmission = (goalIndex, submission) => {
-    setGoalSubmissions(prevSubmissions => ({
-      ...prevSubmissions,
-      [goalIndex]: submission,
-    }));
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
   };
 
-  // Submit all goals to the backend
-  const handleSubmit = async () => {
-    try {
-      // Map through the training's goals and combine them with the user's submissions
-      const updatedGoals = training.goals.map((goal, index) => ({
-        goal,
-        submission: goalSubmissions[index] || '',  // Include the submission text or empty string if not submitted
-      }));
-
-      // Send the updated goals to the backend
-      await axios.put(`http://localhost:4000/api/trainings/${trainingId}`, {
-        goals: updatedGoals,
-      });
-
-      alert('Goals submitted successfully!');
-    } catch (error) {
-      console.error('Error submitting goals:', error);
+  const handleFileUpload = () => {
+    const formData = new FormData();
+    if (selectedFile) {
+      formData.append('file', selectedFile);
+      // You can send the file to your server using axios
+      // axios.post('/upload-endpoint', formData)
+      console.log("File ready to be uploaded", selectedFile);
     }
   };
 
   return (
-    <div>
-      {/* Display the training's name */}
+    <div className="container">
       <h1>{training?.name} - Goals</h1>
 
-      {/* Check if the training has goals and display them */}
       {training?.goals && training.goals.length > 0 ? (
-        training.goals.map((goal, index) => (
-          <div key={index}>
-            <h3>Goal {index + 1}: {goal}</h3>
-            <textarea
-              placeholder="Enter your submission here..."
-              value={goalSubmissions[index] || ''}  // Set the current submission value
-              onChange={(e) => handleGoalSubmission(index, e.target.value)}  // Update the submission state
-            />
-          </div>
-        ))
+        <ul className="goal-list">
+          {training.goals.map((goal, index) => (
+            <li key={index} className="goal-item">
+              <h3>Goal {index + 1}: {goal}</h3>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>No goals found for this training.</p>  // Display if there are no goals
+        <p>No goals found for this training.</p>
       )}
 
-      {/* Button to submit all goal submissions */}
-      <button onClick={handleSubmit}>Submit Goals</button>
+      {/* File upload section */}
+      <div className="file-upload-container">
+        <h2>Submit Files</h2>
+        <div className="file-upload-box">
+          <input type="file" id="file" onChange={handleFileChange} />
+          <button className="upload-button" onClick={handleFileUpload}>Upload File</button>
+        </div>
+        {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+      </div>
     </div>
   );
 }
