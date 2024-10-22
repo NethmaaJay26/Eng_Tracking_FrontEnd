@@ -1,0 +1,174 @@
+/* CSS file: SupervisingEngineers.css */
+
+.supervising-engineers {
+  margin-left: 270px; 
+  padding: 100px;
+  margin-top: 50px;
+}
+
+.supervising-engineers h1 {
+  font-size: 30px;
+  margin-bottom: 50px;
+  color: rgb(140, 140, 140);
+}
+
+hr {
+  width: 100%;
+  border: 1px solid rgb(230, 230, 230);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.top-bar input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.top-bar button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #03588C;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.top-bar button:hover {
+  background-color: #F2A922;
+}
+
+.section {
+  margin-top: 50px;
+}
+
+.section h2 {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.sengineer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 50px;
+}
+
+.sengineer-card {
+  background-color: rgb(249, 249, 159);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sengineer-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.sengineer-card p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sengineer-card button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #03588C;
+  color: white;
+  cursor: pointer;
+}
+
+.sengineer-card button:hover {
+  background-color: #024a6e;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-inner {
+  position: relative;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.popup-inner h2 {
+  margin-bottom: 20px;
+  color: rgb(140, 140, 140);
+}
+
+.popup-inner form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popup-inner label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.popup-inner input,
+.popup-inner select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-inner button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #03588C;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.popup-inner button:hover {
+  background-color: #F2A922;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,90 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  width: 230px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #03588C;
+  font-family: 'Poppins';
+  color: white;
+  overflow: hidden; 
+}
+
+.sidebar-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  gap: 0px;
+}
+
+.sidebar-profile img {
+  width: 60px;
+}
+
+.sidebar-profile p {
+  font-size: 20px;
+  font-weight: 100;
+  margin-top: 10px;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid white;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1rem; /* Use rem units for better scaling */
+  font-weight: 300;
+  flex-grow: 1; /* Allow menu to grow and fill space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* Distribute items evenly */
+}
+
+.sidebar-menu li {
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebar-menu li:hover {
+  background-color: #F2A922;
+}
+
+.sidebar-menu a {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  text-align: center; /* Center align text */
+}
+
+@media (max-height: 800px) {
+  .sidebar-menu {
+    font-size: 1rem; /* Reduce font size for smaller screens */
+  }
+}
+
+@media (max-height: 600px) {
+  .sidebar-menu {
+    font-size: 0.9rem;
+  }
+
+  .sidebar-menu li {
+    padding: 6px;
+  }
+
+  .sidebar-profile p {
+    font-size: 18px;
+  }
+}
