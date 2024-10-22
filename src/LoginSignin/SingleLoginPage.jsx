@@ -43,14 +43,10 @@ export default function UnifiedLoginPage() {
 
         // If user is an engineer, store the training ID in local storage
         if (role === 'engineer') {
-          if (user.training) {
-            localStorage.setItem('trainingId', user.training); // Store training ID
-            console.log('Training ID saved in local storage:', user.training);  // Print to console
-          } else {
-            console.log('No training assigned to this engineer.');
-          }
+         
           localStorage.setItem('address', user.address);
           localStorage.setItem('password', user.password);
+          localStorage.setItem('engineerId', user._id);
 
           // Redirect to the engineer home page
           navigate('/Enghome');
