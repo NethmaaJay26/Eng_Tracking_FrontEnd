@@ -20,11 +20,10 @@ export default function MainLoginPage() {
           />
         </div>
         <div className="main-login-right">
-          <h1><span>Engineering</span> Pro Track</h1>
-          <p>Please login to your account or continue as a guest.</p>
+          <h2><span>KnoC</span> Developers</h2> 
+          <p>Engineering Training Evaluation and Performance Tracking System.</p>
           <div className="main-login-buttons">
-            <button onClick={() => navigate('/login')}>Login</button>
-            <button onClick={() => navigate('/guest')}>View as Guest</button>
+            <button onClick={() => navigate('/login')}><h1><span>Engineering</span> ProTrack</h1></button>
           </div>
         </div>
       </div>
