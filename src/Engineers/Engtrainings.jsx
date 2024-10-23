@@ -166,7 +166,7 @@ export default function Trainings() {
               ))}
             </tbody>
           </table>
-          <button onClick={saveSelectedTrainings}>Save Selected Trainings</button>
+          <button className='eng-traning-button' onClick={saveSelectedTrainings}>Save Selected Trainings</button>
         </div>
       ) : (
         <div>No trainings available yet.</div>
