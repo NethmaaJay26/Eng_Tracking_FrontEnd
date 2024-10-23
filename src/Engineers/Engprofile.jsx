@@ -84,8 +84,9 @@ function Engprofile() {
 
     return (
         <div className="profile-update-container">
-            <h1>{userData.name}</h1>
+            
             <div className="profile-update-form">
+                <h1 className='eng-name'>{userData.name}</h1>
                 <h2>Update Profile</h2>
                 <form>
                     <div className="form-group">
@@ -145,20 +146,6 @@ function Engprofile() {
                         )}
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="dob">DOB</label>
-                        <input
-                            type="text"
-                            id="dob"
-                            placeholder="mm/dd/yyyy"
-                            value={userData.dob}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-footer">
-                        <button type="submit" className="next-step-btn">Save</button>
-                    </div>
                 </form>
             </div>
         </div>

@@ -6,6 +6,7 @@ import logo from '../Assets/icon.png';
 export default function EngnavBar() {
   const [selectedItem, setSelectedItem] = useState(null);
   const supervisorName = localStorage.getItem('name') || 'Guest';
+  const supervisorImageURL = localStorage.getItem('image') || 'Guest';
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -21,7 +22,11 @@ export default function EngnavBar() {
   return (
     <div className='sidebar'>
       <div className="sidebar-profile">
-        <img src={logo} alt="icon" />
+      <img 
+          src={supervisorImageURL ? `http://localhost:4000/uploads/${supervisorImageURL}` : logo} 
+          alt="icon" 
+          onError={(e) => e.target.src = logo} 
+        />
         <p>{supervisorName}</p>
         <hr />
       </div>

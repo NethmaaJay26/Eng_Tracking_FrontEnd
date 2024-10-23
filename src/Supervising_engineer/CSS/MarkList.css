@@ -1,0 +1,233 @@
+/* General container for the mark allocation page */
+.mark-allocation-container {
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 130px; /* Adjust to avoid overlap with topbar */
+    margin-bottom: 60px;
+    margin-left: 480px; /* Add space for the sidebar (230px width + some margin) */
+    margin-right: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1100px; /* Limit the max width for large screens */
+  }
+  
+  /* Page title */
+  .page-title {
+    font-size: 28px;
+    color: #2b6cb0;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #e53e3e;
+    background-color: #fff5f5;
+    border: 1px solid #fed7d7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Engineer list section */
+  .engineers-list {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .engineers-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .engineers-list ul li {
+    padding: 15px;
+    background-color: #f7fafc;
+    margin-bottom: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+  }
+  
+  .engineers-list ul li:hover {
+    background-color: #edf2f7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Trainings section styling */
+  .trainings-section {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Training category headers */
+  .training-category {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .training-category h3 {
+    font-size: 22px;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  /* Table wrapper to center the table */
+  .table-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Training table styling */
+  .training-table {
+    width: 100%; /* Full width for responsive design */
+    max-width: 900px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .training-table th,
+  .training-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .training-table th {
+    background-color: #2b6cb0;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .training-table tr:nth-child(even) {
+    background-color: #f7fafc;
+  }
+  
+  .training-table tr:hover {
+    background-color: #edf2f7;
+  }
+  
+  .training-table tfoot {
+    background-color: #f7fafc;
+  }
+  
+  .training-table tfoot td {
+    font-weight: 600;
+    background-color: #edf2f7;
+    color: #2b6cb0;
+  }
+  
+  .training-table tfoot tr {
+    border-top: 2px solid #e2e8f0;
+  }
+  
+  tfoot td {
+    border-top: none;
+  }
+  
+  .training-table td {
+    color: #2d3748;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #3182ce;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #2b6cb0;
+    box-shadow: 0 4px 8px rgba(50, 84, 138, 0.2);
+  }
+  
+  button:active {
+    background-color: #2b6cb0;
+    box-shadow: none;
+  }
+  
+  button:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 1024px) {
+    .mark-allocation-container {
+      margin-left: 340px; /* Slightly smaller left margin for smaller screens */
+      margin-right: 150px;
+    }
+  
+    .training-table {
+      width: 100%;
+    }
+  
+    .page-title {
+      font-size: 26px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .mark-allocation-container {
+      margin-left: 300px; /* Adjust left margin to accommodate a narrower sidebar */
+      margin-right: 100px;
+      padding: 20px;
+    }
+  
+    .page-title {
+      font-size: 24px;
+    }
+  
+    .training-category h3 {
+      font-size: 20px;
+    }
+  
+    .training-table th,
+    .training-table td {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mark-allocation-container {
+      margin-left: 220px; /* Narrower margin for small mobile screens */
+      margin-right: 60px;
+      padding: 15px;
+    }
+  
+    .page-title {
+      font-size: 22px;
+    }
+  
+    .engineers-list ul li {
+      padding: 10px;
+    }
+  
+    .training-category h3 {
+      font-size: 18px;
+    }
+  
+    .training-table th,
+    .training-table td {
+      padding: 8px;
+      font-size: 12px;
+    }
+  }
+  

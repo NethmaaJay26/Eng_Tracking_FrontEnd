@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default function SupervisingEngineers() {
   const [engineers, setSEngineers] = useState([]);
+  const [filteredEngineers, setFilteredEngineers] = useState([]);
   const [showPopup, setSShowPopup] = useState(false);
   const [showMorePopup, setShowMorePopup] = useState(false);
   const [selectedEngineer, setSelectedEngineer] = useState(null);
@@ -17,6 +18,8 @@ export default function SupervisingEngineers() {
     password: '',
     photo: null
   });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debounceTimeout, setDebounceTimeout] = useState(null);
 
   useEffect(() => {
     fetchSEngineers();
@@ -26,9 +29,34 @@ export default function SupervisingEngineers() {
     try {
       const response = await axios.get('http://localhost:4000/api/sengineers');
       setSEngineers(response.data);
+      setFilteredEngineers(response.data); // Initialize filtered list with all engineers
     } catch (error) {
       console.error('Error fetching supervising engineers:', error);
     }
+  };
+
+  const handleSearch = (event) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+
+    // Debouncing the search request
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+
+    setDebounceTimeout(
+      setTimeout(() => {
+        if (value === '') {
+          setFilteredEngineers(engineers);
+        } else {
+          const filtered = engineers.filter((engineer) =>
+            engineer.name.toLowerCase().includes(value.toLowerCase()) || 
+            engineer.traineeID.toLowerCase().includes(value.toLowerCase())
+          );
+          setFilteredEngineers(filtered);
+        }
+      }, 500)
+    );
   };
 
   const togglePopup = () => {
@@ -75,7 +103,7 @@ export default function SupervisingEngineers() {
     }
   };
 
-  const handleMoreClick = async (engineer) => {
+  const handleMoreClick = (engineer) => {
     setSelectedEngineer(engineer);
     setShowMorePopup(true);
   };
@@ -88,7 +116,7 @@ export default function SupervisingEngineers() {
     e.preventDefault();
     const data = new FormData();
     for (const key in selectedEngineer) {
-      if (key !== '_id') { // Exclude _id field from FormData
+      if (key !== '_id') {
         data.append(key, selectedEngineer[key]);
       }
     }
@@ -124,22 +152,31 @@ export default function SupervisingEngineers() {
     <div className='supervising-engineers'>
       <h1>Supervising Engineers</h1>
       <hr />
-      <div className='top-bar'>
-        <input type="text" placeholder="Search for a supervising engineer by name or email" />
-        <button>Export CSV</button>
+      <div className='add-se'>
+        <input
+          type="text"
+          placeholder="Search for a Supervising Engineer"
+          value={searchTerm}
+          onChange={handleSearch} // Trigger search as user types
+        />
         <button onClick={togglePopup}>Add Supervising Engineer</button>
       </div>
       <div className='section'>
         <h2>Supervising Engineers</h2>
         <div className='engineer-grid'>
-          {engineers.map((engineer, index) => (
-            <div className='engineer-card' key={index}>
-              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
-              <h3>{engineer.name}</h3>
-              <p>{engineer.traineeID}</p>
-              <button onClick={() => handleMoreClick(engineer)}>More</button>
-            </div>
-          ))}
+          {/* Conditionally render the "No engineers found" message if there are no filtered engineers */}
+          {filteredEngineers.length === 0 ? (
+            <p>No engineers found</p>
+          ) : (
+            filteredEngineers.map((engineer, index) => (
+              <div className='engineer-card' key={index}>
+                <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
+                <h3>{engineer.name}</h3>
+                <p>{engineer.traineeID}</p>
+                <button onClick={() => handleMoreClick(engineer)}>More</button>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -192,27 +229,55 @@ export default function SupervisingEngineers() {
               <form onSubmit={handleUpdate}>
                 <label>
                   Name:
-                  <input type="text" name="name" value={selectedEngineer.name} onChange={(e) => setSelectedEngineer({...selectedEngineer, name: e.target.value})} />
+                  <input
+                    type="text"
+                    name="name"
+                    value={selectedEngineer.name}
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, name: e.target.value })}
+                  />
                 </label>
                 <label>
                   SupervisorID:
-                  <input type="text" name="traineeID" value={selectedEngineer.traineeID} onChange={(e) => setSelectedEngineer({...selectedEngineer, traineeID: e.target.value})} />
+                  <input
+                    type="text"
+                    name="traineeID"
+                    value={selectedEngineer.traineeID}
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, traineeID: e.target.value })}
+                  />
                 </label>
                 <label>
                   Email:
-                  <input type="email" name="email" value={selectedEngineer.email} onChange={(e) => setSelectedEngineer({...selectedEngineer, email: e.target.value})} />
+                  <input
+                    type="email"
+                    name="email"
+                    value={selectedEngineer.email}
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, email: e.target.value })}
+                  />
                 </label>
                 <label>
                   Address:
-                  <input type="text" name="address" value={selectedEngineer.address} onChange={(e) => setSelectedEngineer({...selectedEngineer, address: e.target.value})} />
+                  <input
+                    type="text"
+                    name="address"
+                    value={selectedEngineer.address}
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, address: e.target.value })}
+                  />
                 </label>
                 <label>
                   Contacts:
-                  <input type="number" name="contact" value={selectedEngineer.contact} onChange={(e) => setSelectedEngineer({...selectedEngineer, contact: e.target.value})} />
+                  <input
+                    type="number"
+                    name="contact"
+                    value={selectedEngineer.contact}
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, contact: e.target.value })}
+                  />
                 </label>
                 <label>
                   Photo:
-                  <input type="file" onChange={(e) => setSelectedEngineer({...selectedEngineer, photo: e.target.files[0]})} />
+                  <input
+                    type="file"
+                    onChange={(e) => setSelectedEngineer({ ...selectedEngineer, photo: e.target.files[0] })}
+                  />
                 </label>
                 <button type="submit">Update</button>
               </form>

@@ -147,3 +147,69 @@
   .popup form button[type="submit"]:hover {
     background-color: #F2A922;
   }
+
+  .selected-trainings {
+    margin-top: 50px; /* Spacing above the selected trainings */
+  }
+  
+  .selected-trainings h2 {
+    font-size: 28px; /* Font size for the section header */
+    color: rgb(140, 140, 140);
+    margin-bottom: 20px; /* Spacing below the header */
+  }
+  
+  .selected-trainings ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .selected-trainings li {
+    border: 1px solid #ddd; /* Add border around each training */
+    padding: 12px; /* Padding inside each list item */
+    margin-bottom: 10px; /* Spacing between list items */
+    transition: background-color 0.3s; /* Smooth background color change */
+  }
+  
+  .selected-trainings li:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+  }
+  
+  .goals-list {
+    margin-top: 10px; /* Space between training name and goals */
+    display: none; /* Initially hide the goals */
+  }
+  
+  .goals-list.expanded {
+    display: block; /* Show goals when expanded */
+  }
+  
+  .goal-item {
+    display: flex; /* Use flexbox for goal items */
+    justify-content: space-between; /* Space between goal name and status select */
+    align-items: center; /* Center align items vertically */
+    padding: 8px 0; /* Padding for goal items */
+    border-bottom: 1px solid #ddd; /* Border between goals */
+  }
+  
+  .goal-item span {
+    flex: 1; /* Make goal text take available space */
+  }
+  
+  .goal-item select {
+    margin-left: 10px; /* Spacing between goal text and select */
+  }
+  
+
+  .eng-traning-button{
+
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    border: none;
+    background-color: #03588C;
+    border-radius: 8px;
+    cursor: pointer;
+  }

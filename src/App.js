@@ -26,14 +26,22 @@ import HRnavBar from './Components/HRnavbar/HRnavbar.jsx';
 import EngnavBar from './Components/Engnavbar/Engnavbar.jsx';
 import Engprofile from './Engineers/Engprofile.jsx';
 import Engtrainings from './Engineers/Engtrainings.jsx';
+import GoalsPage from './Engineers/GoalsPage.jsx';
+
 
 import SE_Home from './Supervising_engineer/SE_Home';
 import Navbar_SE from './Components/Navbar_SE/Navbar';
 import How_Eve from './Supervising_engineer/SE_HowEvaluate';
 import Assigned_Eng from './Supervising_engineer/assigned_engineer';
-import EngineerDetails from './Supervising_engineer/engineer_details.jsx';
-import MarkAllocation from './Supervising_engineer/mark_allocation.jsx'
+
+import MarkAllocation from './Supervising_engineer/mark_allocation.jsx';
+
+import EngineerDetails from './Supervising_engineer/engineerDetails.jsx';
+
+import MarkList from './Supervising_engineer/MarkList.jsx';
 import MyForm from './Supervising_engineer/SE_requests.jsx'
+
+
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -58,8 +66,8 @@ const Layout = ({ children }) => {
     '/login/supervising-engineers/evaluations',
     "/login/supervising-engineers/mark-allocations",
     '/login/supervising-engineers/requests',
-    "/engineer/:engineerId",
     "/login/supervising-engineers/mark-allocations/weight", // Include this to handle dynamic routing for engineer details
+    "/login/supervising-engineers/mark-allocations/marklist"
   ].includes(location.pathname);
 
   const { user } = useUser();
@@ -73,7 +81,7 @@ const Layout = ({ children }) => {
       return <HRnavBar />;
     } else if (role === 'engineer') {
       return <EngnavBar />;
-    } else if (isSupervisingEngineerPage) {
+    } else if (isSupervisingEngineerPage || location.pathname.startsWith("/engineer/")) { // Include the `/engineer/:engineerId` path
       return <Navbar_SE />;
     } else {
       return null;  // Handle default case if role is not set
@@ -84,14 +92,12 @@ const Layout = ({ children }) => {
     <>
       {renderNavBar()}
       {!hideNavbarAndTopbar && <Topbar />}
-      {!hideNavbarAndTopbar && !isSupervisingEngineerPage && <Topbar />}
-      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Topbar />}
-      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Navbar_SE />}
       {children}
       {!hideFooter && <Footer />}
     </>
   );
 };
+
 
 function App() {
   return (
@@ -120,10 +126,12 @@ function App() {
               <Route path="/login/supervising-engineers/home" element={<SE_Home />} />
               <Route path="/login/supervising-engineers/mark-allocations" element={<How_Eve />} />
               <Route path="/login/supervising-engineers/assigned_engineers" element={<Assigned_Eng />} />
-              {/* Update this route to accept engineer ID dynamically */}
-              <Route path="/engineer/:engineerId" element={<EngineerDetails />} />
               <Route path="/login/supervising-engineers/mark-allocations/weight" element={<MarkAllocation />} />
+              <Route path="/engineer/:engineerId" element={<EngineerDetails />} /> {/* Engineer Details page */}
+              <Route path="/goals/:trainingId" element={<GoalsPage />} />
+              <Route path= "/login/supervising-engineers/mark-allocations/marklist" element={<MarkList />} />
               <Route path="/login/supervising-engineers/requests" element={<MyForm />} />
+
             </Routes>
           </Layout>
         </BrowserRouter>

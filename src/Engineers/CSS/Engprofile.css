@@ -1,136 +1,131 @@
+/* Profile Update Container */
 .profile-update-container {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    padding: 150px;
-    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    padding: 80px 20px;
+    margin-top: 100px;
+    margin-left: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 80vh;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
 }
 
+/* Profile Update Form */
 .profile-update-form {
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid #3b9aff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
-}
-
-.profile-update-container h1 {
-    font-size: 24px;
+    max-width: 800px;
+    font-weight: 500;
     text-align: center;
-    margin-bottom: 20px;
-    color: #3b9aff;
+    position: relative;
 }
 
+/* Heading 1: Name */
+.profile-update-form h1 {
+    font-size: 28px;
+    color: #03588C;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Heading 2: Update Profile */
 .profile-update-form h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 22px;
+    margin-bottom: 30px;
     color: #333;
-    text-align: center;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
+/* Form Groups */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: left;
 }
 
 .form-group label {
     display: block;
-    font-size: 18px;
-    text-align: left;
+    font-size: 16px;
+    color: #444;
     margin-bottom: 8px;
-    color: #000000;
+    font-weight: 600;
 }
 
 .form-group input {
-    width: calc(100% - 20px);
-    padding: 12px;
-    border: 1px solid #818181;
+    width:  100%;
+    padding: 14px;
+    border: 1px solid #dcdcdc;
     border-radius: 8px;
     font-size: 16px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    
 }
 
-.checkbox-group {
-    margin-bottom: 30px;
-    text-align: left;
+.form-group input:focus {
+    border-color: #03588C;
+    box-shadow: 0 0 5px rgba(0, 88, 140, 0.2);
+    background-color: #fff;
+    outline: none;
 }
 
-.checkbox-group label {
+/* Buttons */
+.edit-password-btn,
+.save-password-btn {
     display: inline-block;
-    margin-right: 20px;
+    margin-top: 15px;
+    padding: 10px 18px;
     font-size: 14px;
-    color: #555;
+    color: white;
+    background-color: #03588C;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.profile-pic {
+.edit-password-btn:hover,
+.save-password-btn:hover {
+    background-color: #023d65;
+    transform: scale(1.05);
+}
+
+/* Form Footer (For any additional form options) */
+.form-footer {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Profile Picture */
+.profile-pic {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .profile-pic img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin-bottom: 10px;
-    border: 3px solid #3b9aff;
+    border: 3px solid #03588C;
+    object-fit: cover;
 }
 
-.edit-password-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 16px;
-    font-size: 12px;
-    color: white;
-    border: none;
-    background-color: #3b9aff;
-    border-radius: 8px;
-    cursor: pointer;
-}
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-update-form {
+        padding: 20px;
+    }
 
-.edit-password-btn:hover {
-    background-color: #0056b3;
-    color: white;
-}
-
-.edit-pic-btn,
-.next-step-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 16px;
-    font-size: 16px;
-    color: white;
-    background-color: #3b9aff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.edit-pic-btn:hover,
-.next-step-btn:hover {
-    background-color: #0056b3;
-}
-
-.form-footer {
-    text-align: right;
-    margin-top: 20px;
-}
-
-.save-password-btn {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 12px 16px;
-    font-size: 14px;
-    color: white;
-    background-color: #28a745;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.save-password-btn:hover {
-    background-color: #218838;
+    .form-group input {
+        font-size: 14px;
+        padding: 12px;
+    }
 }

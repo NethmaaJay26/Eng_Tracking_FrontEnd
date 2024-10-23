@@ -44,11 +44,6 @@ function AssignedEngineer() {
     fetchTrainings();
   }, []);
 
-  const handleTrainingSelect = (engineer, trainingId) => {
-    setEngineerToEdit(engineer);
-    setSelectedTrainingId(trainingId);
-    setPopupVisible(true);
-  };
 
   const confirmAddTraining = async () => {
     try {
@@ -81,6 +76,7 @@ function AssignedEngineer() {
     
     // Navigate to the engineer details page with the engineer ID
     navigate(`/engineer/${engineerId}`); // Update this path according to your routing setup
+  
   };
   
   return (

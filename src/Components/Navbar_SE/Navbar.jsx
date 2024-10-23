@@ -8,6 +8,9 @@ export default function Sidebar() {
   /*const navigate = useNavigate();*/
 
   const supervisorName = localStorage.getItem('name') || 'Guest';
+  const supervisorImageURL = localStorage.getItem('image') || 'Guest';
+
+
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -23,7 +26,7 @@ export default function Sidebar() {
   return (
     <div className='sidebar'>
       <div className="sidebar-profile">
-        <img src={logo} alt="icon" />
+        <img src={supervisorImageURL ? `http://localhost:4000/uploads/${supervisorImageURL}` : logo} alt="icon" />
         <p>{supervisorName}</p>
         <hr />
       </div>

@@ -1,0 +1,174 @@
+/* Main container styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items (goal list and file submission) to center */
+  margin-top: 100px;
+  max-height: 80vh;
+}
+
+/* Heading styling */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Goals list styling */
+.goal-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Ensures list stretches full width within container */
+  max-width: 700px; /* Optional: sets a max-width for better appearance */
+}
+
+/* Individual goal styling */
+.goal-item {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 4px solid #4CAF50;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.goal-item p{
+  width: 400px;
+  background-color: #4CAF50;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+/* Goal title styling */
+.goal-item h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+
+}
+
+/* Alternate background color for every second item */
+.goal-item:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .goal-item {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .goal-item h3 {
+    font-size: 18px;
+  }
+}
+
+/* File upload container styling */
+.file-upload-container {
+  margin-top: 50px; /* Increase the top margin for better spacing */
+  width: 100%; /* Full width of the container */
+  max-width: 600px; /* Optional: sets a max-width for better appearance */
+  display: flex;
+  justify-content: center;
+}
+
+/* File upload box styling */
+.file-upload-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f0f4ff;
+  border: 2px dashed #d0d6f0;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#file {
+  margin-right: 10px;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+p {
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+
+
+/* Popup Modal Styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.ok-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ok-button:hover {
+  background-color: #0056b3;
+}

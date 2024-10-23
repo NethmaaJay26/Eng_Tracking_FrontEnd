@@ -15,6 +15,15 @@
   height: 50px;
 }
 
+
+.topbar p{
+  font-size: 40px;
+  font-weight: 600;
+  color: #03588C;
+  text-decoration: double;
+}
+
+
 .topbar-logo {
   font-size: 30px;
   font-weight: 600;
@@ -57,15 +66,21 @@
 
 .topbar-login button {
   padding: 5px 15px;
-  border: none;
+  border: 1px solid #000000;
   border-radius: 5px;
-  background-color: white;
-  color: #03588C;
-  font-size: 16px;
-  font-weight: 500;
+  background-color: #03588C;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  padding: 10px;
 }
 
 .topbar-login button:active {
   background-color: #f3f3f3;
+}
+
+.topbar-login button:hover {
+  background-color: #FFD02F;
+  opacity: 0.8;
 }
