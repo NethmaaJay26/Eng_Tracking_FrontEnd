@@ -44,11 +44,6 @@ function AssignedEngineer() {
     fetchTrainings();
   }, []);
 
-  const handleTrainingSelect = (engineer, trainingId) => {
-    setEngineerToEdit(engineer);
-    setSelectedTrainingId(trainingId);
-    setPopupVisible(true);
-  };
 
   const confirmAddTraining = async () => {
     try {
