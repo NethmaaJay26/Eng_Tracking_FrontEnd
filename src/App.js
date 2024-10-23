@@ -66,11 +66,8 @@ const Layout = ({ children }) => {
     '/login/supervising-engineers/evaluations',
     "/login/supervising-engineers/mark-allocations",
     '/login/supervising-engineers/requests',
-    "/engineer/:engineerId",
-    "/goals/:trainingId",
     "/login/supervising-engineers/mark-allocations/weight", // Include this to handle dynamic routing for engineer details
-    "/login/supervising-engineers/mark-allocations/marklist",
-
+    "/login/supervising-engineers/mark-allocations/marklist"
   ].includes(location.pathname);
 
   const { user } = useUser();
@@ -84,7 +81,7 @@ const Layout = ({ children }) => {
       return <HRnavBar />;
     } else if (role === 'engineer') {
       return <EngnavBar />;
-    } else if (isSupervisingEngineerPage) {
+    } else if (isSupervisingEngineerPage || location.pathname.startsWith("/engineer/")) { // Include the `/engineer/:engineerId` path
       return <Navbar_SE />;
     } else {
       return null;  // Handle default case if role is not set
@@ -95,14 +92,12 @@ const Layout = ({ children }) => {
     <>
       {renderNavBar()}
       {!hideNavbarAndTopbar && <Topbar />}
-      {!hideNavbarAndTopbar && !isSupervisingEngineerPage && <Topbar />}
-      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Topbar />}
-      {!hideNavbarAndTopbar && isSupervisingEngineerPage && <Navbar_SE />}
       {children}
       {!hideFooter && <Footer />}
     </>
   );
 };
+
 
 function App() {
   return (
