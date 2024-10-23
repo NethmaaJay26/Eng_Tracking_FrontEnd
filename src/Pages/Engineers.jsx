@@ -173,7 +173,7 @@ export default function Engineers() {
   };
 
   return (
-    <div className='engineers'>
+    <div className='tengineers'>
       <h1>Trainee Engineers</h1>
       <hr />
       
@@ -187,13 +187,13 @@ export default function Engineers() {
         <button onClick={toggleAddTraineePopup}>Add Trainees</button>
       </div>
 
-      <div className='section'>
+      <div className='tsection'>
         <h2>Recruited Graduate Engineers</h2>
-        <div className='engineer-grid'>
+        <div className='tengineer-grid'>
           {filteredEngineers
             .filter(engineer => engineer.role === 'Recruited Graduate Engineer')
             .map((engineer, index) => (
-              <div className='engineer-card' key={index}>
+              <div className='tengineer-card' key={index}>
                 <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
                 <h3>{engineer.name}</h3>
                 <p>{engineer.traineeID}</p>
@@ -204,13 +204,13 @@ export default function Engineers() {
         </div>
       </div>
 
-      <div className='section'>
+      <div className='tsection'>
         <h2>Experienced Trainee Engineers</h2>
-        <div className='engineer-grid'>
+        <div className='tengineer-grid'>
           {filteredEngineers
             .filter(engineer => engineer.role === 'Experienced Trainee Engineer')
             .map((engineer, index) => (
-              <div className='engineer-card' key={index}>
+              <div className='tengineer-card' key={index}>
                 <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
                 <h3>{engineer.name}</h3>
                 <p>{engineer.traineeID}</p>

@@ -1,97 +1,120 @@
-.sidebar {
+.hsidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 20px;
-  width: 250px;
-  height: 90vh;
+  width: 230px;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #03588C;
-  font-family: 'Poppins';
+  background: linear-gradient(0deg,#031927, #06304a,#074469, #0a5685 , #03588c);
+  font-family: 'Poppins', sans-serif;
   color: white;
-  background: #03588C;
 }
 
-.sidebar-icon {
-  display: table-column;
-  margin-left: 10px;
+.hsidebar-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 30px;
-  margin-top: 30px;
 }
 
-.sidebar-icon img {
-  width: 100px;
+.hsidebar-profile img {
+  width: 80px;
   border-radius: 50%;
 }
 
-.sidebar-icon p {
-  font-size: 20px;
-  font-weight:400;
+.hsidebar-profile p {
+  font-size: 18px;
+  font-weight: 400;
   color: white;
+  margin: 10px 0;
 }
 
-.sidebar-menu {
+.hsidebar-menu {
+  list-style: none;
+  padding: 2px;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  list-style: none;
-  gap: 20px;
-  font-size: 18px;
+  gap: 60px;
+  font-size: 16px;
   font-weight: 500;
 }
 
-.sidebar-menu li {
+.hsidebar-menu li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   cursor: pointer;
-  margin-right: 30px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
-.sidebar-menu li:hover {
+.hsidebar-menu li:hover,
+.hsidebar-menu li:active {
   background-color: #F2A922;
 }
 
-.sidebar-menu a {
+.hsidebar-menu li img {
+  width: 21px;
+  height: 21px;
+}
+
+.hsidebar-menu li span {
+  color: white;
+  text-decoration: none;
+}
+
+.hsidebar-menu li a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: inherit;
-  width: 10px;
+  width: 100%;
 }
-
-.nav-login-cart-bell{
-  width: 20px;
-}
-
 
 @media (max-width: 800px) {
-  .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 10px;
+  .hsidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .sidebar-logo {
-      margin-bottom: 0;
+  .hsidebar-profile {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0;
   }
 
-  .sidebar-menu {
-      flex-direction: row;
-      gap: 10px;
+  .hsidebar-profile img {
+    width: 40px;
+    margin-right: 10px;
   }
 
-  .sidebar-menu li {
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      margin-left: 0;
-      margin-top: 10px;
+  .hsidebar-menu {
+    flex-direction: row;
+    gap: 10px;
   }
 
+  .hsidebar-menu li {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .hsidebar-menu li img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hsidebar-menu li span {
+    font-size: 14px;
+  }
 }
