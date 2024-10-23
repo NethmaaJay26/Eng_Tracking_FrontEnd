@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './CSS/Trainings.css';
 
 export default function Trainings() {
+  const [showPopup, setShowPopup] = useState(false);
   const [trainings, setTrainings] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
@@ -86,7 +86,7 @@ export default function Trainings() {
       <div className='top-bar'>
         <input type="text" placeholder="Search for a Training by name or company" />
         <button>Export CSV</button>
-        <button onClick={handleAddTraining}>Add a Training</button> 
+        <button onClick={togglePopup}>Add a Training</button>
       </div>
       <div className='section'>
         <table className='trainings-table'>
@@ -110,7 +110,7 @@ export default function Trainings() {
                   {Array.isArray(training.goals)
                     ? training.goals.map((goal, idx) => (
                         <div key={idx}>
-                          {goal.goal} - {goal.isCompleted ? 'Completed' : 'Not Completed'}
+                          {goal.goal}
                         </div>
                       ))
                     : ''}

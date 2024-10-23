@@ -145,20 +145,6 @@ function Engprofile() {
                         )}
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="dob">DOB</label>
-                        <input
-                            type="text"
-                            id="dob"
-                            placeholder="mm/dd/yyyy"
-                            value={userData.dob}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-footer">
-                        <button type="submit" className="next-step-btn">Save</button>
-                    </div>
                 </form>
             </div>
         </div>
