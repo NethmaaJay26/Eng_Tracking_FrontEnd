@@ -7,6 +7,7 @@ function GoalsPage() {
   const { trainingId } = useParams();
   const [training, setTraining] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchTrainingGoals = async () => {
@@ -15,6 +16,7 @@ function GoalsPage() {
         setTraining(response.data);
       } catch (error) {
         console.error('Error fetching training goals:', error);
+        setError('Error fetching training goals.');
       }
     };
 
@@ -23,19 +25,24 @@ function GoalsPage() {
     }
   }, [trainingId]);
 
+  // Handle the file input change
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
+  // Handle file upload logic
   const handleFileUpload = () => {
     const formData = new FormData();
     if (selectedFile) {
       formData.append('file', selectedFile);
-      // You can send the file to your server using axios
-      // axios.post('/upload-endpoint', formData)
+      // File upload logic with axios can be implemented here
       console.log("File ready to be uploaded", selectedFile);
     }
   };
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
 
   return (
     <div className="container">
@@ -45,7 +52,8 @@ function GoalsPage() {
         <ul className="goal-list">
           {training.goals.map((goal, index) => (
             <li key={index} className="goal-item">
-              <h3>Goal {index + 1}: {goal}</h3>
+              <h3>Goal {index + 1}: {goal.goal}</h3>
+              <p>Status: {goal.isCompleted ? 'Completed' : 'Not Completed'}</p> {/* Display status only */}
             </li>
           ))}
         </ul>

@@ -110,7 +110,7 @@ export default function Trainings() {
                   {Array.isArray(training.goals)
                     ? training.goals.map((goal, idx) => (
                         <div key={idx}>
-                          {goal.goal} - {goal.isCompleted ? 'Completed' : 'Not Completed'}
+                          {goal.goal}
                         </div>
                       ))
                     : ''}
