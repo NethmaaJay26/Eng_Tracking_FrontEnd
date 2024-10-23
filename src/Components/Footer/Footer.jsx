@@ -16,7 +16,6 @@ const Item = ({ Links, title }) => (
     </div>
 );
 
-
 const Footer = () => {
     const [feedback, setFeedback] = useState('');
 

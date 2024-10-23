@@ -87,8 +87,8 @@ function MarkList() {
   const groupedTrainings = groupTrainingsByCategory(trainings);
 
   return (
-    <div className="mark-allocation-container">
-      <h1 className="page-title">Mark Allocation for Assigned Engineer</h1>
+    <div className="mark-allocation-container2">
+      <h1 className="page-title">Mark Allocation for Assigned Engineers</h1>
       {error && <div className="error-message">{error}</div>}
 
       <div className="engineers-list">

@@ -1,10 +1,10 @@
 /* General container for the mark allocation page */
-.mark-allocation-container {
+.mark-allocation-container2 {
     padding: 30px;
     font-family: 'Roboto', sans-serif;
-    margin-top: 130px; /* Adjust to avoid overlap with topbar */
+    margin-top: 100px; /* Adjust to avoid overlap with topbar */
     margin-bottom: 60px;
-    margin-left: 480px; /* Add space for the sidebar (230px width + some margin) */
+    margin-left: 320px; /* Add space for the sidebar (230px width + some margin) */
     margin-right: auto;
     background-color: #fff;
     border-radius: 10px;
@@ -14,8 +14,8 @@
   
   /* Page title */
   .page-title {
-    font-size: 28px;
-    color: #2b6cb0;
+    font-size: 25px;
+    color: black;
     font-weight: 700;
     text-align: center;
     margin-bottom: 30px;
