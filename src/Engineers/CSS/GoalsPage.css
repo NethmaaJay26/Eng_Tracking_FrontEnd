@@ -43,10 +43,15 @@ h1 {
 }
 
 .goal-item p{
-  width: 400px;
+  width: 200px;
   background-color: #4CAF50;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
+  border-radius: 5px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 
 /* Goal title styling */
