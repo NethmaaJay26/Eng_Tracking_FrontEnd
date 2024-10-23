@@ -84,8 +84,6 @@ export default function Trainings() {
       <h1>Trainings</h1>
       <hr />
       <div className='top-bar'>
-        <input type="text" placeholder="Search for a Training by name or company" />
-        <button>Export CSV</button>
         <button onClick={togglePopup}>Add a Training</button>
       </div>
       <div className='section'>

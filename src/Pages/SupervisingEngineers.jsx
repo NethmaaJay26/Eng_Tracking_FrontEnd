@@ -125,8 +125,6 @@ export default function SupervisingEngineers() {
       <h1>Supervising Engineers</h1>
       <hr />
       <div className='top-bar'>
-        <input type="text" placeholder="Search for a supervising engineer by name or email" />
-        <button>Export CSV</button>
         <button onClick={togglePopup}>Add Supervising Engineer</button>
       </div>
       <div className='section'>

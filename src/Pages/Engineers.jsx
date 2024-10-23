@@ -154,8 +154,6 @@ export default function Engineers() {
       <h1>Trainee Engineers</h1>
       <hr />
       <div className='top-bar'>
-        <input type="text" placeholder="Search for an engineer by name or email" />
-        <button>Export CSV</button>
         <button onClick={toggleAddTraineePopup}>Add Trainees</button>
       </div>
       <div className='section'>
