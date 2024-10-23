@@ -31,13 +31,6 @@ const SE_HowEvaluate = () => {
           <button onClick={goToWeightAllocation}>Read More</button>
         </div>
         <div className="allocation-box">
-          <h4>Goal Allocation</h4>
-          <p>
-            Every training encompasses multiple goals, each contributing to your overall mark.
-          </p>
-          <button>Read More</button>
-        </div>
-        <div className="allocation-box">
           <h4>Mark Allocation</h4>
           <p>
             Marks are awarded for each goal completed, culminating in a total mark for the training.
