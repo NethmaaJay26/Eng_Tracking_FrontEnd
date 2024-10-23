@@ -1,15 +1,13 @@
 .profile-update-container {
     font-family: Arial, sans-serif;
-    max-width: 800px;
     padding: 150px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    
-    
+    min-height: 80vh;
+    background-image: url('/src/Components/Assets/lakdanavi.jpg');
 }
 
 .profile-update-form {
@@ -17,24 +15,36 @@
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid #3b9aff;
+    border: 2px solid #03588C;
     width: 100%;
     max-width: 600px;
-    background-color: #F2A922;
+    background: #FFD02F;
+    font-weight: 600;
+    margin-left: 300px;
 }
 
 .profile-update-container h1 {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
-    color: #3b9aff;
+    color: #ffffff;
+    font-weight: 600;
+    background: #03588C;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 12px;
+    border: 2px solid #000000;
+    
 }
 
 .profile-update-form h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 20px;
     color: #333;
     text-align: center;
+    font-weight: 600;
 }
 
 .form-group {
@@ -79,7 +89,7 @@
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border: 3px solid #3b9aff;
+    border: 3px solid #03588C;
 }
 
 .edit-password-btn {
@@ -89,7 +99,7 @@
     font-size: 12px;
     color: white;
     border: none;
-    background-color: #3b9aff;
+    background-color: #03588C;
     border-radius: 8px;
     cursor: pointer;
 }
@@ -106,7 +116,7 @@
     padding: 12px 16px;
     font-size: 16px;
     color: white;
-    background-color: #3b9aff;
+    background-color: #03588C;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -114,7 +124,7 @@
 
 .edit-pic-btn:hover,
 .next-step-btn:hover {
-    background-color: #0056b3;
+    background-color: #03588C;
 }
 
 .form-footer {
@@ -137,3 +147,4 @@
 .save-password-btn:hover {
     background-color: #218838;
 }
+

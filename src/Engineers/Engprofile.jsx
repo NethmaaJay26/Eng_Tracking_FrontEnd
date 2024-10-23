@@ -84,8 +84,9 @@ function Engprofile() {
 
     return (
         <div className="profile-update-container">
-            <h1>{userData.name}</h1>
+            
             <div className="profile-update-form">
+                <h1 className='eng-name'>{userData.name}</h1>
                 <h2>Update Profile</h2>
                 <form>
                     <div className="form-group">
