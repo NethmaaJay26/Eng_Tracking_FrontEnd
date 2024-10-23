@@ -6,9 +6,18 @@ import { useNavigate } from 'react-router-dom';
 
 const SE_HowEvaluate = () => {
   const navigate = useNavigate();
+
   const goToMarkAllocation = () => {
+    // Navigate to the Mark Allocation page
+    navigate('/login/supervising-engineers/mark-allocations/marklist');
+  };
+
+
+  const goToWeightAllocation = () => {
     navigate('/login/supervising-engineers/mark-allocations/weight');
   };
+
+
   return (
     <div className="se-how-evaluate">
 
@@ -19,7 +28,7 @@ const SE_HowEvaluate = () => {
             For experienced engineers, managerial trainings carry higher weight,
             while technical trainings hold greater significance for trainee engineers.
           </p>
-          <button onClick={goToMarkAllocation}>Read More</button>
+          <button onClick={goToWeightAllocation}>Read More</button>
         </div>
         <div className="allocation-box">
           <h4>Goal Allocation</h4>
@@ -33,7 +42,7 @@ const SE_HowEvaluate = () => {
           <p>
             Marks are awarded for each goal completed, culminating in a total mark for the training.
           </p>
-          <button>Read More</button>
+          <button onClick={goToMarkAllocation}>Read More</button>
         </div>
       </section>
       <section className="algorithm-section">
