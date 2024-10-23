@@ -53,7 +53,8 @@ export default function UnifiedLoginPage() {
         } else if (role === 'hr') {
           navigate('/home');
         } else if (role === 'supervising-engineer') {
-          localStorage.setItem('supervisorId', user._id);  // Assuming user._id is the supervisor's ID
+          localStorage.setItem('supervisorId', user._id);
+          localStorage.setItem('image', user.photo);  // Assuming user._id is the supervisor's ID
           console.log('Supervisor ID saved in local storage:', user._id);
           navigate('/login/supervising-engineers/home');
         }
