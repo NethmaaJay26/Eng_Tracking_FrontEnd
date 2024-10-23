@@ -107,13 +107,13 @@
 }
 
 .footer-section ul li a {
-    color: white;
+    color: rgba(255, 255, 255, 0.711);
     text-decoration: none;
 }
 
 .footer-section ul li a:hover {
     text-decoration: underline;
-    color: #ffc247;
+    color: #ffc247;
 }
 
 .footer-bottom {
@@ -136,6 +136,7 @@
 
 .footer-bottom-links a:hover {
     text-decoration: underline;
+    color: #f58220;
 }
 
 .footer-bottom-links span {
