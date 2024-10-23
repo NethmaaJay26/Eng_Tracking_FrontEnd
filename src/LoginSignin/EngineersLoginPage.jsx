@@ -13,12 +13,13 @@ export default function EngineerLoginPage() {
     try {
       const response = await axios.post('http://localhost:4000/api/engineers/login', { email, password});
       if (response.data.success) {
-        const { token, name, address } = response.data;
+        const { token, name, address, _id } = response.data;
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         localStorage.setItem('token', token);
         localStorage.setItem('name', name || ''); // Ensure default values
         localStorage.setItem('address', address || ''); // Ensure default values
+        localStorage.setItem('engineerId', _id); // Save the engineer's object ID
         navigate('/Enghome');
       } else {
         setError(response.data.message);
