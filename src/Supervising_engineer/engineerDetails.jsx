@@ -109,6 +109,27 @@ export default function EngineerDetails() {
     }
   };
 
+  const handleDownloadPdf = (trainingId) => {
+    axios({
+      url: `http://localhost:4000/api/trainings/${trainingId}/download-pdf`,
+      method: 'GET',
+      responseType: 'blob', // Important: Handle the response as a blob (binary data)
+    })
+      .then((response) => {
+        // Create a URL for the blob
+        const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.setAttribute('download', 'training.pdf'); // You can customize the file name here
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .catch((error) => {
+        console.error('Error downloading the PDF:', error);
+      });
+  };
+
   if (error) {
     return <div className="error-message">{error}</div>;
   }
@@ -144,6 +165,10 @@ export default function EngineerDetails() {
                       />
                       <button onClick={() => handleMarksSubmit(training._id)}>Submit</button>
                     </div>
+                    {/* Add a button to download the PDF file */}
+                    {training.pdfFile && (
+                      <button onClick={() => handleDownloadPdf(training._id)}>Download PDF</button>
+                    )}
                   </div>
                 )}
                 <div className={`goals-list ${expandedTrainingId === training._id ? 'expanded' : ''}`}>
