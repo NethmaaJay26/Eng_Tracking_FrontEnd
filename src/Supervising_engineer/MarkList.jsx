@@ -88,11 +88,10 @@ function MarkList() {
 
   return (
     <div className="mark-allocation-container">
-      <h1 className="page-title">Mark Allocation</h1>
+      <h1 className="page-title">Mark Allocation for Assigned Engineer</h1>
       {error && <div className="error-message">{error}</div>}
 
       <div className="engineers-list">
-        <h2>Assigned Engineers</h2>
         <ul>
           {assignedEngineers.length > 0 ? (
             assignedEngineers.map((engineer) => (

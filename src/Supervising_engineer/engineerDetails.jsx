@@ -144,7 +144,6 @@ export default function EngineerDetails() {
       <hr />
 
       <div className="trainings-section">
-        <h2>Trainings</h2>
         {trainingDetails.length > 0 ? (
           <ul>
             {trainingDetails.map((training) => (
