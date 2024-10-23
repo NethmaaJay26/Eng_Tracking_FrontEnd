@@ -4,6 +4,7 @@ import './CSS/Trainings.css';
 export default function Trainings() {
   const [showPopup, setShowPopup] = useState(false);
   const [trainings, setTrainings] = useState([]);
+  const [filteredTrainings, setFilteredTrainings] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -11,12 +12,17 @@ export default function Trainings() {
     timePeriod: '',
     goals: [{ goal: '', isCompleted: false }] // Goals as objects with 'goal' and 'isCompleted'
   });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debounceTimeout, setDebounceTimeout] = useState(null); // For debouncing the search input
 
   useEffect(() => {
     // Fetch trainings when the component mounts
     fetch('http://localhost:4000/api/trainings/')
       .then(response => response.json())
-      .then(data => setTrainings(data))
+      .then(data => {
+        setTrainings(data);
+        setFilteredTrainings(data); // Initially, all trainings are displayed
+      })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
@@ -57,10 +63,9 @@ export default function Trainings() {
         return response.json();
       })
       .then(data => {
-        console.log('Success:', data);
         setTrainings([...trainings, data]); // Add new training to the list
+        setFilteredTrainings([...trainings, data]); // Update filtered list
         setShowPopup(false); // Close the popup
-
         // Reset the form data after submission
         setFormData({
           name: '',
@@ -75,6 +80,32 @@ export default function Trainings() {
       });
   };
 
+  // Handle search input with debouncing
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    // Clear the previous debounce timeout
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+
+    // Set a new debounce timeout
+    setDebounceTimeout(
+      setTimeout(() => {
+        if (value === '') {
+          setFilteredTrainings(trainings); // Show all trainings if search is cleared
+        } else {
+          const filtered = trainings.filter((training) =>
+            training.name.toLowerCase().includes(value.toLowerCase()) || 
+            training.company.toLowerCase().includes(value.toLowerCase())
+          );
+          setFilteredTrainings(filtered);
+        }
+      }, 500) // Adjust debounce delay (500ms)
+    );
+  };
+
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
@@ -84,7 +115,12 @@ export default function Trainings() {
       <h1>Trainings</h1>
       <hr />
       <div className='add-training'>
-        <input type="text" placeholder="Search for a Training by name or company" />
+        <input
+          type="text"
+          placeholder="Search for a Training by name or company"
+          value={searchTerm}
+          onChange={handleSearch} // Trigger search on typing
+        />
         <button onClick={togglePopup}>Add a Training</button>
       </div>
       <div className='section'>
@@ -99,23 +135,29 @@ export default function Trainings() {
             </tr>
           </thead>
           <tbody>
-            {trainings.map(training => (
-              <tr key={training._id}>
-                <td>{training.name}</td>
-                <td>{training.category}</td>
-                <td>{training.company}</td>
-                <td>{training.timePeriod}</td>
-                <td>
-                  {Array.isArray(training.goals)
-                    ? training.goals.map((goal, idx) => (
-                        <div key={idx}>
-                          {goal.goal}
-                        </div>
-                      ))
-                    : ''}
-                </td>
+            {filteredTrainings.length === 0 ? (
+              <tr>
+                <td colSpan="5">No trainings found</td>
               </tr>
-            ))}
+            ) : (
+              filteredTrainings.map(training => (
+                <tr key={training._id}>
+                  <td>{training.name}</td>
+                  <td>{training.category}</td>
+                  <td>{training.company}</td>
+                  <td>{training.timePeriod}</td>
+                  <td>
+                    {Array.isArray(training.goals)
+                      ? training.goals.map((goal, idx) => (
+                          <div key={idx}>
+                            {goal.goal}
+                          </div>
+                        ))
+                      : ''}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

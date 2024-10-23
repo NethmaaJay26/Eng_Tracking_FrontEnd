@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default function Engineers() {
   const [engineers, setEngineers] = useState([]);
+  const [filteredEngineers, setFilteredEngineers] = useState([]); // For filtered results
   const [showAddTraineePopup, setShowAddTraineePopup] = useState(false);
   const [showMorePopup, setShowMorePopup] = useState(false);
   const [supervisingEngineers, setSupervisingEngineers] = useState([]);
@@ -20,6 +21,8 @@ export default function Engineers() {
     supervisingEngineer: '', // Store ID instead of name
     photo: null
   });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debounceTimeout, setDebounceTimeout] = useState(null); // For debouncing
 
   useEffect(() => {
     fetchEngineers();
@@ -30,6 +33,7 @@ export default function Engineers() {
     try {
       const response = await axios.get('http://localhost:4000/api/engineers');
       setEngineers(response.data);
+      setFilteredEngineers(response.data); // Initialize filtered engineers
     } catch (error) {
       console.error('Error fetching engineers:', error);
     }
@@ -42,6 +46,31 @@ export default function Engineers() {
     } catch (error) {
       console.error('Error fetching supervising engineers:', error);
     }
+  };
+
+  // Handle search input
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout); // Clear the previous timeout
+    }
+
+    // Set a new debounce timeout to delay search until user stops typing
+    setDebounceTimeout(
+      setTimeout(() => {
+        if (value === '') {
+          setFilteredEngineers(engineers); // If search is cleared, show all engineers
+        } else {
+          const filtered = engineers.filter((engineer) =>
+            engineer.name.toLowerCase().includes(value.toLowerCase()) ||
+            engineer.traineeID.toLowerCase().includes(value.toLowerCase())
+          );
+          setFilteredEngineers(filtered);
+        }
+      }, 500) // 500ms debounce delay
+    );
   };
 
   const toggleAddTraineePopup = () => {
@@ -104,16 +133,14 @@ export default function Engineers() {
     }
   };
 
-
   const handleEditClick = () => {
     setEditMode(true);
   };
 
   const handleUpdate = async (e) => {
-    // e.preventDefault();
     const data = new FormData();
     for (const key in selectedEngineer) {
-      if (key !== '_id') { // Exclude _id field from FormData (unique identifier and do not need to update)
+      if (key !== '_id') {
         data.append(key, selectedEngineer[key]);
       }
     }
@@ -133,9 +160,6 @@ export default function Engineers() {
     }
   };
 
-
-  //delete option delete engineer by id
-
   const handleDelete = async () => {
     try {
       const response = await axios.delete(`http://localhost:4000/api/engineers/${selectedEngineer._id}`);
@@ -147,41 +171,53 @@ export default function Engineers() {
       console.error('Error deleting engineer:', error);
     }
   };
-  
-  
+
   return (
     <div className='engineers'>
       <h1>Trainee Engineers</h1>
       <hr />
       
       <div className='add-te'>
-        <input type="text" placeholder="Search for a Trainee Engineer" />
+        <input
+          type="text"
+          placeholder="Search for a Trainee Engineer"
+          value={searchTerm}
+          onChange={handleSearch} // Trigger search on typing
+        />
         <button onClick={toggleAddTraineePopup}>Add Trainees</button>
       </div>
+
       <div className='section'>
         <h2>Recruited Graduate Engineers</h2>
         <div className='engineer-grid'>
-          {engineers.filter(engineer => engineer.role === 'Recruited Graduate Engineer').map((engineer, index) => (
-            <div className='engineer-card' key={index}>
-              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
-              <h3>{engineer.name}</h3>
-              <p>{engineer.traineeID}</p>
-              <button onClick={() => handleMoreClick(engineer)}>More</button>
-            </div>
-          ))}
+          {filteredEngineers
+            .filter(engineer => engineer.role === 'Recruited Graduate Engineer')
+            .map((engineer, index) => (
+              <div className='engineer-card' key={index}>
+                <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
+                <h3>{engineer.name}</h3>
+                <p>{engineer.traineeID}</p>
+                <button onClick={() => handleMoreClick(engineer)}>More</button>
+              </div>
+            ))
+          }
         </div>
       </div>
+
       <div className='section'>
         <h2>Experienced Trainee Engineers</h2>
         <div className='engineer-grid'>
-          {engineers.filter(engineer => engineer.role === 'Experienced Trainee Engineer').map((engineer, index) => (
-            <div className='engineer-card' key={index}>
-              <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
-              <h3>{engineer.name}</h3>
-              <p>{engineer.traineeID}</p>
-              <button onClick={() => handleMoreClick(engineer)}>More</button>
-            </div>
-          ))}
+          {filteredEngineers
+            .filter(engineer => engineer.role === 'Experienced Trainee Engineer')
+            .map((engineer, index) => (
+              <div className='engineer-card' key={index}>
+                <img src={`http://localhost:4000/uploads/${engineer.photo}`} alt="Engineer" />
+                <h3>{engineer.name}</h3>
+                <p>{engineer.traineeID}</p>
+                <button onClick={() => handleMoreClick(engineer)}>More</button>
+              </div>
+            ))
+          }
         </div>
       </div>
 
@@ -241,7 +277,7 @@ export default function Engineers() {
         </div>
       )}
 
-{showMorePopup && selectedEngineer && (
+      {showMorePopup && selectedEngineer && (
         <div className='popup'>
           <div className='popup-inner'>
             <h2>{selectedEngineer.name}'s Details</h2>
@@ -272,22 +308,20 @@ export default function Engineers() {
                   Contact:
                   <input type="text" name="contact" value={selectedEngineer.contact} onChange={(e) => setSelectedEngineer({...selectedEngineer, contact: e.target.value})} />
                 </label>
-
-                <label>c
-            Supervising Engineer:
-            <select 
-              name="supervisingEngineer" 
-              value={selectedEngineer.supervisingEngineer} 
-              onChange={(e) => setSelectedEngineer({...selectedEngineer, supervisingEngineer: e.target.value})} 
-              required
-            >
-              <option value="">Select Supervising Engineer</option>
-              {supervisingEngineers.map(se => (
-                <option key={se._id} value={se._id}>{se.name}</option>
-              ))}
-            </select>
-          </label>
-          
+                <label>
+                  Supervising Engineer:
+                  <select 
+                    name="supervisingEngineer" 
+                    value={selectedEngineer.supervisingEngineer} 
+                    onChange={(e) => setSelectedEngineer({...selectedEngineer, supervisingEngineer: e.target.value})} 
+                    required
+                  >
+                    <option value="">Select Supervising Engineer</option>
+                    {supervisingEngineers.map(se => (
+                      <option key={se._id} value={se._id}>{se.name}</option>
+                    ))}
+                  </select>
+                </label>
                 <label>
                   Photo:
                   <input type="file" onChange={(e) => setSelectedEngineer({...selectedEngineer, photo: e.target.files[0]})} />
@@ -331,13 +365,12 @@ export default function Engineers() {
                   </label>
                 </form>
                 <button onClick={handleEditClick}>Edit</button>
-                <button onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>  {/*should be update css properties* */}
+                <button onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>
               </div>
             )}
           </div>
         </div>
       )}
-
     </div>
   );
 }
