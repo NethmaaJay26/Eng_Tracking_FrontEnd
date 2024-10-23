@@ -15,8 +15,7 @@ export default function HRnavBar() {
     { name: 'Training Engineers', path: '/engineers' },
     { name: 'Supervising Engineers', path: '/supervisingengineers' },
     { name: 'Trainings', path: '/trainings' },
-    { name: 'Evaluations', path: '/evaluations' },
-    { name: 'Reports', path: '/reports' },
+    
   ];
 
   return (
