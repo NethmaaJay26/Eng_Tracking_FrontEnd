@@ -39,7 +39,7 @@ import MarkAllocation from './Supervising_engineer/mark_allocation.jsx';
 import EngineerDetails from './Supervising_engineer/engineerDetails.jsx';
 
 import MarkList from './Supervising_engineer/MarkList.jsx';
-
+import MyForm from './Supervising_engineer/SE_requests.jsx'
 
 
 
@@ -130,6 +130,7 @@ function App() {
               <Route path="/engineer/:engineerId" element={<EngineerDetails />} /> {/* Engineer Details page */}
               <Route path="/goals/:trainingId" element={<GoalsPage />} />
               <Route path= "/login/supervising-engineers/mark-allocations/marklist" element={<MarkList />} />
+              <Route path="/login/supervising-engineers/requests" element={<MyForm />} />
 
             </Routes>
           </Layout>

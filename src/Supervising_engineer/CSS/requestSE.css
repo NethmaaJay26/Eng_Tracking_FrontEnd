@@ -1,0 +1,106 @@
+.my-form {
+    background: #ddddddaf;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1.1);
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    align-self: center;
+    max-height: 900px;
+    margin-right: 200px;
+}
+
+.my-form1 h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+.my-form1 h1 .fa-envelope {
+    margin-right: 10px;
+}
+
+.my-form1 p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #0a0404;
+    margin-left: 300px;
+    margin-right: 20px;
+    text-align: justify;
+    font-family: sans-serif;
+}
+
+.my-form .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+
+.my-form label {
+    display: inline-block;
+    font-weight: bold;
+    width: 120px; /* Fixed width for label */
+    text-align: right; /* Align label text to right */
+    margin-right: 20px; /* Space between label and input */
+    white-space: nowrap;
+}
+
+.my-form input {
+    width: 250%; /* Full width of input container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1; /* Grow input field to fill remaining space */
+}
+
+.my-form textarea {
+    resize: vertical;
+    width: 250%; /* Full width of the form container */
+    height: 250px; /* Increased height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1; /* Allows the textarea to grow with the container */
+}
+
+
+.my-form input:focus,
+textarea:focus {
+    border-color: #101112;
+    outline: none;
+}
+
+.my-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.my-form button {
+    background-color: #ffc247;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17%;
+}
+
+.my-form button:hover {
+    background-color: #080807;
+}
+
+.my-form button .fa-paper-plane {
+    margin-right: 5px;
+}
