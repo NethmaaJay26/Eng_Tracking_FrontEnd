@@ -5,36 +5,36 @@
 }
 
 .engineers h1 {
-  font-size: 30px;
-  margin-bottom: 50px;
-  justify-content: left;
-  color: rgb(140, 140, 140);
+     font-size: 30px;
+    margin-bottom: 50px;
+    justify-content: left;
+    color: rgb(140, 140, 140);
 }
 
-hr {
-  width: 100%;
-  border: 1px solid rgb(230, 230, 230);
-  margin-top: 20px;
-  margin-bottom: 10px;
+.engineers hr {
+   width: 100%;
+    border: 1px solid rgb(230, 230, 230);
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.top-bar {
+.add-te {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   gap: 50px;
   align-items: center;
   margin-bottom: 20px;
   margin-top: 50px;
 }
 
-.top-bar input {
+.add-te input {
   padding: 10px;
   width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.top-bar button {
+.add-te button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -44,7 +44,7 @@ hr {
   margin-left: 10px;
 }
 
-.top-bar button:hover {
+.add-te button:hover {
   background-color: #F2A922;
 }
 

@@ -124,7 +124,8 @@ export default function SupervisingEngineers() {
     <div className='supervising-engineers'>
       <h1>Supervising Engineers</h1>
       <hr />
-      <div className='top-bar'>
+      <div className='add-se'>
+        <input type="text" placeholder="Search for a Supervising Engineer" />
         <button onClick={togglePopup}>Add Supervising Engineer</button>
       </div>
       <div className='section'>

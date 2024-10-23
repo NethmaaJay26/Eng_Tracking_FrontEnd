@@ -153,7 +153,9 @@ export default function Engineers() {
     <div className='engineers'>
       <h1>Trainee Engineers</h1>
       <hr />
-      <div className='top-bar'>
+      
+      <div className='add-te'>
+        <input type="text" placeholder="Search for a Trainee Engineer" />
         <button onClick={toggleAddTraineePopup}>Add Trainees</button>
       </div>
       <div className='section'>
