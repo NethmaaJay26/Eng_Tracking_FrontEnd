@@ -5,6 +5,7 @@
     display: flex; /* Use flex to manage layout */
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center horizontally */
+    margin-left: 270px;
 }
 
 .page-title {
