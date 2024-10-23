@@ -56,70 +56,45 @@ export default function Trainings() {
     fetchEngineerTrainings();  // Fetch the engineer's selected trainings
   }, []);
 
-  const handleStatusChange = async (e, trainingId) => {
-    const newStatus = e.target.value;
-    setStatus(prevStatus => ({
-      ...prevStatus,
-      [trainingId]: newStatus
-    }));
-
-    // Update the training status in the database
-    try {
-      await axios.put(`http://localhost:4000/api/trainings/${trainingId}`, { isCompleted: newStatus === 'Completed' });
-
-      // If the status is completed, remove from selected trainings
-      if (newStatus === 'Completed') {
-        setSelectedTrainings(prevSelected => prevSelected.filter(training => training._id !== trainingId));
-      }
-
-      alert('Training status updated successfully!');
-    } catch (error) {
-      console.error('Error updating training status:', error);
-      setError('Error updating training status');
-    }
-  };
 
   const handleSelectionChange = (trainingId) => {
     setSelectedTrainings(prevSelected => {
       if (prevSelected.some(training => training._id === trainingId)) {
-        // Deselect training
         return prevSelected.filter(training => training._id !== trainingId);
       } else {
-        // Select training
         const selectedTraining = trainings.find(training => training._id === trainingId);
-        return [...prevSelected, selectedTraining];  // Add the selected training object
+        return [...prevSelected, selectedTraining]; 
       }
     });
   };
 
   const saveSelectedTrainings = async () => {
     try {
-      const engineerId = localStorage.getItem('engineerId'); // Assuming you have stored engineer ID in local storage
+      const engineerId = localStorage.getItem('engineerId'); // Get engineer ID from local storage
+  
+      // Step 1: Fetch the current engineer's data to avoid overwriting other fields (like image)
+      const { data: currentEngineerData } = await axios.get(`http://localhost:4000/api/engineers/${engineerId}`);
+      console.log('Fetched Engineer Data:', currentEngineerData);
+  
       const trainingIds = selectedTrainings.map(training => training._id); // Extract IDs of selected trainings
-      await axios.put(`http://localhost:4000/api/engineers/${engineerId}`, { training: trainingIds });
+  
+      // Step 2: Update the 'training' field while preserving the existing fields like image
+      const updatedEngineerData = {
+        ...currentEngineerData, // Preserve existing data (e.g., image, name, etc.)
+        training: trainingIds,  // Update only the 'training' field
+      };
+  
+      // Step 3: Send the full updated object back to the server
+      await axios.patch(`http://localhost:4000/api/engineers/${engineerId}`, updatedEngineerData);
+  
       alert('Selected trainings updated successfully!');
     } catch (error) {
       console.error('Error saving selected trainings:', error);
       setError('Error saving selected trainings');
     }
   };
+  
 
-  const toggleGoals = (trainingId) => {
-    setExpandedTrainingId(expandedTrainingId === trainingId ? null : trainingId);
-  };
-
-  const handleGoalSubmission = async (trainingId, goalIndex, submission) => {
-    try {
-      const response = await axios.put(`http://localhost:4000/api/trainings/${trainingId}/goals`, {
-        index: goalIndex,
-        submission,
-      });
-      alert('Goal submission saved successfully!');
-    } catch (error) {
-      console.error('Error submitting goal:', error);
-      setError('Error submitting goal');
-    }
-  };
 
   return (
     <div className="trainings">
