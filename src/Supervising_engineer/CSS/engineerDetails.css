@@ -8,32 +8,24 @@ body {
 }
 
 .engineer-details {
-  max-width: 900px;
+  max-width: 900px; 
   margin: 0 auto;
   padding: 30px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 130px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 1.0);
+  margin-top: 100px;
   margin-bottom: 60px;
-  margin-left: 520px;
+  margin-left: 420px;
 }
-
-h1 {
-  font-size: 28px;
-  color: #2b6cb0;
+ 
+.engineer-details h1 {
+  font-size: 20px;
+  color: #0b0d0f;
   margin-bottom: 20px;
   font-weight: 700;
 }
 
-h2 {
-  font-size: 24px;
-  color: #4a5568;
-  margin: 20px 0 15px;
-  font-weight: 600;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 5px;
-}
 
 .trainings-section {
   margin-bottom: 30px;
@@ -53,12 +45,12 @@ h2 {
 }
 
 .training-item:hover {
-  background-color: #edf2f7;
+  background-color: #ffc247;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .training-item strong {
-  font-size: 20px;
+  font-size: 15px;
   color: black;
 }
 

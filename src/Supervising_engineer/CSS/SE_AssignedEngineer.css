@@ -1,113 +1,82 @@
 .assigned-engineer {
+  font-family: Arial, sans-serif;
   padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+  margin-top: -50px;
+  background-color: #e2e2e2e4;
 }
-
-.trainings h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #2b6cb0;
-  font-weight: 600;
-}
-
-.trainings hr {
-  border: none;
-  height: 2px;
-  background-color: #e2e8f0;
-  margin-bottom: 20px;
-}
-
-.section {
-  overflow-x: auto;
-}
-
 
 .trainings-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
   border-radius: 8px;
   overflow: hidden;
-  background-color: white;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+
 }
 
 .trainings-table th,
 .trainings-table td {
-  padding: 14px 18px;
+  border: 1px solid #0e0c0c;
+  padding: 12px;
   text-align: left;
-  vertical-align: middle;
-  border-bottom: 1px solid #e2e8f0;
 }
 
 .trainings-table th {
   background-color: #2b6cb0;
-  color: white;
+  color: #fff;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+
 }
 
-.trainings-table tbody tr:nth-child(even) {
-  background-color: #f9fafb;
+.trainings-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-.trainings-table tbody tr:hover {
-  background-color: #f1f5f9;
-  transition: background-color 0.2s ease;
-}
-
-.trainings-table tbody td {
-  position: relative;
-  font-size: 15px;
-  color: #4a5568;
-}
-
-.trainings-table tbody td .status {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.status.new {
-  background-color: #b2f5ea;
-  color: #00796b;
-}
-
-.status.experienced {
-  background-color: #ffcccb;
-  color: #d32f2f;
-}
-
-.status.contacted {
-  background-color: #bbdefb;
-  color: #1976d2;
-}
-
-.trainings-table tbody td .checkbox {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.trainings-table tbody td .edit-icon {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
+.trainings-table tr:hover {
+  background-color: #e2e2e2;
   cursor: pointer;
-  color: #a0aec0;
-  transition: color 0.2s ease;
 }
 
-.trainings-table tbody td .edit-icon:hover {
-  color: #4a5568;
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  background-color: #f9f9f9;
+  /* Light background color */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  padding: 20px;
+  /* Padding inside the section */
+  margin-top: 20px;
+  /* Space above the section */
+}
+
+.trainings h1{
+  font-size: 25px;
+  color: #0e0c0c;
 }
