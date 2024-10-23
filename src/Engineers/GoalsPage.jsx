@@ -102,8 +102,7 @@ function GoalsPage() {
             <li key={index} className="goal-item">
               <h3>Goal {index + 1}: {goal.goal}</h3>
               <p>Status: {goal.isCompleted ? 'Completed' : 'Not Completed'}</p>
-              <button onClick={() => handleStatusUpdate(goal.id)}>Mark as Complete</button>
-              <button onClick={() => handleMarksUpdate(goal.id, 100)}>Update Marks</button>
+              
             </li>
           ))}
         </ul>

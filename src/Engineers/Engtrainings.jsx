@@ -135,7 +135,6 @@ export default function Trainings() {
                 <th>Category</th>
                 <th>Company</th>
                 <th>Time Period</th>
-                <th>Status</th>
                 <th>Select</th>
               </tr>
             </thead>
@@ -146,15 +145,6 @@ export default function Trainings() {
                   <td>{training.category}</td>
                   <td>{training.company}</td>
                   <td>{training.timePeriod}</td>
-                  <td>
-                    <select
-                      value={status[training._id] || 'Not Completed'}
-                      onChange={(e) => handleStatusChange(e, training._id)}
-                    >
-                      <option value="Completed">Completed</option>
-                      <option value="Not Completed">Not Completed</option>
-                    </select>
-                  </td>
                   <td>
                     <input
                       type="checkbox"
