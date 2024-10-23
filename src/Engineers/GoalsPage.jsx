@@ -8,6 +8,8 @@ function GoalsPage() {
   const [training, setTraining] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState('');
+  const [showPopup, setShowPopup] = useState(false); // State for showing the popup
+  const [popupMessage, setPopupMessage] = useState(''); // Message to display in the popup
 
   useEffect(() => {
     const fetchTrainingGoals = async () => {
@@ -37,7 +39,40 @@ function GoalsPage() {
       formData.append('file', selectedFile);
       // File upload logic with axios can be implemented here
       console.log("File ready to be uploaded", selectedFile);
+      setPopupMessage('File uploaded successfully!');
+      setShowPopup(true); // Show success popup for file upload
     }
+  };
+
+  // Simulating a status update function
+  const handleStatusUpdate = async (goalId) => {
+    try {
+      // Assuming there's an API to update the goal status
+      await axios.put(`http://localhost:4000/api/goals/${goalId}/update-status`, { isCompleted: true });
+      // Remove any alert, use popup instead
+      setPopupMessage('Goal status updated successfully!');
+      setShowPopup(true); // Show success popup for status update
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
+  // Simulating a marks update function
+  const handleMarksUpdate = async (goalId, newMarks) => {
+    try {
+      // Assuming there's an API to update the goal marks
+      await axios.put(`http://localhost:4000/api/goals/${goalId}/update-marks`, { marks: newMarks });
+      // Remove any alert, use popup instead
+      setPopupMessage('Marks updated successfully!');
+      setShowPopup(true); // Show success popup for marks update
+    } catch (error) {
+      console.error('Error updating marks:', error);
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setPopupMessage('');
   };
 
   if (error) {
@@ -53,7 +88,11 @@ function GoalsPage() {
           {training.goals.map((goal, index) => (
             <li key={index} className="goal-item">
               <h3>Goal {index + 1}: {goal.goal}</h3>
-              <p>Status: {goal.isCompleted ? 'Completed' : 'Not Completed'}</p> {/* Display status only */}
+              <p>Status: {goal.isCompleted ? 'Completed' : 'Not Completed'}</p>
+              {/* Trigger status update on button click */}
+              <button onClick={() => handleStatusUpdate(goal.id)}>Mark as Complete</button>
+              {/* Marks update logic */}
+              <button onClick={() => handleMarksUpdate(goal.id, 100)}>Update Marks</button>
             </li>
           ))}
         </ul>
@@ -70,6 +109,16 @@ function GoalsPage() {
         </div>
         {selectedFile && <p>Selected file: {selectedFile.name}</p>}
       </div>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <p>{popupMessage}</p>
+            <button onClick={closePopup} className="ok-button">OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
