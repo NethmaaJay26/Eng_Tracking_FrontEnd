@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center; /* Align items (goal list and file submission) to center */
   margin-top: 100px;
+  max-height: 80vh;
 }
 
 /* Heading styling */
@@ -27,7 +28,7 @@ h1 {
   padding: 0;
   margin: 0;
   width: 100%; /* Ensures list stretches full width within container */
-  max-width: 600px; /* Optional: sets a max-width for better appearance */
+  max-width: 700px; /* Optional: sets a max-width for better appearance */
 }
 
 /* Individual goal styling */
@@ -38,13 +39,22 @@ h1 {
   border-left: 4px solid #4CAF50;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.goal-item p{
+  width: 400px;
+  background-color: #4CAF50;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 /* Goal title styling */
 .goal-item h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   color: #333;
+
 }
 
 /* Alternate background color for every second item */

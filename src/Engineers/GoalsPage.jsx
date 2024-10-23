@@ -12,6 +12,11 @@ function GoalsPage() {
   const [popupMessage, setPopupMessage] = useState(''); // Message to display in the popup
 
   useEffect(() => {
+    // Scroll to the top of the page when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchTrainingGoals = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/api/trainings/${trainingId}`);
@@ -102,7 +107,6 @@ function GoalsPage() {
             <li key={index} className="goal-item">
               <h3>Goal {index + 1}: {goal.goal}</h3>
               <p>Status: {goal.isCompleted ? 'Completed' : 'Not Completed'}</p>
-              
             </li>
           ))}
         </ul>
@@ -115,7 +119,6 @@ function GoalsPage() {
         <h2>Submit Files</h2>
         <div className="file-upload-box">
           <input type="file" id="file" name="file" onChange={handleFileChange} accept="application/pdf" />
-
           <button className="upload-button" onClick={handleFileUpload}>Upload PDF</button>
         </div>
         {selectedFile && <p>Selected file: {selectedFile.name}</p>}
