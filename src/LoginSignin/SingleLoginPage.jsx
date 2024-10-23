@@ -47,6 +47,7 @@ export default function UnifiedLoginPage() {
           localStorage.setItem('address', user.address);
           localStorage.setItem('password', user.password);
           localStorage.setItem('engineerId', user._id);
+          localStorage.setItem('image', user.photo); 
 
           // Redirect to the engineer home page
           navigate('/Enghome');
