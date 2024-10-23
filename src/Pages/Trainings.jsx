@@ -9,7 +9,7 @@ export default function Trainings() {
     category: '',
     company: '',
     timePeriod: '',
-    goals: [''] // Set goals as an array to handle multiple goals
+    goals: [{ goal: '', isCompleted: false }] // Goals as objects with 'goal' and 'isCompleted'
   });
 
   useEffect(() => {
@@ -30,14 +30,14 @@ export default function Trainings() {
   const handleGoalChange = (index, value) => {
     setFormData(prevData => {
       const newGoals = [...prevData.goals];
-      newGoals[index] = value;
+      newGoals[index].goal = value;
       return { ...prevData, goals: newGoals };
     });
   };
 
   // Add a new goal field
   const addGoalField = () => {
-    setFormData(prevData => ({ ...prevData, goals: [...prevData.goals, ''] }));
+    setFormData(prevData => ({ ...prevData, goals: [...prevData.goals, { goal: '', isCompleted: false }] }));
   };
 
   // Submit form data
@@ -67,7 +67,7 @@ export default function Trainings() {
           category: '',
           company: '',
           timePeriod: '',
-          goals: [''], // Reset goals to a single empty field
+          goals: [{ goal: '', isCompleted: false }] // Reset goals to a single empty field
         });
       })
       .catch((error) => {
@@ -106,7 +106,15 @@ export default function Trainings() {
                 <td>{training.category}</td>
                 <td>{training.company}</td>
                 <td>{training.timePeriod}</td>
-                <td>{Array.isArray(training.goals) ? training.goals.join(', ') : ''}</td> {/* Ensure goals are displayed as comma-separated */}
+                <td>
+                  {Array.isArray(training.goals)
+                    ? training.goals.map((goal, idx) => (
+                        <div key={idx}>
+                          {goal.goal} - {goal.isCompleted ? 'Completed' : 'Not Completed'}
+                        </div>
+                      ))
+                    : ''}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -141,13 +149,13 @@ export default function Trainings() {
                 <input type="text" name="timePeriod" value={formData.timePeriod} onChange={handleChange} />
               </label>
               <label>Goals:</label>
-              {formData.goals.map((goal, index) => (
+              {formData.goals.map((goalObj, index) => (
                 <div key={index}>
-                  <input 
-                    type="text" 
-                    value={goal} 
-                    onChange={(e) => handleGoalChange(index, e.target.value)} 
-                    placeholder={`Goal ${index + 1}`} 
+                  <input
+                    type="text"
+                    value={goalObj.goal}
+                    onChange={(e) => handleGoalChange(index, e.target.value)}
+                    placeholder={`Goal ${index + 1}`}
                   />
                 </div>
               ))}
