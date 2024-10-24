@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import './Engnavbar.css';
 import logo from '../Assets/icon.png';
 import im30 from '../Assets/Image 30.png'; 
-import im31 from '../Assets/Image 31.png'; 
-import im34 from '../Assets/Image 34.png'; 
+import im31 from '../Assets/Image 31.png';  
 import im33 from '../Assets/Image 33.png'; 
 
 export default function EngnavBar() {
@@ -20,7 +19,6 @@ export default function EngnavBar() {
     { name: 'Dashboard', path: '/Enghome',icon:im30 },
     { name: 'My Profile', path: '/Engprofile' ,icon:im31},
     { name: 'My Trainings', path: '/Engtrainings',icon:im33 },
-    { name: 'Grades', path: '/Enggrades' ,icon:im34},
   ];
 
   return (

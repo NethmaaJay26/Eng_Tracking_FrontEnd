@@ -28,10 +28,6 @@ const Banner = () => {
           <img src={pointImage2} alt="Point 2" />
           <h3>My Trainings</h3>
         </div>
-        <div className="point" onClick={() => handleClick('/Enggrades')}>
-          <img src={pointImage3} alt="Point 3" />
-          <h3>Grades & Progress</h3>
-        </div>
       </div>
     </div>
   );
