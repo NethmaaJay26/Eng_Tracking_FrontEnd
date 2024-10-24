@@ -3,13 +3,15 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1.1);
-    max-width: 800px;
-    margin: 30px auto;
+    max-width: 900px;
+    margin-left: 600px;
+    margin-bottom: 200px;
     padding: 20px;
     font-family: Arial, sans-serif;
     align-self: center;
     max-height: 900px;
     margin-right: 200px;
+    margin-top: 50px;
 }
 
 .my-form1 h1 {

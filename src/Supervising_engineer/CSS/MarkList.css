@@ -4,7 +4,7 @@
     font-family: 'Roboto', sans-serif;
     margin-top: 100px; /* Adjust to avoid overlap with topbar */
     margin-bottom: 60px;
-    margin-left: 320px; /* Add space for the sidebar (230px width + some margin) */
+    margin-left: 500px; /* Add space for the sidebar (230px width + some margin) */
     margin-right: auto;
     background-color: #fff;
     border-radius: 10px;
