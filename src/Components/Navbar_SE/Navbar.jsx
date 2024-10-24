@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../Assets/icon.png';
+import im30 from '../Assets/Image 30.png'; 
+import im31 from '../Assets/Image 31.png'; 
+import im34 from '../Assets/Image 34.png'; 
+import im33 from '../Assets/Image 33.png'; 
 
 export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -17,20 +21,20 @@ export default function Sidebar() {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/login/supervising-engineers/home' },
-    { name: 'Assigned Engineers', path: '/login/supervising-engineers/assigned_engineers' },
-    { name: 'Evaluations', path: '/login/supervising-engineers/mark-allocations' },
-    { name: 'Requests', path: '/login/supervising-engineers/requests' },
+    { name: 'Dashboard', path: '/login/supervising-engineers/home' ,icon:im30},
+    { name: 'Assigned Engineers', path: '/login/supervising-engineers/assigned_engineers',icon:im31 },
+    { name: 'Evaluations', path: '/login/supervising-engineers/mark-allocations',icon:im33 },
+    { name: 'Requests', path: '/login/supervising-engineers/requests' ,icon:im34},
   ];
 
   return (
-    <div className='sidebar'>
-      <div className="sidebar-profile">
+    <div className='ssidebar'>
+      <div className="ssidebar-profile">
         <img src={supervisorImageURL ? `http://localhost:4000/uploads/${supervisorImageURL}` : logo} alt="icon" />
         <p>{supervisorName}</p>
         <hr />
       </div>
-      <ul className="sidebar-menu">
+      <ul className="ssidebar-menu">
         {navItems.map((item, index) => (
           <li
             key={index}
@@ -38,7 +42,8 @@ export default function Sidebar() {
             style={{ backgroundColor: selectedItem === item.name ? '#F2A922' : 'transparent' }}
           >
             <Link to={item.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-              {item.name}
+            <img src={item.icon} alt={`${item.name} icon`} className='snav-icon' />
+            <span>{item.name}</span>
             </Link>
           </li>
         ))}

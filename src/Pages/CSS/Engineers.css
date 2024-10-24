@@ -1,17 +1,17 @@
-.engineers {
+.tengineers {
   margin-left: 270px; 
   padding: 100px;
   margin-top: 50px;
 }
 
-.engineers h1 {
+.tengineers h1 {
      font-size: 30px;
     margin-bottom: 50px;
     justify-content: left;
     color: rgb(140, 140, 140);
 }
 
-.engineers hr {
+.tengineers hr {
    width: 100%;
     border: 1px solid rgb(230, 230, 230);
     margin-top: 20px;
@@ -48,43 +48,43 @@
   background-color: #F2A922;
 }
 
-.section {
+.tsection {
   margin-top: 50px;
 }
 
-.section h2 {
+.tsection h2 {
   margin-bottom: 50px;
   justify-content: left;
   display: flex;
 }
 
-.engineer-grid {
+.tengineer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 50px;
 }
 
-.engineer-card {
-  background-color: #f5f5f5;
+.tengineer-card {
+  background-color: #b0d6ee;
   padding: 30px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.engineer-card img {
+.tengineer-card img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
 
-.engineer-card p {
+.tengineer-card p {
   font-size: 16px;
   font-weight: 500;
 }
 
-.engineer-card button {
+.tengineer-card button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -93,7 +93,7 @@
   cursor: pointer;
 }
 
-.engineer-card button:hover {
+.tengineer-card button:hover {
   background-color: #024a6e;
 }
 

@@ -17,7 +17,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
     width: 400px;
     text-align: center;
-    
+     
 }
 
 .loginsignup-container h1 {
@@ -112,8 +112,8 @@
 .main-login-container {
     width: 80%;
     height: auto;
-    background: white;
-    display: flex;
+    background: rgba(255, 255, 255, 0.8); /* white background with 80% opacity */
+    
     align-items: center;
     justify-content: space-between;
     padding: 40px 60px;
@@ -121,25 +121,38 @@
 }
 
 .main-login-left {
-    flex: 1;
-    display: flex;
+   
     justify-content: center;
     align-items: center;
 }
 
 .main-login-right {
-    flex: 1;
+  
     padding: 20px;
 }
 
 .main-login-right h1 {
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 1em;
     margin: 0;
+    color: black;
 }
 
 .main-login-right h1 span {
     color: #ffc247;
+}
+
+
+.main-login-right h2 span{
+    color: #060605;
+    font-family: 'Lobster', cursive;
+    font-size: medium;
+}
+
+.main-login-right h2 {
+    color: #06060591;
+    
+    font-size: smaller;
 }
 
 .main-login-right p {
@@ -149,7 +162,7 @@
 }
 
 .main-login-buttons {
-    display: flex;
+    
     flex-direction: column;
     gap: 1px;
 }
@@ -160,7 +173,7 @@
     border-radius: 50px;
     background: linear-gradient(264deg, #F58220 -5.09%, #191A4E 106.28%);
     font-size: 17px;
-    padding: 15px 20px;
+    padding: 20px 20px;
     margin-bottom: 20px;
     cursor: pointer;
     transition: 0.3s;
@@ -170,8 +183,6 @@
     transform: scale(1.05);
     transition: 0.6s;
 }
-
-
 
 .loginsignup-fields button.login-button {
     background: #03588C;

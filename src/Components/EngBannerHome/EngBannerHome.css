@@ -1,25 +1,26 @@
 .banner {
-  padding: 50px;
-  background-image: url('../Assets/lakdanavi.jpg');
+  padding: 40px;
+  background-image: url('../Assets/lakdanavi2.jpg');
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   margin-left: 270px;
-  margin-top: 80px; 
+  margin-top: 60px; 
   margin-bottom:0px;
-  padding-bottom:200px;
-  height: 80vh;
+  padding-bottom:100px;
+  height: 70vh;
 }
 
 .welcome-container {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .welcome-container h1 {
   font-size: 25px;
   font-weight: bold;
   color: #333;
-  padding-bottom: 50px;
+  padding-bottom:60px;
+  padding-top: 20px;
 }
 
 .points-container {

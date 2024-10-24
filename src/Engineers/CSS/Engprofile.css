@@ -1,4 +1,4 @@
-/* Profile Update Container */
+
 .profile-update-container {
     font-family: 'Poppins', sans-serif;
     padding: 80px 20px;
@@ -13,7 +13,7 @@
     background-image: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
 }
 
-/* Profile Update Form */
+
 .profile-update-form {
     background-color: #ffffff;
     padding: 40px;
@@ -26,7 +26,7 @@
     position: relative;
 }
 
-/* Heading 1: Name */
+
 .profile-update-form h1 {
     font-size: 28px;
     color: #03588C;
@@ -36,7 +36,7 @@
     letter-spacing: 1px;
 }
 
-/* Heading 2: Update Profile */
+
 .profile-update-form h2 {
     font-size: 22px;
     margin-bottom: 30px;
@@ -45,7 +45,7 @@
     text-transform: capitalize;
 }
 
-/* Form Groups */
+
 .form-group {
     margin-bottom: 25px;
     text-align: left;
@@ -77,7 +77,7 @@
     outline: none;
 }
 
-/* Buttons */
+
 .edit-password-btn,
 .save-password-btn {
     display: inline-block;
@@ -98,13 +98,13 @@
     transform: scale(1.05);
 }
 
-/* Form Footer (For any additional form options) */
+
 .form-footer {
     text-align: center;
     margin-top: 20px;
 }
 
-/* Profile Picture */
+
 .profile-pic {
     text-align: center;
     margin-bottom: 30px;
@@ -118,7 +118,7 @@
     object-fit: cover;
 }
 
-/* Responsive Design */
+
 @media (max-width: 600px) {
     .profile-update-form {
         padding: 20px;

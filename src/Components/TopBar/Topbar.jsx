@@ -18,12 +18,13 @@ export default function Topbar() {
   return (
     <div className='topbar'>
       <div className="topbar-logo">
+        <img src={logoLTL} alt="Logo" /> 
         <p>ENGINEERINGProTrack</p>
+        <img src={logoLTL} alt="Logo" />
        
       </div>
       <div className="topbar-login">
-        <img className='topbar-login-bell' src={bell_icon} alt="bell icon" />
-        <div className="topbar-bell-count">0</div>
+        
         <button onClick={handleLogout}>Log Out</button>
       </div>
     </div>
