@@ -20,7 +20,6 @@ export default function Topbar() {
       <div className="topbar-logo">
 
         <p>ENGINEERINGProTrack</p>
-        <img src={logoLTL} alt="Logo" />
        
       </div>
       <div className="topbar-login">

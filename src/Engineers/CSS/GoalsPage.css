@@ -27,8 +27,8 @@ h1 {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  width: 100%; /* Ensures list stretches full width within container */
-  max-width: 700px; /* Optional: sets a max-width for better appearance */
+  width: 100%; 
+  max-width: 700px; 
 }
 
 /* Individual goal styling */
@@ -43,13 +43,18 @@ h1 {
 }
 
 .goal-item p{
-  width: 400px;
+  width: 200px;
   background-color: #4CAF50;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
+  border-radius: 5px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 
-/* Goal title styling */
+
 .goal-item h3 {
   margin: 0;
   font-size: 18px;
@@ -57,12 +62,12 @@ h1 {
 
 }
 
-/* Alternate background color for every second item */
+
 .goal-item:nth-child(even) {
   background-color: #f1f1f1;
 }
 
-/* Media queries for responsive design */
+
 @media (max-width: 600px) {
   .container {
     padding: 10px;
