@@ -18,7 +18,6 @@ export default function Topbar() {
   return (
     <div className='topbar'>
       <div className="topbar-logo">
-        <img src={logoLTL} alt="Logo" /> 
         <p>ENGINEERINGProTrack</p>
         <img src={logoLTL} alt="Logo" />
        
